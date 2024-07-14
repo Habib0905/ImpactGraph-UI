@@ -2,18 +2,25 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className='w-full h-screen relative'> 
-    <video  className='w-full h-full object-cover' src='bg.mp4' autoPlay  
-    loop muted />
-     
-     <div className="absolute w-full h-full top-0 left-0 bg-gray-900/30">
-     <div className="absolute w-full h-full flex flex=row text-center text-6xl text-white p-4">
-        <h1 className=' absolute w-full h-full items-center top-60 '>Welcome to ImapactGraph </h1>
-        <p className='absolute w-full h-full top-80 text-xl'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi laboriosam accusantium, veniam pariatur animi amet nostrum labore nemo tenetur aspernatur praesentium quos dolores aperiam vero eveniet officia! Quibusdam, quisquam inventore!</p>
-     </div>
 
-     </div>
-     </div>
+
+    <div className="hero min-h-screen">
+        <video  className='w-full h-full object-cover' src='bg.mp4' autoPlay  
+        loop muted />
+        <div className="hero-overlay bg-opacity-30"></div>
+        <div className="hero-content text-neutral-content text-center">
+        <div className="w-full">
+        <h1 className="mb-5 text-6xl font-bold">Welcome to ImapactGraph</h1>
+        <p className="mb-5 text-2xl">
+        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+        quasi. In deleniti eaque aut repudiandae et a id nisi.
+        </p>
+       <button className="btn ">Get Started</button>
+    </div>
+  </div>
+</div>
+
+
 
   )
 }
