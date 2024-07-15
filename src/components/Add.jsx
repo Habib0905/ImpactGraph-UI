@@ -64,12 +64,12 @@ loop muted />
 
 <label className="input input-bordered input-black  flex items-center gap-2 mt-10">
   ID
-  <input type="Number" className="grow" placeholder="e.g. 01198 " />
+  <input type="Number" min={0} className="grow" placeholder="e.g. 01198 " />
 </label>
 
 <label className="input input-bordered input-black flex items-center gap-2 mt-10">
   IP
-  <input type="Number" className="grow" placeholder="e.g. 192.168.1.30 " />
+  <input type="Number" min={0} className="grow" placeholder="e.g. 192.168.1.30 " />
 </label>
 
 <label className="input input-bordered input-black  flex items-center gap-2 mt-10">
