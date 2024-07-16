@@ -10,7 +10,7 @@ const Add = () => {
 
   const modalshow=()=>
     {
-      document.getElementById('my_modal_3').showModal()
+      document.getElementById('modal').showModal()
     }
 
   const handleIncoming =()=> {
@@ -70,7 +70,7 @@ const Add = () => {
 
           <label htmlFor='ip' className="input input-bordered input-black flex items-center gap-2 w-full  mt-5">
             IP
-            <input type="Number" id='ip' min={0} className="grow" placeholder="e.g. 192.168.1.30 " />
+            <input type="Number" id='ip' min={0} className="grow"  placeholder="e.g. 192.168.1.30 " />
           </label>
 
 
@@ -120,14 +120,19 @@ const Add = () => {
             <option value="Com D"> Com D</option>
             <option value="Com E"> Com E</option>
             </select>
-            <button className="btn btn-outline btn-neutral ml-5 w-20" onClick={handleOutgoing}>Add</button>
-           
+            <button className="btn btn-outline btn-neutral ml-5 w-20" onClick={handleOutgoing}>Add</button>          
         </div>
 
-        <dialog id="my_modal_3" className="modal">
+    <button className="btn btn-outline btn-wide btn-neutral mt-5">Add</button>
+
+
+    </div>
+
+
+
+       <dialog id="modal" className="modal">
           <div className="modal-box">
             <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <p className="py-4"> The Component is Already Selected </p>
@@ -135,12 +140,7 @@ const Add = () => {
         </dialog>
 
 
-    <button className="btn btn-outline btn-wide btn-neutral mt-5">Add</button>
 
-
-    </div>
-          <div className="hero-content text-neutral-content text-center">
-          </div>
     </div>
       )
     }
