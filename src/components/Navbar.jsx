@@ -2,7 +2,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-      <div className="navbar bg-pink-950" >
+      <div className="navbar bg-black" >
   <div className="flex-1">
     <a className="btn btn-ghost text-2xl text-white">ImpactGraph</a>
   </div>

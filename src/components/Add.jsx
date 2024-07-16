@@ -18,6 +18,8 @@ const Add = () => {
       {
         if(selectedIncoming.includes(incomingComponent))
           {
+
+           
             
             modalshow();
       } else 
@@ -27,6 +29,8 @@ const Add = () => {
           setIncomingComponent('');
       }
   }
+
+
 
 
 
@@ -59,23 +63,29 @@ const Add = () => {
       <div className="hero-overlay bg-opacity-30 absolute top-0 left-0 w-full h-full"></div>
    
    
-      <div className="relative mt-10 z-10 bg-white bg-opacity-70 rounded shadow-lg w-[500px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
+      <div className="relative mt-10 z-10 mb-10 bg-black bg-opacity-70 rounded shadow-2xl shadow-white w-[500px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
        
         
           <label htmlFor="name" className="input input-bordered input-black flex items-center w-full gap-2">
             Name
             <input type="text" id="name" className="grow" placeholder="e.g. Database" />
           </label>
-
+          
+         
 
           <label htmlFor='ip' className="input input-bordered input-black flex items-center gap-2 w-full  mt-5">
             IP
             <input type="Number" id='ip' min={0} className="grow"  placeholder="e.g. 192.168.1.30 " />
           </label>
 
+          <label htmlFor="type" className="input input-bordered input-black flex items-center w-full gap-2 mt-5 ">
+            Type
+            <input type="text" id="type" className="grow" placeholder="e.g. Database" />
+          </label>
+
 
           <div className="w-full mt-5">
-            <h3 className='text-lg font-bold'> Selected Incoming Components :</h3>
+            <h3 className='text-lg text-white font-bold'> Selected Incoming Components :</h3>
             <ul>
               {
                 selectedIncoming.map((Component, index) =>(
@@ -95,17 +105,17 @@ const Add = () => {
             <option value="Com D"> Com D</option>
             <option value="Com E"> Com E</option>
             </select>
-          <button className=" btn btn-outline btn-neutral ml-5 w-20" onClick={handleIncoming}>Add</button>
+          <button className=" btn ml-5 w-20" onClick={handleIncoming}>Add</button>
         </div>
 
 
 
         <div className="w-full mt-5">
-            <h3 className='text-lg font-bold'> Selected Outgoing Components :</h3>
+            <h3 className='text-lg text-white font-bold'> Selected Outgoing Components :</h3>
             <ul>
               {
                 selectedOutgoing.map((Component, index) =>(
-                  <li key={index}> {Component}</li>
+                  <li className='text-white' key={index}> {Component}</li>
                 ))
               }
             </ul>
@@ -120,10 +130,10 @@ const Add = () => {
             <option value="Com D"> Com D</option>
             <option value="Com E"> Com E</option>
             </select>
-            <button className="btn btn-outline btn-neutral ml-5 w-20" onClick={handleOutgoing}>Add</button>          
+            <button className="btn ml-5 w-20" onClick={handleOutgoing}>Add</button>          
         </div>
 
-    <button className="btn btn-outline btn-wide btn-neutral mt-5">Add</button>
+    <button className="btn btn-wide mt-5">Add</button>
 
 
     </div>
