@@ -54,6 +54,13 @@ const Add = () => {
 
 
 
+  const handleRemoveIncoming = (component) => {
+    setSelectedIncoming(selectedIncoming.filter(item => item !== component));
+  };
+
+  const handleRemoveOutgoing = (component) => {
+    setSelectedOutgoing(selectedOutgoing.filter(item => item !== component));
+  };
 
 
   return (
@@ -84,16 +91,27 @@ const Add = () => {
           </label>
 
 
-          <div className="w-full mt-5">
+        <div className="w-full mt-5">
             <h3 className='text-lg text-white font-bold'> Selected Incoming Components :</h3>
-            <ul>
-              {
-                selectedIncoming.map((Component, index) =>(
-                  <li  className="btn w-auto mt-3 mr-3" key={index}> {Component}</li>
-                ))
-              }
+            <div className="flex flex-wrap">
+
+            <ul className="flex flex-wrap gap-3">
+              {selectedIncoming.map((component, index) => (
+                <li className="bg-white rounded-md p-2 mt-3 flex items-center" key={index}>
+                  {component}
+                  <button
+                    className="ml-2 text-red-500"
+                    onClick={() => handleRemoveIncoming(component)}
+                  >
+                    &times;
+                  </button>
+                </li>
+              ))}
             </ul>
+
+            </div>      
           </div>
+         
 
 
           <div className="w-full mt-5">
@@ -112,12 +130,18 @@ const Add = () => {
 
         <div className="w-full mt-5">
             <h3 className='text-lg text-white font-bold'> Selected Outgoing Components :</h3>
-            <ul>
-              {
-                selectedOutgoing.map((Component, index) =>(
-                  <li className='text-white' key={index}> {Component}</li>
-                ))
-              }
+            <ul className="flex flex-wrap gap-3">
+              {selectedOutgoing.map((component, index) => (
+                <li className="bg-white rounded-md p-2 mt-3 flex items-center" key={index}>
+                  {component}
+                  <button
+                    className="ml-2 text-red-500"
+                    onClick={() => handleRemoveOutgoing(component)}
+                  >
+                    &times;
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
