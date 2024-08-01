@@ -288,13 +288,12 @@ const Add = () => {
             </div>
 
             <button className="btn btn-wide mt-9" type="submit">
-              Create
+              {(isLoading && (
+                <div>
+                  <span className="loading loading-dots loading-lg"></span>
+                </div>
+              )) || <span>Create</span>}
             </button>
-            {isLoading && (
-              <div className="mt-3">
-                <span className="loading loading-dots loading-lg"></span>
-              </div>
-            )}
           </div>
         </form>
 
