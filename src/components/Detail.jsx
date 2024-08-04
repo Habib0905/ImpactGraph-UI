@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Edit from './Edit';
 
 
-const Detail = ({Component , edit}) => {
+const Detail = ({Component}) => {
 
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -13,6 +13,9 @@ const Detail = ({Component , edit}) => {
   }
   
 
+  const handleCancel = () => {
+    setIsEditMode(false);
+  }
 
 
   return (
@@ -22,8 +25,12 @@ const Detail = ({Component , edit}) => {
           { isEditMode ? 
           <Edit 
           Component={Component}
+          func = {handleCancel}
           />   
           
+          
+
+
           
           : 
        

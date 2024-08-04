@@ -1,15 +1,9 @@
-import React, { useState } from 'react'
-import Detail from './Detail';
+import React, { useState , useEffect } from 'react'
 
-const Edit = ({Component}) => {
-
-    const [isEditMode, setIsEditMode] = useState(false);
-
-
+const Edit = ({Component , func }) => {
 
 
     const [selectedIncoming, setSelectedIncoming] = useState(Component.incomingNodes);
-    console.log(Component.incomingNodes);
     const [selectedOutgoing, setSelectedOutgoing] = useState(Component.outgoingNodes);
     const [incomingComponent, setIncomingComponent] = useState("");
     const [outgoingComponent, setOutgoingComponent] = useState("");
@@ -19,12 +13,11 @@ const Edit = ({Component}) => {
       {
         document.getElementById('modal').showModal()
       }
-  
-  
 
-    const handleCancel = () => {
-      setIsEditMode(false);
-    }
+      useEffect(() => {
+       setSelectedIncoming(Component.incomingNodes);
+      }, [Component]);
+  
   
   
     const handleIncoming =()=> {
@@ -34,7 +27,8 @@ const Edit = ({Component}) => {
             {
                           
               modalshow();
-        } else 
+        }
+         else 
             {
             
               setSelectedIncoming([...selectedIncoming, incomingComponent]);
@@ -90,7 +84,7 @@ const Edit = ({Component}) => {
 
               <label htmlFor="ip" className="input input-bordered input-black flex items-center w-full gap-2">
               Ip
-              <input type="Number" id="ip" className="grow"  value={Component.ip}/>
+              <input type="text" id="ip" className="grow"  value={Component.ip}/>
               </label>
 
               <div className="w-full mt-5">
@@ -164,7 +158,7 @@ const Edit = ({Component}) => {
         <div className="flex flex-row justify-center items-center space-x-5 ">
           
               <button className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg "> Update </button>
-              <button className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black  font-bold py-2 px-10 mt-5 rounded-lg  " onClick={handleCancel}> Cancel </button>
+              <button className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black  font-bold py-2 px-10 mt-5 rounded-lg  " onClick={func}> Cancel </button>
         </div>
 
               <dialog id="modal" className="modal">
