@@ -1,16 +1,15 @@
-import {BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AddPage from "./pages/AddPage";
-
-
+import GraphPage from "./pages/GraphPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-    
-        <Route path="/" element = {<HomePage/>} />
-        <Route path="/add" element = {<AddPage/>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/add" element={<AddPage />} />
+        <Route path="/graph" element={<GraphPage />} />
       </Routes>
     </BrowserRouter>
   );
