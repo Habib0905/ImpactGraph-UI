@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Edit from './Edit';
 
 
 const Detail = ({Component}) => {
 
   const [isEditMode, setIsEditMode] = useState(false);
+  const [allComponents, setAllComponents] = useState([]);
 
   
   const handleUpdate =()=> {
@@ -15,6 +17,21 @@ const Detail = ({Component}) => {
   const handleCancel = () => {
     setIsEditMode(false);
   }
+
+
+  useEffect(() => {
+    const fetchAllComponents = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/api/components/all');
+        setAllComponents(response.data);
+      } catch (error) {
+        console.error('Error fetching components:', error);
+      }
+    };
+
+    fetchAllComponents();
+  }, []);
+       
 
 
   return (
@@ -62,32 +79,60 @@ const Detail = ({Component}) => {
             <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
         
       
-            <div className="w-full mt-5">
-              <h3 className='text-lg text-pink-950 font-bold'>Incoming Components :</h3>
+      <div className="w-full mt-5">
+              <h3 className='text-lg text-pink-950  font-bold'>Incoming Components :</h3>
               <div className="flex flex-wrap">
-              <ul className="flex flex-wrap gap-3">
-                {Component.incomingNodeIds.map((id, index) => (
-                  <li className="border-2 border-pink-950 text-pink-950 shadow-md shadow-pink-300   rounded-md p-2 mt-3 flex items-center" key={index}>
-                    {id}
-                  </li>
-                ))}
-              </ul>
-              </div>      
+                <ul className="flex flex-wrap gap-3">
+                  {Component.incomingNodeIds.map((id) =>  {
+                    const node = allComponents.find(
+                      (component) => component.id === id
+                    );
+                  
+                    return (
+                      <li
+                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
+                        key={id}
+                      >
+                         {node ? node.name : 
+                         <div>
+                         <span className="loading loading-dots loading-xs"></span>
+                       </div>
+                       }
+
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </div>
-      
-      
-      
+
+
       
             <div className="w-full mt-5">
               <h3 className='text-lg text-pink-950  font-bold'>Outgoing Components :</h3>
               <div className="flex flex-wrap">
               <ul className="flex flex-wrap gap-3">
-                {Component.outgoingNodeIds.map((id, index) => (
-                  <li className="  border-2 border-pink-950 text-pink-950 shadow-md shadow-pink-300 rounded-md p-2 mt-3 flex items-center" key={index}>
-                    {id}
-                  </li>
-                ))}
-              </ul>
+                  {Component.outgoingNodeIds.map((id) => {
+                    const node = allComponents.find(
+                      (component) => component.id === id
+                    );
+
+
+                    return (
+                      <li
+                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
+                        key={id}
+                      >
+                      {node ? node.name : 
+                         <div>
+                         <span className="loading loading-dots loading-xs"></span>
+                       </div>
+                       }
+
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>      
             </div>
 

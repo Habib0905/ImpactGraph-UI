@@ -61,7 +61,7 @@ const Edit = ({ Component, func }) => {
       .then(res => {
         console.log("Successfully updated component:", res.data);
         setTimeout(() => {
-          window.location.reload();
+          // window.location.reload();
         }, 2000);
         func();
       })
@@ -103,6 +103,11 @@ const Edit = ({ Component, func }) => {
   const modalshow = () => {
     document.getElementById('modal').showModal();
   };
+
+  const modalshow2 = () => {
+    document.getElementById('modal2').showModal();
+  };
+
 
   return (
     <div>
@@ -193,7 +198,7 @@ const Edit = ({ Component, func }) => {
         </div>
 
         <div className="flex flex-row justify-center items-center space-x-5 ">
-          <button type="submit" className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg">
+          <button type="submit" className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg" onClick={modalshow2}>
             Update
           </button>
           <button type="button" className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg" onClick={func}>
@@ -210,6 +215,15 @@ const Edit = ({ Component, func }) => {
           <p className="py-4">The Component is Already Selected</p>
         </div>
       </dialog>
+
+
+      <dialog id="modal2" className="modal">
+        <div >        
+        <span  className="loading loading-spinner w-20 h-20 border-3" ></span>
+        </div>
+      </dialog>
+
+
     </div>
   );
 };
