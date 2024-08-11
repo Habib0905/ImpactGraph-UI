@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Edit = ({ Component, func }) => {
-  const [selectedIncoming, setSelectedIncoming] = useState(Component.incomingNodeIds.map(id => String(id)));
-  const [selectedOutgoing, setSelectedOutgoing] = useState(Component.outgoingNodeIds.map(id => String(id)));
+  const [selectedIncoming, setSelectedIncoming] = useState(Component.incomingNodeIds);
+  const [selectedOutgoing, setSelectedOutgoing] = useState(Component.outgoingNodeIds);
   const [incomingComponent, setIncomingComponent] = useState("");
   const [outgoingComponent, setOutgoingComponent] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -27,11 +27,11 @@ const Edit = ({ Component, func }) => {
 
 
   useEffect(()=> {
-    setSelectedIncoming(Component.incomingNodeIds.map(id => String(id)));
+    setSelectedIncoming(Component.incomingNodeIds);
   }, [Component]);
 
   useEffect(()=> {
-    setSelectedOutgoing(Component.outgoingNodeIds.map(id => String(id)));
+    setSelectedOutgoing(Component.outgoingNodeIds);
   }, [Component]);
 
 
@@ -48,8 +48,8 @@ const Edit = ({ Component, func }) => {
   useEffect(() => {
     setUpdateComponent(prev => ({
       ...prev,
-      incomingNodeIds: selectedIncoming.map(id => parseInt(id, 10)),  // Convert to integers
-      outgoingNodeIds: selectedOutgoing.map(id => parseInt(id, 10)),  // Convert to integers
+      incomingNodeIds: selectedIncoming,  // Convert to integers
+      outgoingNodeIds: selectedOutgoing  // Convert to integers
     }));
   }, [selectedIncoming, selectedOutgoing]);
 
@@ -60,6 +60,7 @@ const Edit = ({ Component, func }) => {
     axios.put("http://localhost:8081/api/components/update", updateComponent)
       .then(res => {
         console.log("Successfully updated component:", res.data);
+        console.log(res.data); 
         setTimeout(() => {
           // window.location.reload();
         }, 2000);
@@ -69,6 +70,7 @@ const Edit = ({ Component, func }) => {
   };
 
   const handleIncoming = () => {
+    console.log(selectedIncoming);
     if (incomingComponent) {
       if (selectedIncoming.includes(incomingComponent)) {
         modalshow();
@@ -148,22 +150,32 @@ const Edit = ({ Component, func }) => {
         <div className="w-full mt-5">
           <h3 className='text-lg text-pink-950 font-bold'>Selected Incoming Components:</h3>
           <ul className="flex flex-wrap gap-3">
-            {selectedIncoming.map((component, index) => (
+            {selectedIncoming.map((id, index) => {                    
+              const node = suggestions.find(
+              (component) => component.id === id
+            );
+            return (
               <li className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center" key={index}>
-                {component}
-                <button className="ml-2 text-red-500" onClick={() => handleRemoveIncoming(component)}>
+                 {node ? node.name : 
+                         <div>
+                         <span className="loading loading-dots loading-xs"></span>
+                       </div>
+                       }
+                
+                <button className="ml-2 text-red-500" onClick={() => handleRemoveIncoming(id)}>
                   &times;
                 </button>
               </li>
-            ))}
+            );
+          })}
           </ul>
         </div>
 
         <div className="w-full mt-5">
-          <select className="select select-bordered w-full max-w-xs" value={incomingComponent} onChange={(e) => setIncomingComponent(e.target.value)}>
+          <select className="select select-bordered w-full max-w-xs" value={incomingComponent} onChange={(e) => setIncomingComponent( parseInt( e.target.value , 10 ))}>
             <option value="" disabled>Incoming Components</option>
             {suggestions.map((component) => (
-              <option key={component.id} value={component.id}>
+              <option key={component.id} value={parseInt(component.id, 10)}>
                 {component.name} - {component.ip}
               </option>
             ))}
@@ -174,22 +186,32 @@ const Edit = ({ Component, func }) => {
         <div className="w-full mt-5">
           <h3 className='text-lg text-pink-950 font-bold'>Selected Outgoing Components:</h3>
           <ul className="flex flex-wrap gap-3">
-            {selectedOutgoing.map((component, index) => (
+          {selectedOutgoing.map((id, index) => {                    
+              const node = suggestions.find(
+              (component) => component.id === id
+            );
+            return (
               <li className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center" key={index}>
-                {component}
-                <button className="ml-2 text-red-500" onClick={() => handleRemoveOutgoing(component)}>
+                 {node ? node.name : 
+                         <div>
+                         <span className="loading loading-dots loading-xs"></span>
+                       </div>
+                       }
+                
+                <button className="ml-2 text-red-500" onClick={() => handleRemoveOutgoing(id)}>
                   &times;
                 </button>
               </li>
-            ))}
+            );
+          })}
           </ul>
         </div>
 
         <div className="w-full mt-5">
-          <select className="select select-bordered w-full max-w-xs" value={outgoingComponent} onChange={(e) => setOutgoingComponent(e.target.value)}>
+          <select className="select select-bordered w-full max-w-xs" value={outgoingComponent} onChange={(e) => setOutgoingComponent(parseInt(e.target.value, 10))}>
             <option value="" disabled>Outgoing Components</option>
             {suggestions.map((component) => (
-              <option key={component.id} value={component.id}>
+              <option key={component.id} value={ parseInt(component.id , 10)}>
                 {component.name} - {component.ip}
               </option>
             ))}
