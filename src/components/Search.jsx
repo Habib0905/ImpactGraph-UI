@@ -1,75 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Detail from './Detail';
+
+
+
+
+
 const Search = () => {
 
+    
+    const [query, setQuery] = useState('');
+    const [suggestions , setSuggestions] = useState([]);
+    const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
 
-    const suggestions = [
-
-        {
-            name:"Component A",
-            type: "Database",
-            ip: "192.90.81.11",
-            incomingNodes: [
-                "ComponentB", "ComponentC"
-            ],
-            outgoingNodes: [
-                "ComponentD", "ComponentE"
-            ]
-        },
-
-        {
-            name:"Component B",
-            type: "Database",
-            ip: "192.90.81.11",
-            incomingNodes: [
-                "ComponentA", "ComponentC"
-            ],
-            outgoingNodes: [
-                "ComponentD", "ComponentE"
-            ]
-        },
-
-        {
-            name:"Component C",
-            type: "Database",
-            ip: "192.90.81.11",
-            incomingNodes: [
-                "ComponentA", "ComponentB"
-            ],
-            outgoingNodes: [
-                "ComponentD", "ComponentE"
-            ]
-        },
-        {
-            name:"Component D",
-            type: "Database",
-            ip: "192.90.81.11",
-            incomingNodes: [
-                "ComponentA", "ComponentB"
-            ],
-            outgoingNodes: [
-                "ComponentC", "ComponentE"
-            ]
-        },
-        {
-            name:"Component E",
-            type: "Database",
-            ip: "192.90.81.11",
-            incomingNodes: [
-                "ComponentA", "ComponentB"
-            ],
-            outgoingNodes: [
-                "ComponentC", "ComponentD"
-            ]
-        }
-    ];
 
     const placevalue = "Component A";
 
+    useEffect(()=>{
+        axios.get("http://localhost:8081/api/components/all")
+        .then(res=>{
+            setSuggestions(res.data);
+            console.log(res.data);
+        })
+        .catch(err => console.log(err));
+    }, [])
 
-    const [query, setQuery] = useState('');
-    const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-    const [selectedItem, setSelectedItem] = useState(null);
+
+
+
 
     const handleChange = (e)=> {
         const value = e.target.value;
@@ -137,9 +96,13 @@ const Search = () => {
                         <li className='p-2 hover:bg-pink-100 hover:font-semibold'  key={index} 
                         onClick={() => handleSelect(suggestion)}>
                             {suggestion.name}
+                       
+                            <hr className="h-px  bg-gray-200 dark:bg-gray-700"></hr>
                         </li>
+                        
                     ))
                 }
+                
                 </ul>
             )
         }

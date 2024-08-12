@@ -21,7 +21,8 @@ const Edit = ({ Component, func }) => {
     setUpdateComponent({
       id: Component.id,
       name: Component.name,
-      ip: Component.ip
+      ip: Component.ip,
+      type:Component.type,
     });
   }, [Component]);
 
