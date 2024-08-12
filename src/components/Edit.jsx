@@ -22,7 +22,7 @@ const Edit = ({ Component, func }) => {
       id: Component.id,
       name: Component.name,
       ip: Component.ip,
-      type:Component.type,
+      type: Component.type,
     });
   }, [Component]);
 
@@ -46,17 +46,22 @@ const Edit = ({ Component, func }) => {
       .catch(err => console.log(err));
   }, []);
 
+
+
   useEffect(() => {
     setUpdateComponent(prev => ({
       ...prev,
-      incomingNodeIds: selectedIncoming,  // Convert to integers
-      outgoingNodeIds: selectedOutgoing  // Convert to integers
+      incomingNodeIds: selectedIncoming, 
+      outgoingNodeIds: selectedOutgoing  
     }));
   }, [selectedIncoming, selectedOutgoing]);
 
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(updateComponent); // For debugging
+    console.log(updateComponent); 
 
     axios.put("http://localhost:8081/api/components/update", updateComponent)
       .then(res => {
@@ -65,6 +70,7 @@ const Edit = ({ Component, func }) => {
         setTimeout(() => {
           // window.location.reload();
         }, 2000);
+
         func();
       })
       .catch(err => console.log(err));
@@ -174,8 +180,9 @@ const Edit = ({ Component, func }) => {
 
         <div className="w-full mt-5">
           <select className="select select-bordered w-full max-w-xs" value={incomingComponent} onChange={(e) => setIncomingComponent( parseInt( e.target.value , 10 ))}>
-            <option value="" disabled>Incoming Components</option>
+            
             {suggestions.map((component) => (
+              
               <option key={component.id} value={parseInt(component.id, 10)}>
                 {component.name} - {component.ip}
               </option>
