@@ -15,7 +15,36 @@ const Search = () => {
     const [selectedItem, setSelectedItem] = useState(null);
 
 
-    const placevalue = "Component A";
+
+    const suggestions2 = [
+
+        {
+            name:"Component A",
+            type: "Database",
+            ip: "192.90.81.11",
+            incomingNodes: [
+                "ComponentB", "ComponentC"
+            ],
+            outgoingNodes: [
+                "ComponentD", "ComponentE"
+            ]
+        },
+
+        {
+            name:"Component B",
+            type: "Database",
+            ip: "192.90.81.11",
+            incomingNodes: [
+                "ComponentB", "ComponentC"
+            ],
+            outgoingNodes: [
+                "ComponentD", "ComponentE"
+            ]
+        }
+    ];
+
+
+
 
     useEffect(()=>{
         axios.get("http://localhost:8081/api/components/all")
@@ -37,10 +66,17 @@ const Search = () => {
         if(value)
             {
                 const filtered = suggestions.filter( suggestion => 
-                    suggestion.name.toLowerCase().includes(value.toLowerCase())
+                    suggestion.name.toLowerCase().includes(value.toLowerCase()) || suggestion.ip.includes(value)
                 );
-
-                setFilteredSuggestions(filtered);
+                
+                if(filtered.length == 0)
+                {
+                    setFilteredSuggestions([{name: "No results found"}])
+                }
+                else
+                {
+                    setFilteredSuggestions(filtered);
+                }
                 
             }
             else
@@ -95,7 +131,7 @@ const Search = () => {
                     {filteredSuggestions.map((suggestion, index)=>(
                         <li className='p-2 hover:bg-pink-100 hover:font-semibold'  key={index} 
                         onClick={() => handleSelect(suggestion)}>
-                            {suggestion.name}
+                            {suggestion.name} - {suggestion.ip}
                        
                             <hr className="h-px  bg-gray-200 dark:bg-gray-700"></hr>
                         </li>
