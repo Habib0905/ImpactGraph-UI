@@ -16,36 +16,6 @@ const Search = () => {
 
 
 
-    const suggestions2 = [
-
-        {
-            name:"Component A",
-            type: "Database",
-            ip: "192.90.81.11",
-            incomingNodes: [
-                "ComponentB", "ComponentC"
-            ],
-            outgoingNodes: [
-                "ComponentD", "ComponentE"
-            ]
-        },
-
-        {
-            name:"Component B",
-            type: "Database",
-            ip: "192.90.81.11",
-            incomingNodes: [
-                "ComponentB", "ComponentC"
-            ],
-            outgoingNodes: [
-                "ComponentD", "ComponentE"
-            ]
-        }
-    ];
-
-
-
-
     useEffect(()=>{
         axios.get("http://localhost:8081/api/components/all")
         .then(res=>{
