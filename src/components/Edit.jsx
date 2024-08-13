@@ -77,8 +77,8 @@ const Edit = ({ Component, func }) => {
   };
 
   const handleIncoming = () => {
-    console.log(selectedIncoming);
-    if (incomingComponent) {
+
+    if (incomingComponent !== '' && incomingComponent !== null && incomingComponent !== undefined) {
       if (selectedIncoming.includes(incomingComponent)) {
         modalshow();
       } else {
@@ -89,7 +89,8 @@ const Edit = ({ Component, func }) => {
   };
 
   const handleOutgoing = () => {
-    if (outgoingComponent) {
+    
+    if (outgoingComponent !== '' && outgoingComponent !== null && outgoingComponent!== undefined) {
       if (selectedOutgoing.includes(outgoingComponent)) {
         modalshow();
       } else {
@@ -180,10 +181,10 @@ const Edit = ({ Component, func }) => {
 
         <div className="w-full mt-5">
           <select className="select select-bordered w-full max-w-xs" value={incomingComponent} onChange={(e) => setIncomingComponent( parseInt( e.target.value , 10 ))}>
-            
+          <option value="" disabled>Incoming Components</option>
             {suggestions.map((component) => (
               
-              <option key={component.id} value={parseInt(component.id, 10)}>
+              <option key={component.id} value={component.id}>
                 {component.name} - {component.ip}
               </option>
             ))}
@@ -219,7 +220,7 @@ const Edit = ({ Component, func }) => {
           <select className="select select-bordered w-full max-w-xs" value={outgoingComponent} onChange={(e) => setOutgoingComponent(parseInt(e.target.value, 10))}>
             <option value="" disabled>Outgoing Components</option>
             {suggestions.map((component) => (
-              <option key={component.id} value={ parseInt(component.id , 10)}>
+              <option key={component.id} value={component.id}>
                 {component.name} - {component.ip}
               </option>
             ))}
