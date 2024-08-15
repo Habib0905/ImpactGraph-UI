@@ -67,10 +67,6 @@ const Edit = ({ Component, func }) => {
       .then(res => {
         console.log("Successfully updated component:", res.data);
         console.log(res.data); 
-        setTimeout(() => {
-          // window.location.reload();
-        }, 2000);
-
         func();
       })
       .catch(err => console.log(err));
