@@ -22,7 +22,7 @@ const Graph = () => {
   }
 
   const deSelect =()=>{
-    // visNetwork.on("deselectNode");
+    setSelectedNode("");
   }
 
 
@@ -110,7 +110,7 @@ const deleteNode =(id) => {
         const options = {
           nodes: {
             shape: "dot",
-            size: 30,
+            size: 40,
             font: { color: "white" },
             // color: "pink-900"
           },
@@ -150,7 +150,7 @@ const deleteNode =(id) => {
         const visNetwork = new Vis.Network(container, data, options);
         networkRef.current = visNetwork;
 
-        visNetwork.on("selectNode", async(params)=>{
+        visNetwork.on("click", async(params)=>{
           console.log("Single clicked");
           document.getElementById('modal'). showModal();
 
@@ -253,7 +253,7 @@ const deleteNode =(id) => {
     loop muted />
     <div className="hero-overlay bg-opacity-0"></div>
 
-    <div id="network" style={{ width: "100%", height: "600px" }}>
+    <div id="network" style={{ width: "100%"  , height:"100%"}}>
     </div>
 
 
@@ -301,7 +301,12 @@ const deleteNode =(id) => {
               className="h-6 w-6 mr-2"
               src='com.png'>           
               </img>
-              Ip:</strong> {selectedNode.ip}</p>
+              Ip:</strong> 
+              {selectedNode? selectedNode.ip : 
+                         <div>
+                         <span className="loading loading-dots loading-xs"></span>
+                       </div>
+                       }</p>
             <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
 
