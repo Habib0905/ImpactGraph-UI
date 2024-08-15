@@ -3,6 +3,10 @@ import neo4j from "neo4j-driver";
 import Vis from "vis-network";
 import axios from 'axios';
 
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const Graph = () => {
 
 
@@ -13,7 +17,12 @@ const Graph = () => {
 
 
   const deleteview =() => {
+  
     document.getElementById('delete').showModal();
+  }
+
+  const deSelect =()=>{
+    // visNetwork.on("deselectNode");
   }
 
 
@@ -23,6 +32,11 @@ const deleteNode =(id) => {
   console.log(id);
     axios.delete('http://localhost:8081/api/components/delete/' + id)
     .then(res=>{
+      toast.success('Component Deleted successfully', { position: "top-right" });
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
       setSelectedNode(res.data);
       console.log(res.data);
     })
@@ -98,6 +112,7 @@ const deleteNode =(id) => {
             shape: "dot",
             size: 30,
             font: { color: "white" },
+            // color: "pink-900"
           },
           edges: {
             arrows: {
@@ -107,8 +122,8 @@ const deleteNode =(id) => {
               },
             },
             color: {
-              color: "white",
-              highlight: "#848484",
+              color: "#848484",
+              highlight: "white",
               hover: "#848484",
             },
             font: {
@@ -159,6 +174,8 @@ const deleteNode =(id) => {
               .catch(err => 
                    console.log(intId)
                   );
+
+                  
           }
         })
 
@@ -243,7 +260,7 @@ const deleteNode =(id) => {
       <dialog id="modal" className="modal">
       <div className='modal-box border-1 p-3 rounded-md shadow-lg shadow-pink-950 border-pink-950 '>
             <form method="dialog">
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={deSelect}>✕</button>
             </form>
             <h2 className="text-xl text-center text-pink-950 font-bold mb-4">{selectedNode.name}</h2>
 
@@ -253,7 +270,13 @@ const deleteNode =(id) => {
               className="h-6 w-6 mr-2"
               src='com.png'>           
               </img>
-              ID:</strong> {selectedNode.id}</p>
+              ID:</strong> 
+              {selectedNode? selectedNode.id : 
+                         <div>
+                         <span className="loading loading-dots loading-xs"></span>
+                       </div>
+                       }
+          </p>
             <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
 
@@ -263,7 +286,12 @@ const deleteNode =(id) => {
               className="h-6 w-6 mr-2"
               src='com.png'>           
               </img>
-              Type:</strong> {selectedNode.type}</p>
+              Type:</strong>
+                      {selectedNode? selectedNode.type : 
+                         <div>
+                         <span className="loading loading-dots loading-xs"></span>
+                       </div>
+                       }</p>
             <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
 
