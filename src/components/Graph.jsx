@@ -1,10 +1,37 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import neo4j from "neo4j-driver";
 import Vis from "vis-network";
+import axios from 'axios';
 
 const Graph = () => {
+
+
   const networkRef = useRef(null);
   const driverRef = useRef(null);
+  const [selectedNode, setSelectedNode] = useState("");
+  const [selectedId, setSelectedId] = useState("");
+
+
+  const deleteview =() => {
+    document.getElementById('delete').showModal();
+  }
+
+
+  
+const deleteNode =(id) => {
+  console.log(selectedId);
+  console.log(id);
+    axios.delete('http://localhost:8081/api/components/delete/' + id)
+    .then(res=>{
+      setSelectedNode(res.data);
+      console.log(res.data);
+    })
+    .catch(err => console.log(err));
+}
+ 
+
+
+
 
   useEffect(() => {
     const driver = neo4j.driver(
@@ -80,7 +107,7 @@ const Graph = () => {
               },
             },
             color: {
-              color: "#848484",
+              color: "white",
               highlight: "#848484",
               hover: "#848484",
             },
@@ -108,7 +135,36 @@ const Graph = () => {
         const visNetwork = new Vis.Network(container, data, options);
         networkRef.current = visNetwork;
 
+        visNetwork.on("selectNode", async(params)=>{
+          console.log("Single clicked");
+          document.getElementById('modal'). showModal();
+
+          if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            console.log(`Node ${nodeId} double clicked`);
+            const actualNodeId = nodeId.split(":").pop();
+            const intId = parseInt(actualNodeId, 10);
+            console.log("Extracted node id: ", actualNodeId);
+            console.log("Extracted node id in int : ", intId);
+
+            setSelectedId(intId);
+
+            
+          
+              axios.get('http://localhost:8081/api/components/ComID/' + intId)
+              .then(res=>{
+                setSelectedNode(res.data);
+                console.log(res.data);
+              })
+              .catch(err => 
+                   console.log(intId)
+                  );
+          }
+        })
+
         visNetwork.on("doubleClick", async (params) => {
+
+
           if (params.nodes.length > 0) {
             const nodeId = params.nodes[0];
             console.log(`Node ${nodeId} double clicked`);
@@ -173,7 +229,88 @@ const Graph = () => {
     };
   }, []);
 
-  return <div id="network" style={{ width: "100%", height: "600px" }} />;
-};
+  return (
+  
+    <div className="hero min-h-screen">
+    <video  className='w-full h-full object-cover' src='network.mp4' autoPlay  
+    loop muted />
+    <div className="hero-overlay bg-opacity-0"></div>
 
+    <div id="network" style={{ width: "100%", height: "600px" }}>
+    </div>
+
+
+      <dialog id="modal" className="modal">
+      <div className='modal-box border-1 p-3 rounded-md shadow-lg shadow-pink-950 border-pink-950 '>
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h2 className="text-xl text-center text-pink-950 font-bold mb-4">{selectedNode.name}</h2>
+
+          <p className='flex flex-row'> 
+              <strong className='flex flex-row mr-2'>
+              <img
+              className="h-6 w-6 mr-2"
+              src='com.png'>           
+              </img>
+              ID:</strong> {selectedNode.id}</p>
+            <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+
+
+            <p className='flex flex-row'> 
+              <strong className='flex flex-row mr-2'>
+              <img
+              className="h-6 w-6 mr-2"
+              src='com.png'>           
+              </img>
+              Type:</strong> {selectedNode.type}</p>
+            <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+
+
+            <p className='flex flex-row'> 
+              <strong className='flex flex-row mr-2'>
+              <img
+              className="h-6 w-6 mr-2"
+              src='com.png'>           
+              </img>
+              Ip:</strong> {selectedNode.ip}</p>
+            <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+
+
+            <div className="flex flex-row justify-center items-center space-x-5 ">
+              <button  className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg" >
+              see Impacted nodes
+              </button>
+              <button className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg" onClick={deleteview} >
+              Delete
+              </button>
+           </div>
+
+
+          </div>
+      </dialog>
+
+
+      <dialog id="delete" className="modal">
+          <div className="modal-box">
+                <form method="dialog">
+                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+                <p className="py-4"> Do you want to delete the node ? </p>
+
+                <div className="flex flex-row justify-center items-center space-x-5 ">
+                    <button className='bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg' onClick={ () => deleteNode(selectedNode.id)}>Yes</button>         
+                    <form method="dialog">
+                      <button className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg">No</button>
+                    </form>
+                </div>
+          </div>
+      </dialog>
+
+
+
+    </div>
+
+)
+}
 export default Graph;
