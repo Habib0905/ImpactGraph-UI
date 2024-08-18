@@ -10,14 +10,16 @@ const ComponentDetails = ({ node }) => {
     document.getElementById('delete').showModal();
   }
 
+  const modalshow2 = () => {
+    document.getElementById('modal2').showModal();
+  };
+
   const deleteNode =(id) => {
+    modalshow2();
     console.log(id);
       axios.delete('http://localhost:8081/api/components/delete/' + id)
       .then(res=>{
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-  
+        window.location.reload();
         console.log(res.data);
       })
       .catch(err => console.log(err));
@@ -151,6 +153,13 @@ const ComponentDetails = ({ node }) => {
                     </form>
                 </div>
           </div>
+      </dialog>
+
+
+      <dialog id="modal2" className="modal">
+        <div >        
+        <span  className="loading loading-spinner w-20 h-20 border-3" ></span>
+        </div>
       </dialog>
 
 
