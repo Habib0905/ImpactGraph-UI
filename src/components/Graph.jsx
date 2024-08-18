@@ -4,6 +4,14 @@ import ComponentDetails from "./ComponentDetails";
 import axios from "axios";
 
 const Graph = () => {
+
+  const selectedNode2 =    
+  {
+    name : "Node ",
+    ip : "192.93.3443",
+    id: 2,
+  }
+
   const networkRef = useRef(null);
   const [selectedNode, setSelectedNode] = useState(null);
 
@@ -133,11 +141,17 @@ const Graph = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen">
-      <div id="network" className="w-full h-full" />
+    <div className="hero relative min-h-screen">
+    <img  className='w-full h-full object-cover' src='graphbg.jpg'/>
+    <div className="hero-overlay bg-opacity-0"></div>
+
+    <div id="network"  className="bg-black opacity-70" style={{ marginTop:"-20px", width: "100%"  , height:"100%"}}>
+    </div> 
+
       <div>
         <ComponentDetails node={selectedNode} />
       </div>
+
     </div>
   );
 };
