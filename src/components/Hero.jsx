@@ -15,7 +15,8 @@ const Hero = () => {
         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
         quasi. In deleniti eaque aut repudiandae et a id nisi.
         </p>
-       <button className="btn ">Get Started</button>
+
+        <a href='/add'><button className="btn bg-white">Get Started </button></a>
     </div>
   </div>
 </div>
