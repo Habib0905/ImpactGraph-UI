@@ -7,6 +7,7 @@ const Detail = ({Component}) => {
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [allComponents, setAllComponents] = useState([]);
+  const [impactedComponents, setImpactedComponents] = useState([]);
 
   
   const handleUpdate =()=> {
@@ -17,6 +18,25 @@ const Detail = ({Component}) => {
   const handleCancel = () => {
     setIsEditMode(false);
   }
+
+  useEffect(() => {
+    if (Component) {
+      const fetchImpactedComponents = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:8081/api/graph/impact/${Component.id}`
+          );
+          setImpactedComponents(response.data);
+        } catch (error) {
+          console.error("Error fetching impacted components:", error);
+        }
+      };
+
+      fetchImpactedComponents();
+    } else {
+      setImpactedComponents([]);
+    }
+  }, [Component]);
 
 
   useEffect(() => {
@@ -135,6 +155,32 @@ const Detail = ({Component}) => {
                 </ul>
               </div>      
             </div>
+
+
+            <div className="w-full mt-5">
+              <h3 className='text-lg text-pink-950  font-bold'>Impacted Components :</h3>
+              <div className="flex flex-wrap">
+              <ul className="flex flex-wrap gap-3">
+                  {impactedComponents.map((component, index) => {
+
+                    return (
+                      <li
+                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
+                        key={index}
+                      >
+                      {component ? component.name : 
+                         <div>
+                         <span className="loading loading-dots loading-xs"></span>
+                       </div>
+                       }
+
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>      
+            </div>
+
 
 
 
