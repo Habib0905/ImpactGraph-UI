@@ -83,7 +83,7 @@ const Search = () => {
         "> Search the Component you want to update</p>
        <div className=" font-abc top-40 absolute  mb-10 w-[600px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
        
-      <label className="input input-bordered flex items-center w-full gap-2">
+      <label className="input input-bordered  bg-white flex items-center w-full gap-2">
         <input type="text" className="grow" placeholder="Component A" value={query} onChange={handleChange} />
 
         <button

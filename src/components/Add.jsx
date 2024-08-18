@@ -225,7 +225,7 @@ const Add = () => {
                 ))}
               </select>
               <button
-                className="btn ml-5 w-20"
+                className="btn ml-5 w-20 bg-white"
                 type="button"
                 onClick={() =>
                   handleNodeSelect(parseInt(incomingComponent), "incoming")
@@ -252,7 +252,7 @@ const Add = () => {
                     >
                       {node.name}
                       <button
-                        className="ml-2 text-red-500"
+                        className="ml-2 text-red-500 "
                         type="button"
                         onClick={() => handleNodeRemove(id, "outgoing")}
                       >
@@ -280,7 +280,7 @@ const Add = () => {
                 ))}
               </select>
               <button
-                className="btn ml-5 w-20"
+                className="btn ml-5 w-20 bg-white"
                 type="button"
                 onClick={() =>
                   handleNodeSelect(parseInt(outgoingComponent), "outgoing")
@@ -290,7 +290,7 @@ const Add = () => {
               </button>
             </div>
 
-            <button className="btn btn-wide mt-9" type="submit">
+            <button className="btn btn-wide bg-white mt-9" type="submit">
               {(isLoading && (
                 <div>
                   <span className="loading loading-dots loading-lg"></span>

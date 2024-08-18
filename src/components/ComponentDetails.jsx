@@ -133,9 +133,9 @@ const ComponentDetails = ({ node }) => {
 
 
         <div className="flex flex-row justify-center items-center space-x-5 ">
-              <button  className="bg-gradient-to-br from-pink-950 to-white text-black py-2 px-10 mt-5 rounded-lg" >
+              {/* <button  className="bg-gradient-to-br from-pink-950 to-white text-black py-2 px-10 mt-5 rounded-lg" >
               update
-              </button>
+              </button> */}
               <button className="bg-gradient-to-br from-white to-pink-950 text-black py-2 px-10 mt-5 rounded-lg"  onClick={deleteview} >
               Delete
               </button>
