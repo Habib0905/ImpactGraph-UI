@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import Alert from "./Alert";
 
 const Add = () => {
@@ -17,6 +18,7 @@ const Add = () => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertType, setAlertType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const fetchAllComponents = () => {
     axios
@@ -93,6 +95,7 @@ const Add = () => {
         setAlertVisible(true);
         setTimeout(() => {
           setAlertVisible(false);
+          navigate('/graph');
         }, 3000);
         fetchAllComponents();
       })

@@ -1,14 +1,16 @@
 // NodeDetails.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Edit from "./Edit";
 
 const ComponentDetails = ({ node }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
-
-
+ 
   const deleteview =() => {
     document.getElementById('delete').showModal();
   }
+
+
 
   const modalshow2 = () => {
     document.getElementById('modal2').showModal();

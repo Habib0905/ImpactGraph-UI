@@ -11,7 +11,7 @@ const Navbar = () => {
   <div className="flex-none">
     <ul className="menu menu-horizontal px-1 text-xl text-white">
       <li className='hover:bg-pink-950 hover:rounded-md  font-abc font-bold ' ><a href='/add'>Add</a></li>
-      <li className='hover:bg-pink-950 hover:rounded-md  font-abc font-bold ' ><a >View Graph</a></li>
+      <li className='hover:bg-pink-950 hover:rounded-md  font-abc font-bold ' ><a href="/graph">View Graph</a></li>
       <li className='hover:bg-pink-950 hover:rounded-md  font-abc font-bold ' ><a href='/update'>Update</a></li>
       <li className='hover:bg-pink-950 hover:rounded-md  font-abc font-bold ' ><a>Delete</a></li>
 

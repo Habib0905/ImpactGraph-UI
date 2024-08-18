@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Edit = ({ Component, func }) => {
   const [selectedIncoming, setSelectedIncoming] = useState(Component.incomingNodeIds);
@@ -7,6 +8,8 @@ const Edit = ({ Component, func }) => {
   const [incomingComponent, setIncomingComponent] = useState("");
   const [outgoingComponent, setOutgoingComponent] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
+
 
   const [updateComponent, setUpdateComponent] = useState({
     id: Component.id,
@@ -65,9 +68,9 @@ const Edit = ({ Component, func }) => {
 
     axios.put("http://localhost:8081/api/components/update", updateComponent)
       .then(res => {
+        navigate('/graph');
         console.log("Successfully updated component:", res.data);
         console.log(res.data); 
-        func();
       })
       .catch(err => console.log(err));
   };

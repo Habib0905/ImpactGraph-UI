@@ -168,7 +168,7 @@ const Detail = ({Component}) => {
                         className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
                         key={index}
                       >
-                      {component ? component.name : 
+                      {component ? component.properties.name : 
                          <div>
                          <span className="loading loading-dots loading-xs"></span>
                        </div>
