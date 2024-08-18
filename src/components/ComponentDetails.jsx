@@ -1,7 +1,9 @@
-// NodeDetails.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Edit from "./Edit";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 const ComponentDetails = ({ node }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
@@ -21,7 +23,10 @@ const ComponentDetails = ({ node }) => {
     console.log(id);
       axios.delete('http://localhost:8081/api/components/delete/' + id)
       .then(res=>{
-        window.location.reload();
+        toast.success("Successfully updated component !")
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
         console.log(res.data);
       })
       .catch(err => console.log(err));

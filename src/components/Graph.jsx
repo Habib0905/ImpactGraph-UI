@@ -135,10 +135,10 @@ const Graph = () => {
 
   return (
     <div className="hero relative min-h-screen">
-    <img  className='w-full h-full object-cover' src='graphbg.jpg'/>
+       <img className='w-full h-full object-cover  top-0 left-0' src='graphbg.jpg' />
     <div className="hero-overlay bg-black opacity-70 "></div>
 
-    <div id="network" style={{ marginTop:"-20px", width: "100%"  , height:"100%"}}>
+    <div id="network" style={{ width: "100%"  , height:"100%"}}>
     </div> 
 
       <div>

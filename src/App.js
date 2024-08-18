@@ -4,6 +4,7 @@ import AddPage from "./pages/AddPage";
 import GraphPage from "./pages/GraphPage";
 import UpdatePage from "./pages/UpdatePage";
 import { ToastContainer, toast } from 'react-toastify';
+import Toastmsg from "./components/Toastmsg";
 // import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/add" element={<AddPage />} />
         <Route path="/graph" element={<GraphPage />} />
         <Route path="/update" element = {<UpdatePage/>} />
+        <Route path="/toast" element ={<Toastmsg/>}/>
       </Routes>
     </BrowserRouter>
   );
