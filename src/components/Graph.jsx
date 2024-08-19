@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import Vis from "vis-network";
 import ComponentDetails from "./ComponentDetails";
 import axios from "axios";
+import EdgeDetails from "./EdgeDetails";
+import BigNumber from "bignumber.js";
 
 const Graph = () => {
   const networkRef = useRef(null);
   const [selectedNode, setSelectedNode] = useState(null);
+  const [selectedEdge, setSelectedEdge] = useState(null);
 
   useEffect(() => {
     const fetchGraphData = async () => {
@@ -19,6 +22,7 @@ const Graph = () => {
         console.log("Fetched data:", data);
 
         const container = document.getElementById("network");
+        console.log("Graph Visualized");
         const options = {
           nodes: {
             shape: "dot",
@@ -101,6 +105,7 @@ const Graph = () => {
 
         visNetwork.on("click", async (params) => {
           if (params.nodes.length > 0) {
+            // Node was clicked
             const nodeId = params.nodes[0];
             const actualNodeId = nodeId.split(":").pop();
             const intId = parseInt(actualNodeId, 10);
@@ -111,17 +116,35 @@ const Graph = () => {
               );
               if (result.data) {
                 setSelectedNode({ id: intId, ...result.data.properties });
+                setSelectedEdge(null); // Clear edge selection
               }
             } catch (error) {
               console.error("Error fetching node details:", error);
             }
+          } else if (params.edges.length > 0) {
+            // Edge was clicked
+            const edgeId = params.edges[0];
+            console.log(edgeId);
+            const edge = visNetwork.body.data.edges.get(edgeId);
+            console.log(edge);
+            const sourceNode = visNetwork.body.data.nodes.get(edge.from);
+            const targetNode = visNetwork.body.data.nodes.get(edge.to);
+            const relationId = edge.elementId;
+            console.log("Real edge id", relationId);
+            const actualRelationId = relationId.split(":").pop();
+            const intRelationId = new BigNumber(actualRelationId);
+            console.log("Integer real edge id", intRelationId.c);
+
+            setSelectedEdge({
+              id: intRelationId,
+              from: sourceNode.label,
+              to: targetNode.label,
+            });
+            setSelectedNode(null); // Clear node selection
           } else {
-            const nodes = visNetwork.body.data.nodes.get();
-            const updates = nodes.map((node) => ({
-              id: node.id,
-              color: "lightblue",
-            }));
-            visNetwork.body.data.nodes.update(updates);
+            // Clicked on the background or empty space
+            setSelectedNode(null);
+            setSelectedEdge(null);
           }
         });
       } catch (error) {
@@ -139,7 +162,19 @@ const Graph = () => {
       <div id="network" style={{ width: "100%", height: "100%" }}></div>
 
       <div>
-        <ComponentDetails node={selectedNode} />
+        {!selectedNode && !selectedEdge && (
+          <div className="p-4 border border-gray-400 rounded-lg shadow bg-black text-white absolute top-5 right-4 w-[350px]">
+            <h3 className="text-lg font-bold mb-4 text-center">
+              Component Details
+            </h3>
+            <p>
+              No node or edge selected. Click on a node or edge to see its
+              details.
+            </p>
+          </div>
+        )}
+        {selectedNode && <ComponentDetails node={selectedNode} />}
+        {selectedEdge && <EdgeDetails selectedEdge={selectedEdge} />}
       </div>
     </div>
   );
