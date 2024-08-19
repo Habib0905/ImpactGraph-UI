@@ -23,8 +23,8 @@ const Graph = () => {
         const options = {
           nodes: {
             shape: "dot",
-            size: 30,
-            font: { color: "white" },
+            size: 40,
+            font: { color: "black" },
           },
           edges: {
             arrows: {
@@ -32,7 +32,7 @@ const Graph = () => {
             },
             color: {
               color: "black",
-              highlight: "#848484",
+              highlight: "black",
               hover: "black",
             },
             font: {

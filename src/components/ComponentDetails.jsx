@@ -2,12 +2,23 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Edit from "./Edit";
 
 
 const ComponentDetails = ({ node }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
- 
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [selectNode, setSelectNode] = useState("");
+  const [allComponents, setAllComponents] = useState([]);
+
+  const handleUpdate =()=> {
+    setIsEditMode(true);
+  }
+  
+
+  const handleCancel = () => {
+    setIsEditMode(false);
+  }
 
   const deleteview =() => {
     if(impactedComponents.length <= 1)
@@ -23,10 +34,37 @@ const ComponentDetails = ({ node }) => {
   }
 
 
+  const fetchAllComponents = () => {
+    axios
+      .get("http://localhost:8081/api/components/all")
+      .then((response) => {
+        setAllComponents(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the components!", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchAllComponents();
+  }, []);
+
+
+  useEffect (()=> {
+    if (node)
+    {
+      setSelectNode (allComponents.find((component)=> component.id === node.id))
+      console.log(selectNode);
+    }
+  })
+
 
   const modalshow2 = () => {
     document.getElementById('modal2').showModal();
   };
+
+
+
 
   const deleteNode =(id) => {
     modalshow2();
@@ -81,6 +119,17 @@ const ComponentDetails = ({ node }) => {
   }
 
   return (
+
+    <div className="p-4 z-10 absolute top-5 right-4 w-[400px]">
+    { isEditMode ? 
+    // console.log(selectNode)
+       <Edit 
+       Component={selectNode}
+       func = {handleCancel}
+       />   
+                
+       : 
+
     <div className="p-4 z-10 border border-gray-400 rounded-lg shadow bg-black bg-opacity-90 text-white absolute top-5 right-4 w-[350px]">
       <h3 className="text-lg font-bold mb-4 text-center">Component Details</h3>
       <div className="flex flex-col space-y-4">
@@ -159,7 +208,7 @@ const ComponentDetails = ({ node }) => {
 
 
         <div className="flex flex-row justify-center items-center space-x-5 ">
-              <button  className="bg-gradient-to-br from-pink-950 to-white text-black py-2 px-10 mt-5 rounded-lg" >
+              <button  className="bg-gradient-to-br from-pink-950 to-white text-black py-2 px-10 mt-5 rounded-lg" onClick={handleUpdate}>
               update
               </button>
               <button className="bg-gradient-to-br from-white to-pink-950 text-black py-2 px-10 mt-5 rounded-lg"  onClick={deleteview} >
@@ -207,8 +256,8 @@ const ComponentDetails = ({ node }) => {
         </div>
       </dialog>
 
-
-
+  </div>
+}
     </div>
   );
 };

@@ -73,7 +73,7 @@ const Edit = ({ Component, func }) => {
     axios.put("http://localhost:8081/api/components/update", updateComponent)
       .then(res => {
         toast.success("Successfully updated component !")
-
+        window.location.reload();
         navigate('/graph');
         console.log("Successfully updated component:", res.data);
         console.log(res.data); 
