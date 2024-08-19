@@ -145,6 +145,14 @@ const Graph = () => {
             // Clicked on the background or empty space
             setSelectedNode(null);
             setSelectedEdge(null);
+            const nodes = visNetwork.body.data.nodes.get();
+            const updates = [];
+
+            nodes.forEach((node) => {
+              updates.push({ id: node.id, color: "lightblue" });
+            });
+
+            visNetwork.body.data.nodes.update(updates);
           }
         });
       } catch (error) {
