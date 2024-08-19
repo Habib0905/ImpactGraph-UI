@@ -117,23 +117,23 @@ const Add = () => {
       <Alert type={alertType} isVisible={alertVisible} />
       <div className="hero min-h-screen relative">
 
-        <video
+        {/* <video
           className="w-full h-full object-cover absolute top-0 left-0"
           src="bg.mp4"
           autoPlay
           loop
           muted
-        />
+        /> */}
 
-        <p className=" absolute top-0 text-center   text-4xl text-white p-5 mb-14 mx-auto font-abc font-bold" > Create Component </p>
 
+        <p className=" absolute top-0 text-center   text-4xl text-pink-900  p-5 mb-14 mx-auto font-abc font-bold" > Create Component </p>
 
 
         <form onSubmit={handleSubmit}>
 
-          <div className="hero-overlay bg-opacity-30 absolute top-0 left-0 w-full h-full"></div>
+          <div className=" absolute top-0 left-0 w-full h-full"></div>
 
-          <div className="relative mt-20 z-10 mb-10 bg-black bg-opacity-70 rounded shadow-2xl shadow-white w-[500px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
+          <div className="relative mt-20 z-10 mb-10 bg-gray-300 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
             <label
               htmlFor="name"
               className="input input-bordered input-black flex items-center w-full gap-2"
@@ -185,8 +185,8 @@ const Add = () => {
               />
             </label>
 
-            <div className="w-full mt-5">
-              <h3 className="text-lg text-white font-bold">
+            <div className="flex items-center w-full mt-5">
+              <h3 className="text-lg text-pink-900 font-bold">
                 {" "}
                 Selected Incoming Components :
               </h3>
@@ -216,9 +216,9 @@ const Add = () => {
               </div>
             </div>
 
-            <div className="w-full mt-5">
+            <div className="w-full mt-5 flex items-center ">
               <select
-                className="select select-bordered w-full max-w-xs"
+                className="select select-bordered w-full max-w"
                 value={incomingComponent}
                 onChange={(e) => setIncomingComponent(e.target.value)}
               >
@@ -232,7 +232,7 @@ const Add = () => {
                 ))}
               </select>
               <button
-                className="btn ml-5 w-20 bg-white"
+                className="btn ml-5 w-20 bg-white hover:bg-pink-900 hover:text-white"
                 type="button"
                 onClick={() =>
                   handleNodeSelect(parseInt(incomingComponent), "incoming")
@@ -243,7 +243,7 @@ const Add = () => {
             </div>
 
             <div className="w-full mt-5">
-              <h3 className="text-lg text-white font-bold">
+              <h3 className="text-lg text-pink-900  font-bold">
                 {" "}
                 Selected Outgoing Components :
               </h3>
@@ -271,9 +271,9 @@ const Add = () => {
               </ul>
             </div>
 
-            <div className="w-full mt-5">
+            <div className="w-full mt-5 flex items-center ">
               <select
-                className="select select-bordered w-full max-w-xs"
+                className="select select-bordered w-full max-w"
                 value={outgoingComponent}
                 onChange={(e) => setOutgoingComponent(e.target.value)}
               >
@@ -287,7 +287,7 @@ const Add = () => {
                 ))}
               </select>
               <button
-                className="btn ml-5 w-20 bg-white"
+                className="btn ml-5 w-20 bg-white hover:bg-pink-900 hover:text-white"
                 type="button"
                 onClick={() =>
                   handleNodeSelect(parseInt(outgoingComponent), "outgoing")
@@ -297,7 +297,7 @@ const Add = () => {
               </button>
             </div>
 
-            <button className="btn btn-wide bg-white mt-9" type="submit">
+            <button className="btn btn-wide bg-white mt-9 hover:bg-pink-900 hover:text-white " type="submit">
               {(isLoading && (
                 <div>
                   <span className="loading loading-dots loading-lg"></span>

@@ -125,7 +125,7 @@ const Edit = ({ Component, func }) => {
 
 
   return (
-    <div>
+    <div className=' p-3 rounded-md shadow-lg shadow-pink-950 border-pink-950'>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name" className="input input-bordered input-black flex items-center w-full gap-2 ">
           Name
@@ -184,8 +184,8 @@ const Edit = ({ Component, func }) => {
           </ul>
         </div>
 
-        <div className="w-full mt-5">
-          <select className="select select-bordered w-full max-w-xs" value={incomingComponent} onChange={(e) => setIncomingComponent( parseInt( e.target.value , 10 ))}>
+        <div className="w-full mt-5 flex items-center">
+          <select className="select select-bordered w-full max-w" value={incomingComponent} onChange={(e) => setIncomingComponent( parseInt( e.target.value , 10 ))}>
           <option value="" disabled>Incoming Components</option>
             {suggestions.map((component) => (
               
@@ -194,7 +194,7 @@ const Edit = ({ Component, func }) => {
               </option>
             ))}
           </select>
-          <button type="button" className="btn ml-5 w-20" onClick={handleIncoming}>Add</button>
+          <button type="button" className="btn ml-5 w-20 bg-pink-900 text-white hover:text-pink-900 hover:bg-white " onClick={handleIncoming}>Add</button>
         </div>
 
         <div className="w-full mt-5">
@@ -221,8 +221,8 @@ const Edit = ({ Component, func }) => {
           </ul>
         </div>
 
-        <div className="w-full mt-5">
-          <select className="select select-bordered w-full max-w-xs" value={outgoingComponent} onChange={(e) => setOutgoingComponent(parseInt(e.target.value, 10))}>
+        <div className="w-full mt-5 flex items-center">
+          <select className="select select-bordered w-full max-w" value={outgoingComponent} onChange={(e) => setOutgoingComponent(parseInt(e.target.value, 10))}>
             <option value="" disabled>Outgoing Components</option>
             {suggestions.map((component) => (
               <option key={component.id} value={component.id}>
@@ -230,7 +230,7 @@ const Edit = ({ Component, func }) => {
               </option>
             ))}
           </select>
-          <button type="button" className="btn ml-5 w-20" onClick={handleOutgoing}>Add</button>
+          <button type="button" className="btn ml-5 w-20 bg-pink-900 text-white hover:text-pink-900 hover:bg-white" onClick={handleOutgoing}>Add</button>
         </div>
 
         <div className="flex flex-row justify-center items-center space-x-5 ">

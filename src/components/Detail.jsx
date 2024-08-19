@@ -56,7 +56,7 @@ const Detail = ({Component}) => {
 
   return (
 
-    <div className="mt-6 p-6 bg-white rounded-md shadow-lg shadow-slate-300 w-full">
+    <div className="mt-10 w-full">
 
           { isEditMode ? 
           <Edit 

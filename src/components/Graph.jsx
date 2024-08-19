@@ -31,12 +31,12 @@ const Graph = () => {
               to: { enabled: true, scaleFactor: 1 },
             },
             color: {
-              color: "#848484",
+              color: "black",
               highlight: "#848484",
-              hover: "#848484",
+              hover: "black",
             },
             font: {
-              color: "#343434",
+              color: "black",
               size: 14,
               face: "arial",
             },
@@ -135,8 +135,7 @@ const Graph = () => {
 
   return (
     <div className="hero relative min-h-screen">
-       <img className='w-full h-auto object-cover  top-0 left-0' src='graphbg.jpg' />
-    <div className="hero-overlay bg-black opacity-70 "></div>
+       {/* <img className='w-full h-auto object-cover  top-0 left-0' src='graphbg.jpg' /> */}
 
     <div id="network" style={{ width: "100%"  , height:"100%"}}>
     </div> 

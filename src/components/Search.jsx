@@ -78,19 +78,19 @@ const Search = () => {
   return (
     
     <div className=" hero min-h-screen ">
-        <img className='w-full h-full object-cover  top-0 left-0' src='upbg.jpg' />
-        <p className="hero-overlay bg-opacity-0 text-6xl top-0  text-white p-10 mb-4 mx-auto font-abc font-bold
+        {/* <img className='w-full h-full object-cover  top-0 left-0' src='upbg.jpg' /> */}
+        <p className="hero-overlay bg-opacity-0 text-4xl text-center top-0  text-pink-900 p-10 mb-4 mx-auto font-abc font-bold
         "> Search the Component you want to update</p>
        <div className=" font-abc top-40 absolute  mb-10 w-[600px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
        
-      <label className="input input-bordered  bg-white flex items-center w-full gap-2">
+      <label className="input input-bordered border-pink-950 border-2 shadow-md shadow-pink-950 bg-white flex items-center w-full gap-2">
         <input type="text" className="grow" placeholder="Component A" value={query} onChange={handleChange} />
 
         <button
-          className="rounded-r-md" 
+          className="rounded-r-md " 
           onClick={handleSearch}>
             <img
-            className="h-10 w-10"
+            className="h-11 w-11"
             src='search.png'>           
             </img>
         </button>
