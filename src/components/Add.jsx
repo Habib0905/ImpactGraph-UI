@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 
 const Add = () => {
@@ -95,7 +95,7 @@ const Add = () => {
         setAlertVisible(true);
         setTimeout(() => {
           setAlertVisible(false);
-          navigate('/graph');
+          navigate("/graph");
         }, 3000);
         fetchAllComponents();
       })
@@ -115,8 +115,7 @@ const Add = () => {
   return (
     <div>
       <Alert type={alertType} isVisible={alertVisible} />
-      <div className="hero min-h-screen relative">
-
+      <div className="hero min-h-screen relative bg-white">
         {/* <video
           className="w-full h-full object-cover absolute top-0 left-0"
           src="bg.mp4"
@@ -125,12 +124,12 @@ const Add = () => {
           muted
         /> */}
 
-
-        <p className=" absolute top-0 text-center   text-4xl text-pink-900  p-5 mb-14 mx-auto font-abc font-bold" > Create Component </p>
-
+        <p className=" absolute top-0 text-center   text-4xl text-pink-900  p-5 mb-14 mx-auto font-abc font-bold">
+          {" "}
+          Create Component{" "}
+        </p>
 
         <form onSubmit={handleSubmit}>
-
           <div className=" absolute top-0 left-0 w-full h-full"></div>
 
           <div className="relative mt-20 z-10 mb-10 bg-gray-300 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
@@ -297,7 +296,10 @@ const Add = () => {
               </button>
             </div>
 
-            <button className="btn btn-wide bg-white mt-9 hover:bg-pink-900 hover:text-white " type="submit">
+            <button
+              className="btn btn-wide bg-white mt-9 hover:bg-pink-900 hover:text-white "
+              type="submit"
+            >
               {(isLoading && (
                 <div>
                   <span className="loading loading-dots loading-lg"></span>
