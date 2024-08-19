@@ -115,7 +115,7 @@ const Add = () => {
   return (
     <div>
       <Alert type={alertType} isVisible={alertVisible} />
-      <div className="hero min-h-screen relative bg-white">
+      <div className="hero min-h-screen relative">
         {/* <video
           className="w-full h-full object-cover absolute top-0 left-0"
           src="bg.mp4"
@@ -132,7 +132,7 @@ const Add = () => {
         <form onSubmit={handleSubmit}>
           <div className=" absolute top-0 left-0 w-full h-full"></div>
 
-          <div className="relative mt-20 z-10 mb-10 bg-gray-300 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
+          <div className="relative mt-10 z-10 mb-10 bg-gray-300 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
             <label
               htmlFor="name"
               className="input input-bordered input-black flex items-center w-full gap-2"

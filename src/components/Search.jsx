@@ -52,8 +52,11 @@ const Search = () => {
   };
 
   return (
-    <div className=" hero min-h-screen bg-white">
-      {/* <img className='w-full h-full object-cover  top-0 left-0' src='upbg.jpg' /> */}
+    <div className=" hero min-h-screen ">
+      <img
+        className="w-full h-full object-cover  top-0 left-0"
+        src="loma.avif"
+      />
       <p
         className="hero-overlay bg-opacity-0 text-4xl text-center top-0  text-pink-900 p-10 mb-4 mx-auto font-abc font-bold
         "
