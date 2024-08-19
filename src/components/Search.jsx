@@ -65,7 +65,7 @@ const Search = () => {
         Search the Component you want to update
       </p>
       <div className=" font-abc top-40 absolute  mb-10 w-[600px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
-        <label className="input input-bordered border-pink-950 border-2 shadow-md shadow-pink-950 bg-white flex items-center w-full gap-2">
+        <label className="input input-bordered text-pink-900 border-pink-950 border-2 shadow-md shadow-pink-950 bg-white flex items-center w-full gap-2">
           <input
             type="text"
             className="grow"
@@ -82,7 +82,7 @@ const Search = () => {
           <ul className="mt-2 border  border-gray-300 w-full rounded-md bg-white shadow-lg">
             {filteredSuggestions.map((suggestion, index) => (
               <li
-                className="p-2 hover:bg-pink-100 hover:font-semibold"
+                className="p-2 text-black hover:bg-pink-100 hover:font-semibold"
                 key={index}
                 onClick={() => handleSelect(suggestion)}
               >

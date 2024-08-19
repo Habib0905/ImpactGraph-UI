@@ -59,8 +59,8 @@ const Detail = ({ Component }) => {
             {Component.name}
           </h2>
 
-          <p className="flex flex-row">
-            <strong className="flex flex-row mr-2">
+          <p className=" text-pink-950 flex flex-row">
+            <strong className=" text-pink-950 flex flex-row mr-2">
               <img className="h-6 w-6 mr-2" src="com.png"></img>
               ID:
             </strong>{" "}
@@ -68,8 +68,8 @@ const Detail = ({ Component }) => {
           </p>
           <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
-          <p className="flex flex-row">
-            <strong className="flex flex-row mr-2">
+          <p className=" text-pink-950 flex flex-row">
+            <strong className=" text-pink-950 flex flex-row mr-2">
               <img className="h-6 w-6 mr-2" src="com.png"></img>
               Type:
             </strong>{" "}
@@ -77,8 +77,8 @@ const Detail = ({ Component }) => {
           </p>
           <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
-          <p className="flex flex-row">
-            <strong className="flex flex-row mr-2">
+          <p className=" text-pink-950 flex flex-row">
+            <strong className=" text-pink-950 flex flex-row mr-2">
               <img className="h-6 w-6 mr-2" src="com.png"></img>
               Ip:
             </strong>{" "}
@@ -99,7 +99,7 @@ const Detail = ({ Component }) => {
 
                   return (
                     <li
-                      className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
+                      className="bg-white  text-pink-900 border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
                       key={id}
                     >
                       {node ? (
@@ -129,7 +129,7 @@ const Detail = ({ Component }) => {
 
                   return (
                     <li
-                      className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
+                      className="bg-white border-2 text-pink-900 border-pink-950 rounded-md p-2 mt-3 flex items-center"
                       key={id}
                     >
                       {node ? (
@@ -155,7 +155,7 @@ const Detail = ({ Component }) => {
                 {impactedComponents.map((component, index) => {
                   return (
                     <li
-                      className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
+                      className="bg-white text-pink-900 border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
                       key={index}
                     >
                       {component ? (

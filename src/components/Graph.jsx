@@ -156,12 +156,16 @@ const Graph = () => {
   }, []);
 
   return (
-    <div className="hero relative min-h-screen bg-white">
+    <div className="hero relative h-screen  bg-white">
       {/* <img className='w-full h-auto object-cover  top-0 left-0' src='graphbg.jpg' /> */}
 
-      <div id="network" style={{ width: "100%", height: "100%" }}></div>
+      <div
+        id="network"
+        className="bg-white"
+        style={{ width: "100%", height: "100%" }}
+      ></div>
 
-      <div>
+      <div className="bg-white">
         {!selectedNode && !selectedEdge && (
           <div className="p-4 border border-gray-400 rounded-lg shadow bg-black text-white absolute top-5 right-4 w-[350px]">
             <h3 className="text-lg font-bold mb-4 text-center">

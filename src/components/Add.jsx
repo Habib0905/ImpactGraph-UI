@@ -124,6 +124,11 @@ const Add = () => {
           muted
         /> */}
 
+        <img
+          className="w-full h-full object-cover  top-0 left-0"
+          src="loma.avif"
+        />
+
         <p className=" absolute top-0 text-center   text-4xl text-pink-900  p-5 mb-14 mx-auto font-abc font-bold">
           {" "}
           Create Component{" "}
@@ -132,7 +137,7 @@ const Add = () => {
         <form onSubmit={handleSubmit}>
           <div className=" absolute top-0 left-0 w-full h-full"></div>
 
-          <div className="relative mt-10 z-10 mb-10 bg-gray-300 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
+          <div className="relative mt-10 z-10 mb-10 bg-white border-pink-900 border-2 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
             <label
               htmlFor="name"
               className="input input-bordered input-black flex items-center w-full gap-2"
@@ -231,7 +236,7 @@ const Add = () => {
                 ))}
               </select>
               <button
-                className="btn ml-5 w-20 bg-white hover:bg-pink-900 hover:text-white"
+                className="btn ml-5 w-20 bg-white shadow-md shadow-pink-900 text-pink-900 hover:bg-pink-900 hover:text-white"
                 type="button"
                 onClick={() =>
                   handleNodeSelect(parseInt(incomingComponent), "incoming")
@@ -286,7 +291,7 @@ const Add = () => {
                 ))}
               </select>
               <button
-                className="btn ml-5 w-20 bg-white hover:bg-pink-900 hover:text-white"
+                className="btn ml-5 w-20 bg-white shadow-md shadow-pink-900 text-pink-900 hover:bg-pink-900 hover:text-white"
                 type="button"
                 onClick={() =>
                   handleNodeSelect(parseInt(outgoingComponent), "outgoing")
@@ -297,7 +302,7 @@ const Add = () => {
             </div>
 
             <button
-              className="btn btn-wide bg-white mt-9 hover:bg-pink-900 hover:text-white "
+              className="btn btn-wide bg-white  shadow-md shadow-pink-900 text-pink-900 mt-9 hover:bg-pink-900 hover:text-white "
               type="submit"
             >
               {(isLoading && (
