@@ -15,6 +15,7 @@ const Add = () => {
   const [allComponents, setAllComponents] = useState([]);
   const [incomingComponent, setIncomingComponent] = useState("");
   const [outgoingComponent, setOutgoingComponent] = useState("");
+  const [componentType, setComponentType] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertType, setAlertType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -172,22 +173,30 @@ const Add = () => {
               />
             </label>
 
-            <label
-              htmlFor="type"
-              className="input input-bordered input-black flex items-center w-full gap-2 mt-5 "
-            >
-              Type :
-              <input
-                required
-                type="text"
-                id="type"
-                name="type"
-                value={componentData.type}
-                onChange={handleInputChange}
-                className="grow"
-                placeholder="e.g. Database"
-              />
-            </label>
+            <div className="w-full mt-5 flex items-center">
+              <select
+                className="select select-bordered w-full max-w"
+                value={componentType}
+                onChange={(e) => setComponentType(e.target.value)}
+              >
+                <option value="" disabled>
+                  Select Type
+                </option>
+                {[
+                  ...new Map(
+                    allComponents.map((component) => [
+                      component.type.toLowerCase(),
+                      component.type,
+                    ])
+                  ).values(),
+                ].map((type, index) => (
+                  <option key={index} value={type}>
+                    {type}
+                  </option>
+                ))}
+                <option value="other">Other</option>
+              </select>
+            </div>
 
             <div className="flex items-center w-full mt-5">
               <h3 className="text-lg text-pink-900 font-bold">
