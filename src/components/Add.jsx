@@ -342,11 +342,14 @@ const Add = () => {
             </div>
 
             <button
-              className="btn bg-pink-900 text-white mt-5 hover:bg-pink-700"
+              className="btn btn-wide bg-white  shadow-md shadow-pink-900 text-pink-900 mt-9 hover:bg-pink-900 hover:text-white "
               type="submit"
-              disabled={isLoading}
             >
-              {isLoading ? "Creating..." : "Create"}
+              {(isLoading && (
+                <div>
+                  <span className="loading loading-dots loading-lg"></span>
+                </div>
+              )) || <span>Create</span>}
             </button>
           </div>
         </form>
