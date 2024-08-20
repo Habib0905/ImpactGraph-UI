@@ -6,6 +6,7 @@ import UpdatePage from "./pages/UpdatePage";
 import { ToastContainer, toast } from 'react-toastify';
 import Toastmsg from "./components/Toastmsg";
 import LoginPage from "./pages/LoginPage";
+import Notfound from "./components/Notfound";
 // import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/update" element = {<UpdatePage/>} />
         <Route path="/toast" element ={<Toastmsg/>}/>
         <Route path="/login" element ={<LoginPage/>}/>
+        <Route path="/notfound" element ={<Notfound/>}/>
       </Routes>
     </BrowserRouter>
   );

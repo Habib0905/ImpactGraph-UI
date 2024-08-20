@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Edit from "./Edit";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+
 const Detail = ({ Component }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [allComponents, setAllComponents] = useState([]);
@@ -10,6 +15,37 @@ const Detail = ({ Component }) => {
   const handleUpdate = () => {
     setIsEditMode(true);
   };
+
+  const deleteview = () => {
+    if (impactedComponents.length <= 1) {
+      document.getElementById("delete").showModal();
+    } else {
+      document.getElementById("Nodelete").showModal();
+    }
+  };
+  const modalshow2 = () => {
+    document.getElementById("modal2").showModal();
+  };
+
+
+  const deleteNode = (id) => {
+    modalshow2();
+    console.log(id);
+    axios
+      .delete("http://localhost:8081/api/components/delete/" + id)
+      .then((res) => {
+        toast.success("Successfully Deleted the component !");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        console.log(res.data);
+      })
+      .catch(
+        (err) => toast.error(err)
+        // console.log(err)
+      );
+  };
+
 
   const handleCancel = () => {
     setIsEditMode(false);
@@ -172,15 +208,83 @@ const Detail = ({ Component }) => {
             </div>
           </div>
 
-          <div className="flex flex-col">
-            <button
+          <div className="flex flex-row justify-center items-center space-x-5 ">
+          <button
+              type="button"
               className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-4 mt-10 rounded-lg "
               onClick={handleUpdate}
             >
               {" "}
               Update{" "}
             </button>
+
+            <button
+              type="button"
+              className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-4 mt-10 rounded-lg "
+              onClick={deleteview}
+            >
+              {" "}
+              Delete{" "}
+            </button>
+
           </div>
+
+
+
+
+      <dialog id="delete" className="modal">
+            <div className="modal-box bg-white">
+              <form method="dialog">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <p className="py-4 text-black">
+                {" "}
+                Do you want to delete the node ?{" "}
+              </p>
+
+              <div className="flex flex-row justify-center items-center space-x-5 ">
+                <button
+                  className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg"
+                  onClick={() => deleteNode(Component.id)}
+                >
+                  Yes
+                </button>
+                <form method="dialog">
+                  <button className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg">
+                    No
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+
+          <dialog id="Nodelete" className="modal">
+            <div className="modal-box bg-white">
+              <form method="dialog">
+                <button className="btn btn-sm btn-circle absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <p className="py-4 text-pink-900 ">
+                {" "}
+                The Node you want to delete has Impacted Nodes{" "}
+              </p>
+              <p className="py-4 text-pink-900 ">
+                {" "}
+                Remove the Impacted Nodes and Try Again !!{" "}
+              </p>
+            </div>
+          </dialog>
+
+          <dialog id="modal2" className="modal">
+            <div>
+              <span className="loading loading-spinner w-20 h-20 border-3"></span>
+            </div>
+          </dialog>
+
+
         </div>
       )}
     </div>

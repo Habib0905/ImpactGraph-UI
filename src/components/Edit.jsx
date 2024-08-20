@@ -286,17 +286,17 @@ const Edit = ({ Component, func }) => {
           </button>
         </div>
 
-        <div className="flex flex-row justify-center items-center space-x-5 ">
+        <div className="flex flex-row justify-center items-center  ">
           <button
             type="submit"
-            className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
+            className="bg-gradient w-max from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
             onClick={modalshow2}
           >
             Update
           </button>
           <button
             type="button"
-            className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
+            className="bg-gradient w-max from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
             onClick={func}
           >
             Cancel
