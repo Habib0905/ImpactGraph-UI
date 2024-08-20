@@ -42,21 +42,18 @@ const Add = () => {
     setComponentData({ ...componentData, [name]: value });
 
     if (name === "type") {
-      // Convert all component types to lowercase and use a Set to filter out duplicates
       const uniqueTypes = [
         ...new Set(
           allComponents
             .map((component) => component.type.toLowerCase())
-            .filter((type) => type.trim() !== "") // Remove empty types
+            .filter((type) => type.trim() !== "")
         ),
       ];
 
-      // Filter types based on input value, ensuring case-insensitive comparison
       const filtered = uniqueTypes.filter((type) =>
         type.includes(value.toLowerCase())
       );
 
-      // Update state with the filtered unique types
       setFilteredTypes(filtered);
       setShowTypeOptions(true);
     }
@@ -77,22 +74,34 @@ const Add = () => {
 
   const handleNodeSelect = (id, type) => {
     if (type === "incoming") {
-      if (!componentData.incomingNodeIds.includes(id)) {
-        setComponentData({
-          ...componentData,
-          incomingNodeIds: [...componentData.incomingNodeIds, id],
-        });
-      } else {
-        modalshow();
+      if (
+        incomingComponent !== "" &&
+        incomingComponent !== null &&
+        incomingComponent !== undefined
+      ) {
+        if (!componentData.incomingNodeIds.includes(id)) {
+          setComponentData({
+            ...componentData,
+            incomingNodeIds: [...componentData.incomingNodeIds, id],
+          });
+        } else {
+          modalshow();
+        }
       }
     } else {
-      if (!componentData.outgoingNodeIds.includes(id)) {
-        setComponentData({
-          ...componentData,
-          outgoingNodeIds: [...componentData.outgoingNodeIds, id],
-        });
-      } else {
-        modalshow();
+      if (
+        incomingComponent !== "" &&
+        incomingComponent !== null &&
+        incomingComponent !== undefined
+      ) {
+        if (!componentData.outgoingNodeIds.includes(id)) {
+          setComponentData({
+            ...componentData,
+            outgoingNodeIds: [...componentData.outgoingNodeIds, id],
+          });
+        } else {
+          modalshow();
+        }
       }
     }
   };
@@ -228,7 +237,6 @@ const Add = () => {
               )}
             </label>
 
-            {/* Incoming and Outgoing Components Section */}
             <div className="flex items-center w-full mt-5">
               <h3 className="text-lg text-pink-900 font-bold">
                 Selected Incoming Components:
@@ -274,6 +282,7 @@ const Add = () => {
                   </option>
                 ))}
               </select>
+
               <button
                 className="btn ml-5 w-20 bg-white shadow-md shadow-pink-900 text-pink-900 hover:bg-pink-900 hover:text-white"
                 type="button"
