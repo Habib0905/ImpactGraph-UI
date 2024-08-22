@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Checkbox from 'rc-checkbox';
-import 'rc-checkbox/assets/index.css';
+import useAuthcontext from '../context/useAuthcontext';
 
 const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    const {dispatch} = useAuthcontext();
 
     const handleShowPasswordToggle = () => {
         setShowPassword(!showPassword);
