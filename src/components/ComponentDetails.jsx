@@ -9,6 +9,7 @@ const ComponentDetails = ({ node }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectNode, setSelectNode] = useState("");
   const [allComponents, setAllComponents] = useState([]);
+  const token = localStorage.getItem("token");
 
   const handleUpdate = () => {
     if (selectNode != null) {
@@ -28,15 +29,20 @@ const ComponentDetails = ({ node }) => {
     }
   };
 
-  const fetchAllComponents = () => {
-    axios
-      .get("http://localhost:8081/api/components/all")
-      .then((response) => {
-        setAllComponents(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the components!", error);
-      });
+  const fetchAllComponents = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8081/api/components/all",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the authorization header
+          },
+        }
+      );
+      setAllComponents(response.data); // Set the components data
+    } catch (error) {
+      console.error("There was an error fetching the components!", error);
+    }
   };
 
   useEffect(() => {
@@ -56,22 +62,29 @@ const ComponentDetails = ({ node }) => {
     document.getElementById("modal2").showModal();
   };
 
-  const deleteNode = (id) => {
+  const deleteNode = async (id) => {
     modalshow2();
     console.log(id);
-    axios
-      .delete("http://localhost:8081/api/components/delete/" + id)
-      .then((res) => {
-        toast.success("Successfully Deleted the component !");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-        console.log(res.data);
-      })
-      .catch(
-        (err) => toast.error(err)
-        // console.log(err)
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:8081/api/components/delete/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the authorization header
+          },
+        }
       );
+
+      toast.success("Successfully Deleted the component!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error deleting the component:", error);
+      toast.error("There was an error deleting the component.");
+    }
   };
 
   useEffect(() => {
@@ -79,7 +92,12 @@ const ComponentDetails = ({ node }) => {
       const fetchImpactedComponents = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8081/api/graph/impact/${node.id}`
+            `http://localhost:8081/api/graph/impact/${node.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
           );
           setImpactedComponents(response.data);
         } catch (error) {

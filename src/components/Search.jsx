@@ -7,15 +7,27 @@ const Search = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    axios
-      .get("http://localhost:8081/api/components/all")
-      .then((res) => {
-        setSuggestions(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
+    const fetchComponents = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8081/api/components/all",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setSuggestions(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching components:", error);
+      }
+    };
+
+    fetchComponents();
   }, []);
 
   const handleChange = (e) => {

@@ -22,9 +22,15 @@ const Add = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+
   const fetchAllComponents = () => {
     axios
-      .get("http://localhost:8081/api/components/all")
+      .get("http://localhost:8081/api/components/all", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setAllComponents(response.data);
       })
@@ -129,7 +135,11 @@ const Add = () => {
     setIsLoading(true);
 
     axios
-      .post("http://localhost:8081/api/components/create", componentData)
+      .post("http://localhost:8081/api/components/create", componentData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log("Component created successfully!", response.data);
         setAlertType("success");

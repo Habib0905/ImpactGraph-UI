@@ -14,8 +14,17 @@ const Graph = () => {
     const fetchGraphData = async () => {
       try {
         console.log("Starting to fetch data");
+
+        const token = localStorage.getItem("token");
+        console.log("the token is :", token);
+
         const response = await axios.get(
-          "http://localhost:8081/api/graph/data"
+          "http://localhost:8081/api/graph/data",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         console.log("Data Fetched");
         const data = response.data;
@@ -35,7 +44,7 @@ const Graph = () => {
             },
             color: {
               color: "black",
-              highlight: "black",
+              highlight: "red",
               hover: "black",
             },
             font: {
@@ -80,7 +89,12 @@ const Graph = () => {
 
             try {
               const result = await axios.get(
-                `http://localhost:8081/api/graph/impact/${intId}`
+                `http://localhost:8081/api/graph/impact/${intId}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
               );
               const impactedNodes = result.data.map((node) => node.elementId);
               console.log("Impacted nodes:", impactedNodes);
@@ -112,11 +126,16 @@ const Graph = () => {
 
             try {
               const result = await axios.get(
-                `http://localhost:8081/api/graph/node/${intId}`
+                `http://localhost:8081/api/graph/node/${intId}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
               );
               if (result.data) {
                 setSelectedNode({ id: intId, ...result.data.properties });
-                setSelectedEdge(null); // Clear edge selection
+                setSelectedEdge(null);
               }
             } catch (error) {
               console.error("Error fetching node details:", error);
@@ -140,9 +159,8 @@ const Graph = () => {
               from: sourceNode.label,
               to: targetNode.label,
             });
-            setSelectedNode(null); // Clear node selection
+            setSelectedNode(null);
           } else {
-            // Clicked on the background or empty space
             setSelectedNode(null);
             setSelectedEdge(null);
             const nodes = visNetwork.body.data.nodes.get();
