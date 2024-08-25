@@ -1,26 +1,41 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Checkbox from 'rc-checkbox';
-import 'rc-checkbox/assets/index.css';
+import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-    const [showPassword, setShowPassword] = useState(false);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:8081/signin", {
+        username,
+        password,
+      });
 
+      console.log(response.data);
+      localStorage.setItem("token", response.data.jwtToken);
 
-    const handleShowPasswordToggle = () => {
-        setShowPassword(!showPassword);
-      };
+      window.location.href = "/";
+    } catch (error) {
+      setError("Invalid username or password");
+    }
+  };
 
+  const handleShowPasswordToggle = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div>
-         <div className="hero min-h-screen relative">
-         <img
+      <div className="hero min-h-screen relative">
+        <img
           className="w-full h-full object-cover  top-0 left-0"
           src="loma.avif"
         />
-         <p className=" absolute top-10 text-center   text-4xl text-pink-900  p-5 mb-14 mx-auto font-abc font-bold">
+        <p className=" absolute top-10 text-center   text-4xl text-pink-900  p-5 mb-14 mx-auto font-abc font-bold">
           Welcome to ImpactGraph
         </p>
 
@@ -28,15 +43,13 @@ const Login = () => {
           Please Login to continue !!
         </p>
 
-        <form>
-         
+        <form onSubmit={handleLogin}>
           <div className="relative mt-10 z-10 mb-10 bg-white border-pink-900 border-2 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
             <label
               htmlFor="username"
               className="input input-bordered input-black flex items-center w-full gap-2"
             >
-            <img className="h-6 w-6 mr-2" src="user.png"></img>
-
+              <img className="h-6 w-6 mr-2" src="user.png"></img>
               Username :
               <input
                 required
@@ -44,6 +57,8 @@ const Login = () => {
                 id="username"
                 name="username"
                 className="grow"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </label>
 
@@ -51,45 +66,32 @@ const Login = () => {
               htmlFor="password"
               className="input input-bordered input-black flex items-center gap-2 w-full  mt-5"
             >
-            <img className="h-6 w-6 mr-2" src="lock.png"></img>
+              <img className="h-6 w-6 mr-2" src="lock.png"></img>
               Password :
               <input
                 required
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
                 id="password"
                 name="password"
                 className="grow"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </label>
 
-
-            <label
-              className="flex items-center gap-2 w-full  mt-5"
-            >
-            <input
-            type="checkbox"
-            className="checkbox w-5 h-5 checkbox-secondary" 
-            id="Showpassword"
-            checked={showPassword}
-            onChange={handleShowPasswordToggle}
-            />
-                Show Password
+            <label className="flex items-center gap-2 w-full  mt-5">
+              <input
+                type="checkbox"
+                className="checkbox w-5 h-5 checkbox-secondary"
+                id="Showpassword"
+                checked={showPassword}
+                onChange={handleShowPasswordToggle}
+              />
+              Show Password
             </label>
 
-
-            <label
-              className="flex items-center gap-2 w-full  mt-5"
-            >
-                Are you an Admin ? CLick Here 
-            <input
-            type="checkbox"
-            className="checkbox w-5 h-5 checkbox-secondary" 
-            id="admin"
-            />
-             Admin
-            </label>
-
+            {error && <div style={{ color: "red" }}>{error}</div>}
 
             <button
               className="btn btn-wide bg-white  shadow-md border-pink-900 border-2 shadow-pink-900 text-pink-900 mt-9 hover:bg-pink-900 hover:text-white "
@@ -99,11 +101,9 @@ const Login = () => {
             </button>
           </div>
         </form>
-
-
-         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

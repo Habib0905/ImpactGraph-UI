@@ -5,12 +5,11 @@ import Edit from "./Edit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 const Detail = ({ Component }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [allComponents, setAllComponents] = useState([]);
   const [impactedComponents, setImpactedComponents] = useState([]);
+  const token = localStorage.getItem("token");
 
   const handleUpdate = () => {
     setIsEditMode(true);
@@ -27,12 +26,16 @@ const Detail = ({ Component }) => {
     document.getElementById("modal2").showModal();
   };
 
-
   const deleteNode = (id) => {
     modalshow2();
     console.log(id);
+
     axios
-      .delete("http://localhost:8081/api/components/delete/" + id)
+      .delete("http://localhost:8081/api/components/delete/" + id, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         toast.success("Successfully Deleted the component !");
         setTimeout(() => {
@@ -40,12 +43,8 @@ const Detail = ({ Component }) => {
         }, 2000);
         console.log(res.data);
       })
-      .catch(
-        (err) => toast.error(err)
-        // console.log(err)
-      );
+      .catch((err) => toast.error(err));
   };
-
 
   const handleCancel = () => {
     setIsEditMode(false);
@@ -56,7 +55,12 @@ const Detail = ({ Component }) => {
       const fetchImpactedComponents = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8081/api/graph/impact/${Component.id}`
+            `http://localhost:8081/api/graph/impact/${Component.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
           );
           setImpactedComponents(response.data);
         } catch (error) {
@@ -74,7 +78,12 @@ const Detail = ({ Component }) => {
     const fetchAllComponents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8081/api/components/all"
+          "http://localhost:8081/api/components/all",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setAllComponents(response.data);
       } catch (error) {
@@ -209,7 +218,7 @@ const Detail = ({ Component }) => {
           </div>
 
           <div className="flex flex-row justify-center items-center space-x-5 ">
-          <button
+            <button
               type="button"
               className="bg-gradient-to-br from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-4 mt-10 rounded-lg "
               onClick={handleUpdate}
@@ -226,13 +235,9 @@ const Detail = ({ Component }) => {
               {" "}
               Delete{" "}
             </button>
-
           </div>
 
-
-
-
-      <dialog id="delete" className="modal">
+          <dialog id="delete" className="modal">
             <div className="modal-box bg-white">
               <form method="dialog">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -283,8 +288,6 @@ const Detail = ({ Component }) => {
               <span className="loading loading-spinner w-20 h-20 border-3"></span>
             </div>
           </dialog>
-
-
         </div>
       )}
     </div>

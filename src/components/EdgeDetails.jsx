@@ -5,13 +5,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const EdgeDetails = ({ selectedEdge }) => {
+  const token = localStorage.getItem("token");
   const deleteView = () => {
     document.getElementById("deleteEdge").showModal();
   };
   const deleteEdge = async (id) => {
     try {
       console.log("Edge Id", id);
-      await axios.delete(`http://localhost:8081/api/graph/edge/${id}`);
+      await axios.delete(`http://localhost:8081/api/graph/edge/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       toast.success("Edge Deleted Sucessfully!");
       setTimeout(() => {
         window.location.reload();

@@ -25,6 +25,7 @@ const Edit = ({ Component, func }) => {
     outgoingNodeIds: Component.outgoingNodeIds,
   });
 
+  const token = localStorage.getItem("token");
   useEffect(() => {
     setUpdateComponent({
       id: Component.id,
@@ -43,12 +44,23 @@ const Edit = ({ Component, func }) => {
   }, [Component]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8081/api/components/all")
-      .then((res) => {
-        setSuggestions(res.data);
-      })
-      .catch((err) => console.log(err));
+    const fetchComponents = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8081/api/components/all",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Add the authorization header
+            },
+          }
+        );
+        setSuggestions(response.data);
+      } catch (error) {
+        console.error("Error fetching components:", error);
+      }
+    };
+
+    fetchComponents();
   }, []);
 
   useEffect(() => {
@@ -64,15 +76,20 @@ const Edit = ({ Component, func }) => {
     console.log(updateComponent);
 
     axios
-      .put("http://localhost:8081/api/components/update", updateComponent)
+      .put("http://localhost:8081/api/components/update", updateComponent, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Add the authorization header
+        },
+      })
       .then((res) => {
-        toast.success("Successfully updated component !");
+        toast.success("Successfully updated component!");
         navigate("/graph");
         console.log("Successfully updated component:", res.data);
-        console.log(res.data);
         window.location.reload();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.error("Error updating component:", err);
+      });
   };
 
   const handleIncoming = () => {
