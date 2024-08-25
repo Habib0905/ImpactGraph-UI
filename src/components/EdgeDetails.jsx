@@ -3,11 +3,32 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CryptoJS from "crypto-js";
+
+
 
 const EdgeDetails = ({ selectedEdge }) => {
   const token = localStorage.getItem("token");
+  const encryptedRole = localStorage.getItem("role");
+  const secretKey = "lomatulhabibinterns2"; // Use the same secret key
+  const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
+  const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+
+  console.log(decryptedRole);
+  const role = JSON.parse(decryptedRole);
+  console.log(role);
+
+
+
   const deleteView = () => {
+    if(role.includes('ROLE_ADMIN'))
+      {
     document.getElementById("deleteEdge").showModal();
+      }
+      else
+      {
+        document.getElementById("modal3").showModal();
+      }
   };
   const deleteEdge = async (id) => {
     try {
@@ -74,6 +95,23 @@ const EdgeDetails = ({ selectedEdge }) => {
           </div>
         </div>
       </dialog>
+
+      
+      <dialog id="modal3" className="modal">
+            <div className="modal-box bg-white">
+              <form method="dialog">
+                <button className="btn btn-sm btn-circle absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <p className="py-4 text-pink-900 ">
+                {" "}
+                Login As Admin and Try Again !!{" "}
+              </p>
+            </div>
+          </dialog>
+
+
     </div>
   );
 };

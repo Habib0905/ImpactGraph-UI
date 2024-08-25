@@ -142,7 +142,7 @@ const Edit = ({ Component, func }) => {
 
   return (
     <div className=" p-3 rounded-md shadow-lg shadow-pink-950 border-pink-950">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="bg-white">
         <label
           htmlFor="name"
           className="input input-bordered input-black flex items-center w-full gap-2 "
@@ -303,17 +303,17 @@ const Edit = ({ Component, func }) => {
           </button>
         </div>
 
-        <div className="flex flex-row justify-center items-center  ">
+        <div className="flex flex-row justify-center items-center gap-4 ">
           <button
             type="submit"
-            className="bg-gradient w-max from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
+            className="bg-pink-900 w-max  text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
             onClick={modalshow2}
           >
             Update
           </button>
           <button
             type="button"
-            className="bg-gradient w-max from-black to-pink-950 text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
+            className="bg-pink-900 w-max text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
             onClick={func}
           >
             Cancel

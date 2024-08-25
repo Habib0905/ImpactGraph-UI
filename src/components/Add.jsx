@@ -180,12 +180,14 @@ const Add = () => {
         <form onSubmit={handleSubmit}>
           <div className="absolute top-0 left-0 w-full h-full"></div>
 
-          <div className="relative mt-10 z-10 mb-10 bg-white border-pink-900 border-2 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
+          <div className="relative mt-10 z-10 mb-10 bg-white border-pink-900 border-2 bg-opacity-90 rounded shadow-2xl shadow-pink-950 w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
             <label
               htmlFor="name"
-              className="input input-bordered input-black flex items-center w-full gap-2"
+              className="input input-bordered border-pink-950 input-black flex items-center w-full gap-2"
             >
-              Name:
+              <img className="h-6 w-6 " src="edit.png"></img>
+               Name :
+              
               <input
                 required
                 type="text"
@@ -200,8 +202,9 @@ const Add = () => {
 
             <label
               htmlFor="ip"
-              className="input input-bordered input-black flex items-center gap-2 w-full mt-5"
+              className="input input-bordered border-pink-950  input-black flex items-center gap-2 w-full mt-5"
             >
+                <img className="h-6 w-6 " src="edit.png"></img>
               IP:
               <input
                 required
@@ -217,8 +220,9 @@ const Add = () => {
 
             <label
               htmlFor="type"
-              className="input input-bordered input-black flex items-center w-full gap-2 mt-5 relative"
+              className="input input-bordered border-pink-950 input-black flex items-center w-full gap-2 mt-5 relative"
             >
+                <img className="h-6 w-6 " src="edit.png"></img>
               Type:
               <input
                 required
@@ -232,12 +236,14 @@ const Add = () => {
                 className="grow"
                 placeholder="e.g. Database"
               />
+
+
               {showTypeOptions && filteredTypes.length > 0 && (
-                <ul className="absolute z-10 bg-black border border-gray-300 text-white w-full left-0 top-full transform mt-1 max-h-60 overflow-y-auto">
+                <ul className="absolute z-10 bg-white border border-gray-300 text-black w-full left-0 top-full transform mt-1 max-h-60 overflow-y-auto">
                   {filteredTypes.map((type, index) => (
                     <li
                       key={index}
-                      className="px-4 py-2 cursor-pointer hover:bg-gray-600"
+                      className="px-4 py-2 cursor-pointer hover:bg-pink-100"
                       onClick={() => handleTypeOptionClick(type)}
                     >
                       {type}
@@ -247,9 +253,9 @@ const Add = () => {
               )}
             </label>
 
-            <div className="flex items-center w-full mt-5">
+            <div className="w-full mt-5">
               <h3 className="text-lg text-pink-900 font-bold">
-                Selected Incoming Components:
+                Selected Outgoing Components:
               </h3>
               <div className="flex flex-wrap">
                 <ul className="flex flex-wrap gap-3">
@@ -259,7 +265,7 @@ const Add = () => {
                     );
                     return (
                       <li
-                        className="bg-white rounded-md p-2 mt-3 flex items-center"
+                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
                         key={id}
                       >
                         {node.name}
@@ -279,15 +285,16 @@ const Add = () => {
 
             <div className="w-full mt-5 flex items-center">
               <select
-                className="select select-bordered w-full max-w"
+                className="select select-bordered bg-white w-full max-w"
                 value={incomingComponent}
                 onChange={(e) => setIncomingComponent(e.target.value)}
               >
+                
                 <option value="" disabled>
                   Incoming Components
                 </option>
                 {allComponents.map((component) => (
-                  <option key={component.id} value={component.id}>
+                  <option className="bg-white hover:bg-black" key={component.id} value={component.id}>
                     {component.name} - {component.ip}
                   </option>
                 ))}
@@ -316,7 +323,7 @@ const Add = () => {
                     );
                     return (
                       <li
-                        className="bg-white rounded-md p-2 mt-3 flex items-center"
+                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
                         key={id}
                       >
                         {node.name}
@@ -344,7 +351,7 @@ const Add = () => {
                   Outgoing Components
                 </option>
                 {allComponents.map((component) => (
-                  <option key={component.id} value={component.id}>
+                  <option  key={component.id} value={component.id}>
                     {component.name} - {component.ip}
                   </option>
                 ))}
@@ -360,8 +367,10 @@ const Add = () => {
               </button>
             </div>
 
+
+
             <button
-              className="btn btn-wide bg-white  shadow-md shadow-pink-900 text-pink-900 mt-9 hover:bg-pink-900 hover:text-white "
+              className="btn btn-wide bg-white  shadow-md shadow-pink-900 text-pink-900 mt-5 hover:bg-pink-900 hover:text-white "
               type="submit"
             >
               {(isLoading && (

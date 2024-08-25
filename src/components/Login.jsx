@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import CryptoJS from "crypto-js";
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const modalshow2 = () => {
+    document.getElementById("modal2").showModal();
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,8 +21,17 @@ const Login = () => {
         password,
       });
 
+
       console.log(response.data);
       localStorage.setItem("token", response.data.jwtToken);
+      console.log(response.data.roles);
+      const role = JSON.stringify(response.data.roles);
+      console.log(role);
+      const secretKey = "lomatulhabibinterns2"; 
+      const encryptedRole = CryptoJS.AES.encrypt(role, secretKey).toString();
+      
+      localStorage.setItem("role", encryptedRole);
+  
 
       window.location.href = "/";
     } catch (error) {
@@ -102,6 +117,13 @@ const Login = () => {
           </div>
         </form>
       </div>
+
+      <dialog id="modal2" className="modal">
+        <div>
+          <span className="loading loading-spinner w-20 h-20 border-3"></span>
+        </div>
+      </dialog>
+
     </div>
   );
 };
