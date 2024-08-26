@@ -10,6 +10,7 @@ import Notfound from "./components/Notfound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import React, { useState , useEffect} from "react";
 import CryptoJS from "crypto-js";
+import UserPage from "./pages/UserPage";
 
 
 
@@ -59,6 +60,7 @@ function App() {
         {/* Protected Routes */}
         <Route path="/" element={<ProtectedRoute element={HomePage} />} />
         <Route path="/add" element={ loginDone ? <Notfound/> : <ProtectedRoute element={AddPage} />} />
+        <Route path="/adduser" element={ loginDone ? <Notfound/> : <ProtectedRoute element={UserPage} />} />
         <Route path="/graph" element={<ProtectedRoute element={GraphPage} />} />
         <Route
           path="/update"

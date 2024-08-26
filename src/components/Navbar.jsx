@@ -82,13 +82,16 @@ const Navbar = () => {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1 text-xl text-white">
           <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-            <a href="/add">Add</a>
+            <a href="/add">Add Component</a>
           </li>
           <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
             <a href="/graph">View Graph</a>
           </li>
           <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
             <a href="/update">Update</a>
+          </li>
+          <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
+            <a href="/adduser">Add User</a>
           </li>
 
           <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white  font-abc font-bold ">
