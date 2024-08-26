@@ -10,7 +10,7 @@ const Navbar = () => {
   useEffect(() => {
 
     const encryptedRole = localStorage.getItem("role");
-    const secretKey = "lomatulhabibinterns2"; // Use the same secret key
+    const secretKey = "lomatulhabibinterns2"; 
     const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
     const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 
@@ -32,7 +32,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     console.log("logout")
-    localStorage.setItem("role",null);
+    localStorage.removeItem("role");
     localStorage.removeItem("token");
   };
 
