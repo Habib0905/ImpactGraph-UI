@@ -5,8 +5,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CryptoJS from "crypto-js";
 
-
-
 const EdgeDetails = ({ selectedEdge }) => {
   const token = localStorage.getItem("token");
   const encryptedRole = localStorage.getItem("role");
@@ -18,17 +16,12 @@ const EdgeDetails = ({ selectedEdge }) => {
   const role = JSON.parse(decryptedRole);
   console.log(role);
 
-
-
   const deleteView = () => {
-    if(role.includes('ROLE_ADMIN'))
-      {
-    document.getElementById("deleteEdge").showModal();
-      }
-      else
-      {
-        document.getElementById("modal3").showModal();
-      }
+    if (role.includes("ROLE_ADMIN")) {
+      document.getElementById("deleteEdge").showModal();
+    } else {
+      document.getElementById("modal3").showModal();
+    }
   };
   const deleteEdge = async (id) => {
     try {
@@ -72,23 +65,19 @@ const EdgeDetails = ({ selectedEdge }) => {
         </button>
       </div>
       <dialog id="deleteEdge" className="modal">
-        <div className="modal-box">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <p className="py-4 text-white"> Do you want to delete this edge ? </p>
+        <div className="modal-box bg-white">
+          <form method="dialog"></form>
+          <p className="py-4 text-black"> Do you want to delete this edge ? </p>
 
           <div className="flex flex-row justify-center items-center space-x-5 ">
             <button
-              className="btn text-white py-2 px-10 mt-5 rounded-lg"
+              className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg"
               onClick={() => deleteEdge(selectedEdge.id)}
             >
               Yes
             </button>
             <form method="dialog">
-              <button className="btn text-white py-2 px-10 mt-5 rounded-lg">
+              <button className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg">
                 No
               </button>
             </form>
@@ -96,22 +85,19 @@ const EdgeDetails = ({ selectedEdge }) => {
         </div>
       </dialog>
 
-      
       <dialog id="modal3" className="modal">
-            <div className="modal-box bg-white">
-              <form method="dialog">
-                <button className="btn btn-sm btn-circle absolute right-2 top-2">
-                  ✕
-                </button>
-              </form>
-              <p className="py-4 text-pink-900 ">
-                {" "}
-                Login As Admin and Try Again !!{" "}
-              </p>
-            </div>
-          </dialog>
-
-
+        <div className="modal-box bg-white">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <p className="py-4 text-pink-900 ">
+            {" "}
+            Login As Admin and Try Again !!{" "}
+          </p>
+        </div>
+      </dialog>
     </div>
   );
 };

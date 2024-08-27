@@ -186,8 +186,7 @@ const Add = () => {
               className="input input-bordered border-pink-950 input-black flex items-center w-full gap-2"
             >
               <img className="h-6 w-6 " src="edit.png"></img>
-               Name :
-              
+              Name :
               <input
                 required
                 type="text"
@@ -204,7 +203,7 @@ const Add = () => {
               htmlFor="ip"
               className="input input-bordered border-pink-950  input-black flex items-center gap-2 w-full mt-5"
             >
-                <img className="h-6 w-6 " src="edit.png"></img>
+              <img className="h-6 w-6 " src="edit.png"></img>
               IP:
               <input
                 required
@@ -222,7 +221,7 @@ const Add = () => {
               htmlFor="type"
               className="input input-bordered border-pink-950 input-black flex items-center w-full gap-2 mt-5 relative"
             >
-                <img className="h-6 w-6 " src="edit.png"></img>
+              <img className="h-6 w-6 " src="edit.png"></img>
               Type:
               <input
                 required
@@ -236,8 +235,6 @@ const Add = () => {
                 className="grow"
                 placeholder="e.g. Database"
               />
-
-
               {showTypeOptions && filteredTypes.length > 0 && (
                 <ul className="absolute z-10 bg-white border border-gray-300 text-black w-full left-0 top-full transform mt-1 max-h-60 overflow-y-auto">
                   {filteredTypes.map((type, index) => (
@@ -255,7 +252,7 @@ const Add = () => {
 
             <div className="w-full mt-5">
               <h3 className="text-lg text-pink-900 font-bold">
-                Selected Outgoing Components:
+                Selected Incoming Components:
               </h3>
               <div className="flex flex-wrap">
                 <ul className="flex flex-wrap gap-3">
@@ -265,7 +262,7 @@ const Add = () => {
                     );
                     return (
                       <li
-                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
+                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center text-black"
                         key={id}
                       >
                         {node.name}
@@ -289,12 +286,15 @@ const Add = () => {
                 value={incomingComponent}
                 onChange={(e) => setIncomingComponent(e.target.value)}
               >
-                
                 <option value="" disabled>
                   Incoming Components
                 </option>
                 {allComponents.map((component) => (
-                  <option className="bg-white hover:bg-black" key={component.id} value={component.id}>
+                  <option
+                    className="bg-white hover:bg-black"
+                    key={component.id}
+                    value={component.id}
+                  >
                     {component.name} - {component.ip}
                   </option>
                 ))}
@@ -323,7 +323,7 @@ const Add = () => {
                     );
                     return (
                       <li
-                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center"
+                        className="bg-white border-2 border-pink-950 rounded-md p-2 mt-3 flex items-center text-black"
                         key={id}
                       >
                         {node.name}
@@ -343,7 +343,7 @@ const Add = () => {
 
             <div className="w-full mt-5 flex items-center">
               <select
-                className="select select-bordered w-full max-w"
+                className="select bg-white select-bordered w-full max-w"
                 value={outgoingComponent}
                 onChange={(e) => setOutgoingComponent(e.target.value)}
               >
@@ -351,7 +351,11 @@ const Add = () => {
                   Outgoing Components
                 </option>
                 {allComponents.map((component) => (
-                  <option  key={component.id} value={component.id}>
+                  <option
+                    className="bg-white hover:bg-black"
+                    key={component.id}
+                    value={component.id}
+                  >
                     {component.name} - {component.ip}
                   </option>
                 ))}
@@ -366,8 +370,6 @@ const Add = () => {
                 Add
               </button>
             </div>
-
-
 
             <button
               className="btn btn-wide bg-white  shadow-md shadow-pink-900 text-pink-900 mt-5 hover:bg-pink-900 hover:text-white "
