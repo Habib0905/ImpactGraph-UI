@@ -59,11 +59,13 @@ const EdgeDetails = ({ selectedEdge }) => {
           </span>
           <span> : {selectedEdge.to}</span>
         </p>
-
-        <button className="btn bg-red-600" onClick={deleteView}>
-          Delete Edge
-        </button>
+        {role == "ROLE_ADMIN" && (
+          <button className="btn bg-red-600" onClick={deleteView}>
+            Delete Edge
+          </button>
+        )}
       </div>
+
       <dialog id="deleteEdge" className="modal">
         <div className="modal-box bg-white">
           <form method="dialog">

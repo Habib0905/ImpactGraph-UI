@@ -13,7 +13,7 @@ const ComponentDetails = ({ node }) => {
   const token = localStorage.getItem("token");
 
   const encryptedRole = localStorage.getItem("role");
-  const secretKey = "lomatulhabibinterns2"; // Use the same secret key
+  const secretKey = "lomatulhabibinterns2";
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 
@@ -53,11 +53,11 @@ const ComponentDetails = ({ node }) => {
         "http://localhost:8081/api/components/all",
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Add the authorization header
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      setAllComponents(response.data); // Set the components data
+      setAllComponents(response.data);
     } catch (error) {
       console.error("There was an error fetching the components!", error);
     }
@@ -89,7 +89,7 @@ const ComponentDetails = ({ node }) => {
         `http://localhost:8081/api/components/delete/${id}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Add the authorization header
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -214,21 +214,22 @@ const ComponentDetails = ({ node }) => {
                 </ul>
               </div>
             </div>
-
-            <div className="flex flex-row justify-center items-center space-x-5 ">
-              <button
-                className="bg-white text-black hover:bg-pink-900 hover:text-white py-2 px-10 mt-5 rounded-lg"
-                onClick={handleUpdate}
-              >
-                Update
-              </button>
-              <button
-                className="bg-white text-black hover:bg-pink-900 hover:text-white py-2 px-10 mt-5 rounded-lg"
-                onClick={deleteview}
-              >
-                Delete
-              </button>
-            </div>
+            {role == "ROLE_ADMIN" && (
+              <div className="flex flex-row justify-center items-center space-x-5 ">
+                <button
+                  className="bg-white text-black hover:bg-pink-900 hover:text-white py-2 px-10 mt-5 rounded-lg"
+                  onClick={handleUpdate}
+                >
+                  Update
+                </button>
+                <button
+                  className="bg-white text-black hover:bg-pink-900 hover:text-white py-2 px-10 mt-5 rounded-lg"
+                  onClick={deleteview}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
 
           <dialog id="delete" className="modal">
