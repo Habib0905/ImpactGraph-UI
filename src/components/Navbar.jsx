@@ -1,16 +1,14 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 
-
 const Navbar = () => {
   const navigate = useNavigate();
-  const [loginDone , setLoginDone] = useState("");
+  const [loginDone, setLoginDone] = useState("");
 
   useEffect(() => {
-
     const encryptedRole = localStorage.getItem("role");
-    const secretKey = "lomatulhabibinterns2"; 
+    const secretKey = "lomatulhabibinterns2";
     const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
     const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 
@@ -18,93 +16,81 @@ const Navbar = () => {
     const role = JSON.parse(decryptedRole);
     console.log(role);
 
-    if(role.includes('ROLE_ADMIN'))
-    {
-      console.log("admin")
+    if (role.includes("ROLE_ADMIN")) {
+      console.log("admin");
       setLoginDone(false);
-    }
-    else
-    {
-      console.log("user")
+    } else {
+      console.log("user");
       setLoginDone(true);
     }
   }, []);
 
   const handleLogout = () => {
-    console.log("logout")
+    console.log("logout");
     localStorage.removeItem("role");
     localStorage.removeItem("token");
   };
 
-
-
-
-
   return (
-
     <div>
-
-   
-    {
-    loginDone ? (
+      {loginDone ? (
         <div className="navbar bg-black">
-          <div className="flex-1">        
+          <div className="flex-1">
             <a href="/" className="btn btn-ghost text-2xl text-white">
-            <img className="h-6 w-6" src="network.png"></img>
+              <img className="h-6 w-6" src="network.png"></img>
               ImpactGraph
             </a>
           </div>
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1 text-xl text-white">
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-                <a href="/graph"> View Graph</a>
+                <a href="/graph"> Graph</a>
               </li>
 
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
                 <a href="/update">Search</a>
               </li>
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white  font-abc font-bold ">
-                <a  href="/login" onClick={handleLogout}>Logout</a>
+                <a href="/login" onClick={handleLogout}>
+                  Logout
+                </a>
               </li>
             </ul>
           </div>
         </div>
-    )
-        :
-    (
-    <div className="navbar bg-black">
-      <div className="flex-1">
-        <a href="/" className="btn btn-ghost text-2xl text-white">
-        <img className="h-8 w-8" src="network.png"></img>
-          ImpactGraph
-        </a>
-      </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1 text-xl text-white">
-          <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-            <a href="/add">Add Component</a>
-          </li>
-          <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-            <a href="/graph">View Graph</a>
-          </li>
-          <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-            <a href="/update">Update</a>
-          </li>
-          <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-            <a href="/adduser">Add User</a>
-          </li>
+      ) : (
+        <div className="navbar bg-black">
+          <div className="flex-1">
+            <a href="/" className="btn btn-ghost text-2xl text-white">
+              <img className="h-8 w-8" src="network.png"></img>
+              ImpactGraph
+            </a>
+          </div>
+          <div className="flex-none">
+            <ul className="menu menu-horizontal px-1 text-xl text-white">
+              <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
+                <a href="/add">Add</a>
+              </li>
+              <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
+                <a href="/graph">Graph</a>
+              </li>
+              <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
+                <a href="/update">Update</a>
+              </li>
+              <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
+                <a href="/adduser">User</a>
+              </li>
 
-          <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white  font-abc font-bold ">
-            <a  href="/login" onClick={handleLogout}>Logout</a>
-          </li>
-
-        </ul>
-      </div>
+              <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white  font-abc font-bold ">
+                <a href="/login" onClick={handleLogout}>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
-
-    )
-}
-</div>
   );
 };
 
