@@ -5,8 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Edit from "./Edit";
 import CryptoJS from "crypto-js";
 
-
-
 const ComponentDetails = ({ node }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -14,30 +12,23 @@ const ComponentDetails = ({ node }) => {
   const [allComponents, setAllComponents] = useState([]);
   const token = localStorage.getItem("token");
 
+  const encryptedRole = localStorage.getItem("role");
+  const secretKey = "lomatulhabibinterns2"; // Use the same secret key
+  const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
+  const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 
-    const encryptedRole = localStorage.getItem("role");
-    const secretKey = "lomatulhabibinterns2"; // Use the same secret key
-    const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
-    const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
-
-    console.log(decryptedRole);
-    const role = JSON.parse(decryptedRole);
-    console.log(role);
-
+  console.log(decryptedRole);
+  const role = JSON.parse(decryptedRole);
+  console.log(role);
 
   const handleUpdate = () => {
-    if(role.includes('ROLE_ADMIN'))
-    {
+    if (role.includes("ROLE_ADMIN")) {
       if (selectNode != null) {
         setIsEditMode(true);
       }
-    }
-    else
-    {
+    } else {
       document.getElementById("modal3").showModal();
     }
-
-   
   };
 
   const handleCancel = () => {
@@ -45,19 +36,15 @@ const ComponentDetails = ({ node }) => {
   };
 
   const deleteview = () => {
-    if(role.includes('ROLE_ADMIN'))
-    {
+    if (role.includes("ROLE_ADMIN")) {
       if (impactedComponents.length <= 1) {
         document.getElementById("delete").showModal();
       } else {
         document.getElementById("Nodelete").showModal();
       }
-    }
-    else
-    {
+    } else {
       document.getElementById("modal3").showModal();
     }
-   
   };
 
   const fetchAllComponents = async () => {
@@ -229,7 +216,6 @@ const ComponentDetails = ({ node }) => {
             </div>
 
             <div className="flex flex-row justify-center items-center space-x-5 ">
-
               <button
                 className="bg-white text-black hover:bg-pink-900 hover:text-white py-2 px-10 mt-5 rounded-lg"
                 onClick={handleUpdate}
@@ -297,7 +283,6 @@ const ComponentDetails = ({ node }) => {
             </div>
           </dialog>
 
-
           <dialog id="modal3" className="modal">
             <div className="modal-box bg-white">
               <form method="dialog">
@@ -311,8 +296,6 @@ const ComponentDetails = ({ node }) => {
               </p>
             </div>
           </dialog>
-
-
         </div>
       )}
     </div>

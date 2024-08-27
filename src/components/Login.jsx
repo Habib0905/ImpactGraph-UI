@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 
-
 const Login = () => {
+  localStorage.removeItem("role");
+  localStorage.removeItem("token");
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,17 +22,16 @@ const Login = () => {
         password,
       });
 
-
+      modalshow2();
       console.log(response.data);
       localStorage.setItem("token", response.data.jwtToken);
       console.log(response.data.roles);
       const role = JSON.stringify(response.data.roles);
       console.log(role);
-      const secretKey = "lomatulhabibinterns2"; 
+      const secretKey = "lomatulhabibinterns2";
       const encryptedRole = CryptoJS.AES.encrypt(role, secretKey).toString();
-      
+
       localStorage.setItem("role", encryptedRole);
-  
 
       window.location.href = "/";
     } catch (error) {
@@ -123,7 +123,6 @@ const Login = () => {
           <span className="loading loading-spinner w-20 h-20 border-3"></span>
         </div>
       </dialog>
-
     </div>
   );
 };

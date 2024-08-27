@@ -66,18 +66,22 @@ const EdgeDetails = ({ selectedEdge }) => {
       </div>
       <dialog id="deleteEdge" className="modal">
         <div className="modal-box bg-white">
-          <form method="dialog"></form>
-          <p className="py-4 text-black"> Do you want to delete this edge ? </p>
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <p className="py-4 text-white"> Do you want to delete this edge ? </p>
 
           <div className="flex flex-row justify-center items-center space-x-5 ">
             <button
-              className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg"
+              className="btn text-white py-2 px-10 mt-5 rounded-lg"
               onClick={() => deleteEdge(selectedEdge.id)}
             >
               Yes
             </button>
             <form method="dialog">
-              <button className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg">
+              <button className="btn text-white py-2 px-10 mt-5 rounded-lg">
                 No
               </button>
             </form>

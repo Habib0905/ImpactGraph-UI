@@ -5,8 +5,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CryptoJS from "crypto-js";
 
-
-
 const Detail = ({ Component }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [allComponents, setAllComponents] = useState([]);
@@ -21,32 +19,24 @@ const Detail = ({ Component }) => {
   const role = JSON.parse(decryptedRole);
   console.log(role);
 
-
-
   const handleUpdate = () => {
-    if(role.includes('ROLE_ADMIN'))
-    {
+    if (role.includes("ROLE_ADMIN")) {
       setIsEditMode(true);
-    }
-    else
-    {
+    } else {
       document.getElementById("modal3").showModal();
     }
   };
 
   const deleteview = () => {
-    if(role.includes('ROLE_ADMIN'))
-      {
-    if (impactedComponents.length <= 1) {
-      document.getElementById("delete").showModal();
+    if (role.includes("ROLE_ADMIN")) {
+      if (impactedComponents.length <= 1) {
+        document.getElementById("delete").showModal();
+      } else {
+        document.getElementById("Nodelete").showModal();
+      }
     } else {
-      document.getElementById("Nodelete").showModal();
+      document.getElementById("modal3").showModal();
     }
-  }
-  else
-  {
-    document.getElementById("modal3").showModal();
-  }
   };
   const modalshow2 = () => {
     document.getElementById("modal2").showModal();
@@ -246,7 +236,7 @@ const Detail = ({ Component }) => {
           <div className="flex flex-row justify-center items-center gap-5 ">
             <button
               type="button"
-               className="bg-pink-900 w-max  text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
+              className="bg-pink-900 w-max  text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
               onClick={handleUpdate}
             >
               {" "}
@@ -328,11 +318,7 @@ const Detail = ({ Component }) => {
               </p>
             </div>
           </dialog>
-
-          
         </div>
-
-        
       )}
     </div>
   );
