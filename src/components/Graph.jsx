@@ -11,6 +11,7 @@ const Graph = () => {
   const [selectedEdge, setSelectedEdge] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
     const fetchGraphData = async () => {
       try {
         console.log("Starting to fetch data");
@@ -29,156 +30,168 @@ const Graph = () => {
         console.log("Data Fetched");
         const data = response.data;
         console.log("Fetched data:", data);
+        if (isMounted) {
+          const container = document.getElementById("network");
+          console.log("Graph Visualized");
+          const options = {
+            nodes: {
+              shape: "dot",
+              size: 40,
+              font: { color: "black" },
 
-        const container = document.getElementById("network");
-        console.log("Graph Visualized");
-        const options = {
-          nodes: {
-            shape: "dot",
-            size: 40,
-            font: { color: "black" },
-          },
-          edges: {
-            arrows: {
-              to: { enabled: true, scaleFactor: 1 },
+              color: {
+                border: "#2B7CE9",
+                background: "#97C2FC",
+              },
             },
-            color: {
-              color: "black",
-              highlight: "red",
-              hover: "black",
+            edges: {
+              arrows: {
+                to: { enabled: true, scaleFactor: 1 },
+              },
+              color: {
+                color: "black",
+                highlight: "red",
+                hover: "black",
+              },
+              font: {
+                color: "black",
+                size: 14,
+                face: "arial",
+              },
+              width: 1,
+              smooth: { enabled: true, type: "dynamic", roundness: 0.5 },
             },
-            font: {
-              color: "black",
-              size: 14,
-              face: "arial",
+            physics: {
+              stabilization: false,
+              solver: "forceAtlas2Based",
+              forceAtlas2Based: {
+                springLength: 200,
+                springConstant: 0.01,
+              },
             },
-            width: 1,
-            smooth: { enabled: true, type: "dynamic", roundness: 0.5 },
-          },
-          physics: {
-            stabilization: false,
-            solver: "forceAtlas2Based",
-            forceAtlas2Based: {
-              springLength: 200,
-              springConstant: 0.01,
+            interaction: {
+              hover: true,
+              dragView: true,
             },
-          },
-          interaction: {
-            hover: true,
-            dragView: true,
-          },
-          layout: {
-            improvedLayout: true,
-          },
-        };
+            layout: {
+              improvedLayout: true,
+            },
+          };
 
-        if (networkRef.current) {
-          networkRef.current.destroy();
-        }
+          if (networkRef.current) {
+            networkRef.current.destroy();
+          }
 
-        const visNetwork = new Vis.Network(container, data, options);
-        networkRef.current = visNetwork;
+          const visNetwork = new Vis.Network(container, data, options);
+          networkRef.current = visNetwork;
 
-        visNetwork.on("doubleClick", async (params) => {
-          if (params.nodes.length > 0) {
-            const nodeId = params.nodes[0];
-            console.log(`Node ${nodeId} double-clicked`);
-            const actualNodeId = nodeId.split(":").pop();
-            const intId = parseInt(actualNodeId, 10);
-            console.log("Extracted node id: ", actualNodeId);
+          visNetwork.on("doubleClick", async (params) => {
+            if (params.nodes.length > 0) {
+              const nodeId = params.nodes[0];
+              console.log(`Node ${nodeId} double-clicked`);
+              const actualNodeId = nodeId.split(":").pop();
+              const intId = parseInt(actualNodeId, 10);
+              console.log("Extracted node id: ", actualNodeId);
 
-            try {
-              const result = await axios.get(
-                `http://localhost:8081/api/graph/impact/${intId}`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
+              try {
+                const result = await axios.get(
+                  `http://localhost:8081/api/graph/impact/${intId}`,
+                  {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
+                );
+                const impactedNodes = result.data.map((node) => node.elementId);
+                console.log("Impacted nodes:", impactedNodes);
+
+                const nodes = visNetwork.body.data.nodes.get();
+                const updates = [];
+
+                nodes.forEach((node) => {
+                  if (impactedNodes.includes(node.id)) {
+                    updates.push({ id: node.id, color: "red" });
+                  } else if (node.color === "red") {
+                    updates.push({ id: node.id, color: "#97C2FC" });
+                  }
+                });
+
+                visNetwork.body.data.nodes.update(updates);
+              } catch (error) {
+                console.error("Error finding impacted nodes:", error);
+              }
+            }
+          });
+
+          visNetwork.on("click", async (params) => {
+            if (params.nodes.length > 0) {
+              // Node was clicked
+              const nodeId = params.nodes[0];
+              const actualNodeId = nodeId.split(":").pop();
+              const intId = parseInt(actualNodeId, 10);
+
+              try {
+                const result = await axios.get(
+                  `http://localhost:8081/api/graph/node/${intId}`,
+                  {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
+                );
+                if (result.data) {
+                  setSelectedNode({ id: intId, ...result.data.properties });
+                  setSelectedEdge(null);
                 }
-              );
-              const impactedNodes = result.data.map((node) => node.elementId);
-              console.log("Impacted nodes:", impactedNodes);
+              } catch (error) {
+                console.error("Error fetching node details:", error);
+              }
+            } else if (params.edges.length > 0) {
+              // Edge was clicked
+              const edgeId = params.edges[0];
+              console.log(edgeId);
+              const edge = visNetwork.body.data.edges.get(edgeId);
+              console.log(edge);
+              const sourceNode = visNetwork.body.data.nodes.get(edge.from);
+              const targetNode = visNetwork.body.data.nodes.get(edge.to);
+              const relationId = edge.elementId;
+              console.log("Real edge id", relationId);
+              const actualRelationId = relationId.split(":").pop();
+              const intRelationId = new BigNumber(actualRelationId);
+              console.log("Integer real edge id", intRelationId.c);
 
+              setSelectedEdge({
+                id: intRelationId,
+                from: sourceNode.label,
+                to: targetNode.label,
+              });
+              setSelectedNode(null);
+            } else {
+              setSelectedNode(null);
+              setSelectedEdge(null);
               const nodes = visNetwork.body.data.nodes.get();
               const updates = [];
 
               nodes.forEach((node) => {
-                if (impactedNodes.includes(node.id)) {
-                  updates.push({ id: node.id, color: "red" });
-                } else if (node.color === "red") {
-                  updates.push({ id: node.id, color: "lightblue" });
-                }
+                updates.push({ id: node.id, color: "#97C2FC" });
               });
 
               visNetwork.body.data.nodes.update(updates);
-            } catch (error) {
-              console.error("Error finding impacted nodes:", error);
             }
-          }
-        });
-
-        visNetwork.on("click", async (params) => {
-          if (params.nodes.length > 0) {
-            // Node was clicked
-            const nodeId = params.nodes[0];
-            const actualNodeId = nodeId.split(":").pop();
-            const intId = parseInt(actualNodeId, 10);
-
-            try {
-              const result = await axios.get(
-                `http://localhost:8081/api/graph/node/${intId}`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
-                }
-              );
-              if (result.data) {
-                setSelectedNode({ id: intId, ...result.data.properties });
-                setSelectedEdge(null);
-              }
-            } catch (error) {
-              console.error("Error fetching node details:", error);
-            }
-          } else if (params.edges.length > 0) {
-            // Edge was clicked
-            const edgeId = params.edges[0];
-            console.log(edgeId);
-            const edge = visNetwork.body.data.edges.get(edgeId);
-            console.log(edge);
-            const sourceNode = visNetwork.body.data.nodes.get(edge.from);
-            const targetNode = visNetwork.body.data.nodes.get(edge.to);
-            const relationId = edge.elementId;
-            console.log("Real edge id", relationId);
-            const actualRelationId = relationId.split(":").pop();
-            const intRelationId = new BigNumber(actualRelationId);
-            console.log("Integer real edge id", intRelationId.c);
-
-            setSelectedEdge({
-              id: intRelationId,
-              from: sourceNode.label,
-              to: targetNode.label,
-            });
-            setSelectedNode(null);
-          } else {
-            setSelectedNode(null);
-            setSelectedEdge(null);
-            const nodes = visNetwork.body.data.nodes.get();
-            const updates = [];
-
-            nodes.forEach((node) => {
-              updates.push({ id: node.id, color: "lightblue" });
-            });
-
-            visNetwork.body.data.nodes.update(updates);
-          }
-        });
+          });
+        }
       } catch (error) {
         console.error("Error fetching graph data:", error);
       }
     };
 
     fetchGraphData();
+    return () => {
+      isMounted = false;
+      if (networkRef.current) {
+        networkRef.current.destroy();
+      }
+    };
   }, []);
 
   return (
