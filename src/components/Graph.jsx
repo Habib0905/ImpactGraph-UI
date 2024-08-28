@@ -85,7 +85,7 @@ const Graph = () => {
           const visNetwork = new Vis.Network(container, data, options);
           networkRef.current = visNetwork;
 
-          visNetwork.on("doubleClick", async (params) => {
+          visNetwork.on("click", async (params) => {
             if (params.nodes.length > 0) {
               const nodeId = params.nodes[0];
               console.log(`Node ${nodeId} double-clicked`);
