@@ -78,7 +78,7 @@ const Navbar = () => {
                 <a href="/update">Update</a>
               </li>
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-                <a href="/adduser">User</a>
+                <a href="/adduser">Users</a>
               </li>
 
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white  font-abc font-bold ">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Detail from "./Detail";
+import CryptoJS from "crypto-js";
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -8,6 +9,14 @@ const Search = () => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const token = localStorage.getItem("token");
+  const encryptedRole = localStorage.getItem("role");
+  const secretKey = "lomatulhabibinterns2";
+  const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
+  const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+
+  console.log(decryptedRole);
+  const role = JSON.parse(decryptedRole);
+  console.log(role);
   useEffect(() => {
     const fetchComponents = async () => {
       try {
@@ -69,12 +78,10 @@ const Search = () => {
         className="w-full h-full object-cover  top-0 left-0"
         src="loma.avif"
       />
-      <p
-        className="hero-overlay bg-opacity-0 text-4xl text-center top-0  text-pink-900 p-10 mb-4 mx-auto font-abc font-bold
-        "
-      >
-        {" "}
-        Search the Component you want to update
+      <p className="hero-overlay bg-opacity-0 text-4xl text-center text-pink-900 p-10 mb-4 mx-auto font-abc font-bold">
+        {role == "ROLE_ADMIN"
+          ? "Search the component you want to update"
+          : "Search Components"}
       </p>
       <div className=" font-abc top-40 absolute  mb-10 w-[600px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
         <label className="input input-bordered text-pink-900 border-pink-950 border-2 shadow-md shadow-pink-950 bg-white flex items-center w-full gap-2">

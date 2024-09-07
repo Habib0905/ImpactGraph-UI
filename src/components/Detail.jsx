@@ -232,26 +232,27 @@ const Detail = ({ Component }) => {
               </ul>
             </div>
           </div>
+          {role == "ROLE_ADMIN" && (
+            <div className="flex flex-row justify-center items-center gap-5 ">
+              <button
+                type="button"
+                className="bg-pink-900 w-max  text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
+                onClick={handleUpdate}
+              >
+                {" "}
+                Update{" "}
+              </button>
 
-          <div className="flex flex-row justify-center items-center gap-5 ">
-            <button
-              type="button"
-              className="bg-pink-900 w-max  text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
-              onClick={handleUpdate}
-            >
-              {" "}
-              Update{" "}
-            </button>
-
-            <button
-              type="button"
-              className="bg-pink-900 w-max  text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
-              onClick={deleteview}
-            >
-              {" "}
-              Delete{" "}
-            </button>
-          </div>
+              <button
+                type="button"
+                className="bg-pink-900 w-max  text-white hover:bg-black font-bold py-2 px-10 mt-5 rounded-lg"
+                onClick={deleteview}
+              >
+                {" "}
+                Delete{" "}
+              </button>
+            </div>
+          )}
 
           <dialog id="delete" className="modal">
             <div className="modal-box bg-white">

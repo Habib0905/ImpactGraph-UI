@@ -44,7 +44,7 @@ const EdgeDetails = ({ selectedEdge }) => {
     document.getElementById("modal").showModal();
   };
   return (
-    <div className="p-4 z-10 border border-gray-400 rounded-lg shadow bg-black bg-opacity-80 text-white absolute top-5 right-4 w-[350px]">
+    <div className="p-4 z-10 border border-gray-400 rounded-lg shadow bg-black text-white absolute top-5 right-4 w-[350px]">
       <h3 className="text-lg font-bold mb-4 text-center">Edge Details</h3>
       <div className="flex flex-col space-y-4 ">
         <p>
@@ -60,7 +60,7 @@ const EdgeDetails = ({ selectedEdge }) => {
           <span> : {selectedEdge.to}</span>
         </p>
         {role == "ROLE_ADMIN" && (
-          <button className="btn bg-red-600" onClick={deleteView}>
+          <button className="btn bg-pink-900 text-white" onClick={deleteView}>
             Delete Edge
           </button>
         )}
@@ -68,22 +68,17 @@ const EdgeDetails = ({ selectedEdge }) => {
 
       <dialog id="deleteEdge" className="modal">
         <div className="modal-box bg-white">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <p className="py-4 text-white"> Do you want to delete this edge ? </p>
+          <p className="py-4 text-black"> Do you want to delete this edge ? </p>
 
           <div className="flex flex-row justify-center items-center space-x-5 ">
             <button
-              className="btn text-white py-2 px-10 mt-5 rounded-lg"
+              className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg"
               onClick={() => deleteEdge(selectedEdge.id)}
             >
               Yes
             </button>
             <form method="dialog">
-              <button className="btn text-white py-2 px-10 mt-5 rounded-lg">
+              <button className="bg-gradient-to-br from-black to-pink-950 text-white py-2 px-10 mt-5 rounded-lg">
                 No
               </button>
             </form>

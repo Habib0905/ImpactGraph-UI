@@ -180,7 +180,7 @@ const Add = () => {
         <form onSubmit={handleSubmit}>
           <div className="absolute top-0 left-0 w-full h-full"></div>
 
-          <div className="relative mt-10 z-10 mb-10 bg-white border-pink-900 border-2 bg-opacity-90 rounded shadow-2xl shadow-pink-950 w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
+          <div className="relative -mt-10 z-10 mb-10 bg-white border-pink-900 border-2 bg-opacity-90 rounded shadow-2xl shadow-pink-950 w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
             <label
               htmlFor="name"
               className="input input-bordered border-pink-950 input-black flex items-center w-full gap-2"
@@ -386,15 +386,14 @@ const Add = () => {
       </div>
 
       <dialog id="modal" className="modal">
-        <div className="modal-box">
-          <h2 className="text-xl font-bold mb-4">Alert</h2>
-          <p>
-            This component is already added. Please choose another one or remove
-            the existing one.
+        <div className="modal-box bg-white">
+          <h2 className="text-xl font-bold mb-4 text-pink-900">Alert</h2>
+          <p className="text-black ">
+            This component is already added. Please choose another one!
           </p>
           <div className="modal-action">
             <button
-              className="btn"
+              className="btn bg-pink-900 text-white"
               onClick={() => document.getElementById("modal").close()}
             >
               Close

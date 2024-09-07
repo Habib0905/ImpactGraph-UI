@@ -141,12 +141,14 @@ const ComponentDetails = ({ node }) => {
   }
 
   return (
-    <div className="p-4 z-10 absolute top-5 right-4 w-[400px]">
+    <div>
       {isEditMode ? (
         // console.log(selectNode)
-        <Edit Component={selectNode} func={handleCancel} />
+        <div className="p-4 z-10 absolute top-5 right-4 w-[400px]">
+          <Edit Component={selectNode} func={handleCancel} />
+        </div>
       ) : (
-        <div className="p-4 z-10 border border-gray-400 rounded-lg shadow bg-black bg-opacity-90 text-white absolute top-5 right-4 w-[350px]">
+        <div className="p-4 z-10 border border-gray-400 rounded-lg shadow bg-black  text-white absolute top-5 right-4 w-[350px]">
           <h3 className="text-lg font-bold mb-4 text-center">
             Component Details
           </h3>
@@ -234,11 +236,6 @@ const ComponentDetails = ({ node }) => {
 
           <dialog id="delete" className="modal">
             <div className="modal-box bg-white">
-              <form method="dialog">
-                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                  ✕
-                </button>
-              </form>
               <p className="py-4 text-black">
                 {" "}
                 Do you want to delete the node ?{" "}
@@ -267,13 +264,13 @@ const ComponentDetails = ({ node }) => {
                   ✕
                 </button>
               </form>
-              <p className="py-4 text-pink-900 ">
+              <p className="py-4 text-black ">
                 {" "}
-                The Node you want to delete has Impacted Nodes{" "}
+                The node you want to delete has impact on other nodes{" "}
               </p>
-              <p className="py-4 text-pink-900 ">
+              <p className="py-4 text-black ">
                 {" "}
-                Remove the Impacted Nodes and Try Again !!{" "}
+                Please remove the edges of the node and try again !!{" "}
               </p>
             </div>
           </dialog>
