@@ -141,18 +141,18 @@ Clone the Backend Project from Here [ImpactGraph-MW](https://github.com/lomatul/
 ```sh
 spring.application.name=ImpactGraph
 server.port = 8081
-spring.neo4j.uri=< your neo4j/ auradb uri >
-spring.neo4j.authentication.username= < your Neo4j Username >
-spring.neo4j.authentication.password=< your Neo4j Password >
+spring.neo4j.uri= <your neo4j/ auradb uri>
+spring.neo4j.authentication.username= <your Neo4j Username>
+spring.neo4j.authentication.password= <your Neo4j Password>
 spring.app.jwtSecret=4b3e5zF8xJZpWkNwQzCFJaNdRgUkXp2s5v8yBEHMbQeThWmZq4t6w9
 spring.app.jwtExpirationMs=86400000
 spring.security.user.password=admin
 spring.security.user.name=admin
 
 
-spring.datasource.url= < your Mysql Url >
-spring.datasource.username= < your mysql Username >
-spring.datasource.password=< your mysql Password >
+spring.datasource.url= <your Mysql Url>
+spring.datasource.username= <your mysql Username>
+spring.datasource.password= <your mysql Password>
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 
@@ -162,7 +162,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 ```
 
 ### :globe_with_meridians: Step 4: Run ImpactGraph-MW in your local 
-#### You can build the project and run the tests by running mvn clean package
+#### You can build the project and run the tests
 #### There are several ways to run a Spring Boot application on your local machine. One way is to execute the main method in the com.project.ImpactGraph class from your IDE.
 
 ![image](https://github.com/user-attachments/assets/601661bf-5731-4632-b643-23c227b5dea5)
