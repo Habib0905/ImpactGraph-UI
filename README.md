@@ -69,7 +69,7 @@ within the network.It will support operations for managing components and their 
      * Users and Admins are able to search any components by its name or ip address and can view the details
  ```
 
-![image](https://github.com/user-attachments/assets/4cfd8abe-432a-457c-86cb-a0e7e538a558)
+![image](https://github.com/user-attachments/assets/f8d4efb3-7c7f-4cfd-b56c-ca39101743e4)
 
 
 
