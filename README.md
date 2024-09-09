@@ -170,7 +170,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 ![image](https://github.com/user-attachments/assets/601661bf-5731-4632-b643-23c227b5dea5)
 
 ## Collaborators :
- #### [Lomatul Mahzabin] (https://github.com/lomatul)
- #### [Habib Hussain] (https://github.com/Habib0905)
+ #### [Lomatul Mahzabin](https://github.com/lomatul).
+ #### [Habib Hussain](https://github.com/Habib0905).
 
 
