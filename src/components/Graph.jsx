@@ -85,6 +85,33 @@ const Graph = () => {
           const visNetwork = new Vis.Network(container, data, options);
           networkRef.current = visNetwork;
 
+          visNetwork.on("beforeDrawing", function (ctx) {
+            var width = ctx.canvas.clientWidth;
+            var height = ctx.canvas.clientHeight;
+            var spacing = 40;
+            var gridExtentFactor = 4;
+            ctx.strokeStyle = "lightgrey";
+
+            // draw grid
+            ctx.beginPath();
+            for (
+              var x = -width * gridExtentFactor;
+              x <= width * gridExtentFactor;
+              x += spacing
+            ) {
+              ctx.moveTo(x, height * gridExtentFactor);
+              ctx.lineTo(x, -height * gridExtentFactor);
+            }
+            for (
+              var y = -height * gridExtentFactor;
+              y <= height * gridExtentFactor;
+              y += spacing
+            ) {
+              ctx.moveTo(width * gridExtentFactor, y);
+              ctx.lineTo(-width * gridExtentFactor, y);
+            }
+            ctx.stroke();
+          });
           visNetwork.on("click", async (params) => {
             if (params.nodes.length > 0) {
               const nodeId = params.nodes[0];
