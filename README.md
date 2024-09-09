@@ -10,10 +10,11 @@ Complete
 
 ## :gear: :wrench: TECHNOLOGIES AND PLATFORMS :
 * :white_circle:  Platform   - Website Application
-* :white_circle:  Database   - ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+* :white_circle:  Database   - ![MySql](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+* :white_circle:  Graph Database   - ![Neo4j](https://img.shields.io/badge/Neo4j-018bff?style=for-the-badge&logo=neo4j&logoColor=white)
 * :white_circle:  FrontEnd - ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-* :white_circle:  FrontEnd (CSS) - ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-* :white_circle:  BackEnd  - ![Node.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+* :white_circle:  FrontEnd (CSS) - ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+* :white_circle:  BackEnd  - ![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 * :white_circle:  Version Control - ![Github](https://img.shields.io/badge/GitHub-108000?style=for-the-badge&logo=github&logoColor=white)
 
 
@@ -185,7 +186,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
 ![image](https://github.com/user-attachments/assets/601661bf-5731-4632-b643-23c227b5dea5)
 
-## Group Members :
+## Collaborators :
  #### Lomatul Mahzabin 
  #### Habib Hussain 
 
