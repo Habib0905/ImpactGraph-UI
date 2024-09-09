@@ -34,7 +34,7 @@ dependencies
  ```
 
 
-![image](https://github.com/lomatul/InternConnect/assets/90206489/4ae0036d-7d02-46fc-8a87-f790129dde7e)
+![image](https://github.com/user-attachments/assets/9f3edbd0-4ec8-45fd-98a0-47a18f4a6d1b)
 
 
  ##  :high_brightness:  System Features : 
@@ -70,7 +70,7 @@ dependencies
      * Users and Admins are able to search any components by its name or ip address and can view the details
  ```
 
-![image](https://github.com/lomatul/InternConnect/assets/90206489/fec5ef39-010a-49f8-a38f-55afd87da50c)
+![image](https://github.com/user-attachments/assets/b24b68b5-cd7f-4d2b-8364-2c6b60f4b350)
 
 
 
@@ -183,6 +183,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 #### You can build the project and run the tests by running mvn clean package
 #### There are several ways to run a Spring Boot application on your local machine. One way is to execute the main method in the com.project.ImpactGraph class from your IDE.
 
+![image](https://github.com/user-attachments/assets/601661bf-5731-4632-b643-23c227b5dea5)
 
 ## Group Members :
  #### Lomatul Mahzabin 
