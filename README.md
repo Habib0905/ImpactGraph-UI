@@ -10,7 +10,7 @@ Complete
 
 ## :gear: :wrench: TECHNOLOGIES AND PLATFORMS :
 * :white_circle:  Platform   - Website Application
-* :white_circle:  Database   - ![MySql](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+* :white_circle:  User Database   - ![MySql](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 * :white_circle:  Graph Database   - ![Neo4j](https://img.shields.io/badge/Neo4j-018bff?style=for-the-badge&logo=neo4j&logoColor=white)
 * :white_circle:  FrontEnd - ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 * :white_circle:  FrontEnd (CSS) - ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
@@ -59,7 +59,7 @@ dependencies
  
  ```
  4. DEPENDENCY MANGEMENT
-     * The "Company Pool" section displays company details.
+     * Admin can manage the dependencies of the components
  ```
 ```
  5. INTERACTIVE GRAPH
@@ -127,7 +127,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Step 1: Clone project
 
-Clone the Backend Project from Here [ImpactGraph-MW](https://github.com/Habib0905/ImpactGraph-UI.git).
+Clone the Backend Project from Here [ImpactGraph-MW](https://github.com/lomatul/ImpactGraph-MW.git).
 
 
 ### Step 2: Open it in Intelij / any other Editor
@@ -187,7 +187,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 ![image](https://github.com/user-attachments/assets/601661bf-5731-4632-b643-23c227b5dea5)
 
 ## Collaborators :
- #### Lomatul Mahzabin 
- #### Habib Hussain 
+ #### Lomatul Mahzabin [Lomatul Mahzabin](https://github.com/lomatul/ImpactGraph-MW.git).
+ #### Habib Hussain [Habib Hussain](https://github.com/lomatul/ImpactGraph-MW.git).
 
 
