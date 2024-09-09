@@ -61,7 +61,7 @@ within the network.It will support operations for managing components and their 
  ```
 ```
  5. INTERACTIVE GRAPH
-     * User and Admins can view a interactive network graph will all components
+     * User and Admins can view a interactive network graph consisting all the components
  ```
 
  ```
