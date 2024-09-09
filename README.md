@@ -22,16 +22,14 @@ Complete
 
 ##  :briefcase: Brief Overview : 
 ```
-In a complex network environment, engineers often need to take down specific
-components for maintenance, updates, or troubleshooting.
-Currently, the process of identifying and understanding the downstream impact of
-shutting down a component relies heavily on the engineer's memory and manual
-tracking.
+In a complex network environment, engineers often need to take down specific components for
+maintenance, updates, or troubleshooting. Currently, the process of identifying and understanding
+the downstream impact ofshutting down a component relies heavily on the engineer's memory
+and manual tracking.
 This method is prone to errors, as engineers may overlook certain dependencies or miss
 components that are indirectly affected.An Interactive Component Dependency Management System.
 This application will provide a visual representation of all components and their dependencies
-within the network.It will support operations for managing components and their
-dependencies
+within the network.It will support operations for managing components and their dependencies
  ```
 
 
