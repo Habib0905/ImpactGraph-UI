@@ -86,7 +86,6 @@ const Login = () => {
               <input
                 required
                 type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
                 id="password"
                 name="password"
                 className="grow"
