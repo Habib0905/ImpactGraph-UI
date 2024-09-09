@@ -1,11 +1,99 @@
-# Getting Started with Create React App
+## PROJECT TITLE: ImpactGraph
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Current Phase :
+```
+Complete
+```
 
-In the project directory, you can run:
+ 
 
+## :gear: :wrench: TECHNOLOGIES AND PLATFORMS :
+* :white_circle:  Platform   - Website Application
+* :white_circle:  Database   - ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+* :white_circle:  FrontEnd - ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+* :white_circle:  FrontEnd (CSS) - ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+* :white_circle:  BackEnd  - ![Node.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+* :white_circle:  Version Control - ![Github](https://img.shields.io/badge/GitHub-108000?style=for-the-badge&logo=github&logoColor=white)
+
+
+
+
+##  :briefcase: Brief Overview : 
+```
+An Interactive Component Dependency Management System.This application will provide a visual representation of all
+components and their dependencies within the network.It will support operations for managing components and their
+dependencies
+ ```
+
+
+![image](https://github.com/lomatul/InternConnect/assets/90206489/4ae0036d-7d02-46fc-8a87-f790129dde7e)
+
+
+ ##  :high_brightness:  System Features : 
+ ```
+ 1. COMPONENT CREATE
+     * Admin can create any Component to the system.
+ 
+ ```
+ 
+ ```
+ 2. COMPONENT UPDATE
+     * Allows admins to update the component's details.
+ ```
+ 
+ 
+ ```
+ 3. COMPONENT DELETE
+     * Admins can delete any single component.
+ ```
+ 
+ 
+ ```
+ 4. DEPENDENCY MANGEMENT
+     * The "Company Pool" section displays company details.
+ ```
+```
+ 5. INTERACTIVE GRAPH
+     * User and Admins can view a interactive network graph will all components
+ ```
+
+ ```
+6. COMPONENT SEARCH & VIEW:
+     * Users and Admins are able to search any components by its name or ip address and can view the details
+ ```
+
+![image](https://github.com/lomatul/InternConnect/assets/90206489/fec5ef39-010a-49f8-a38f-55afd87da50c)
+
+
+
+
+## :hammer_and_wrench: Setup :
+
+### Step 1: Clone project
+
+```sh
+[git clone https://github.com/](https://github.com/lomatul/InternConnect.git)
+```
+
+## Step 2: Open it in VSCode / any other Editor
+
+
+## Step 3: Install npm dependencies
+
+```sh
+npm install
+```
+```sh
+
+
+```
+
+## :globe_with_meridians: Step 4: Run InternConnect in your local 
+```sh
+InternConnect/client/npm start
+InternConnect/server/npm start
+```
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -29,42 +117,16 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Getting Started with Create React App
 
-## Learn More
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Group Members :
+ #### Lomatul Mahzabin 
+ #### Habib Hussain 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
