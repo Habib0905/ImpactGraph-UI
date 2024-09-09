@@ -76,11 +76,11 @@ dependencies
 
 
 ## :hammer_and_wrench: Setup :
-## For UI 
+## For UI / Frontend
 
 ### Step 1: Clone project
 
-Clone the UI Project from Here [Create React App](https://github.com/facebook/create-react-app).
+Clone the UI Project from Here [ImpactGraph-UI](https://github.com/Habib0905/ImpactGraph-UI.git).
 
 
 ### Step 2: Open it in VSCode / any other Editor
@@ -122,6 +122,66 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 
+## For Backend/ MW
+
+### Step 1: Clone project
+
+Clone the Backend Project from Here [ImpactGraph-MW](https://github.com/Habib0905/ImpactGraph-UI.git).
+
+
+### Step 2: Open it in Intelij / any other Editor
+
+### Step 3: Install Dependencies
+#### Java Version - JDK 21 
+#### SDK
+```sh
+	implementation 'org.springframework.boot:spring-boot-starter-data-neo4j'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+```
+#### Plugins
+```sh
+	id 'java'
+	id 'org.springframework.boot' version '3.3.1'
+	id 'io.spring.dependency-management' version '1.1.5'
+```
+#### Applicarion.yml
+```sh
+spring.application.name=ImpactGraph
+server.port = 8081
+spring.neo4j.uri=< your neo4j/ auradb uri >
+spring.neo4j.authentication.username= < your Neo4j Username >
+spring.neo4j.authentication.password=< your Neo4j Password >
+spring.app.jwtSecret=4b3e5zF8xJZpWkNwQzCFJaNdRgUkXp2s5v8yBEHMbQeThWmZq4t6w9
+spring.app.jwtExpirationMs=86400000
+spring.security.user.password=admin
+spring.security.user.name=admin
+
+
+spring.datasource.url= < your Mysql Url >
+spring.datasource.username= < your mysql Username >
+spring.datasource.password=< your mysql Password >
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+```
+
+### :globe_with_meridians: Step 4: Run ImpactGraph-MW in your local 
+#### You can build the project and run the tests by running mvn clean package
+#### There are several ways to run a Spring Boot application on your local machine. One way is to execute the main method in the com.project.ImpactGraph class from your IDE.
 
 
 ## Group Members :
