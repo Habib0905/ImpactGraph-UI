@@ -21,8 +21,15 @@ Complete
 
 ##  :briefcase: Brief Overview : 
 ```
-An Interactive Component Dependency Management System.This application will provide a visual representation of all
-components and their dependencies within the network.It will support operations for managing components and their
+In a complex network environment, engineers often need to take down specific
+components for maintenance, updates, or troubleshooting.
+Currently, the process of identifying and understanding the downstream impact of
+shutting down a component relies heavily on the engineer's memory and manual
+tracking.
+This method is prone to errors, as engineers may overlook certain dependencies or miss
+components that are indirectly affected.An Interactive Component Dependency Management System.
+This application will provide a visual representation of all components and their dependencies
+within the network.It will support operations for managing components and their
 dependencies
  ```
 
@@ -69,32 +76,27 @@ dependencies
 
 
 ## :hammer_and_wrench: Setup :
+## For UI 
 
 ### Step 1: Clone project
 
-```sh
-[git clone https://github.com/](https://github.com/lomatul/InternConnect.git)
-```
-
-## Step 2: Open it in VSCode / any other Editor
+Clone the UI Project from Here [Create React App](https://github.com/facebook/create-react-app).
 
 
-## Step 3: Install npm dependencies
+### Step 2: Open it in VSCode / any other Editor
+
+
+### Step 3: Install npm and other dependencies
 
 ```sh
 npm install
 ```
+
+### :globe_with_meridians: Step 4: Run ImpactGraph-UI in your local 
+
 ```sh
-
-
+npm run start
 ```
-
-## :globe_with_meridians: Step 4: Run InternConnect in your local 
-```sh
-InternConnect/client/npm start
-InternConnect/server/npm start
-```
-### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -102,13 +104,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
+```sh
+npm test
+```
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
+```sh
+npm run build
+```
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
@@ -119,11 +123,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 
 
-
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Group Members :
  #### Lomatul Mahzabin 
