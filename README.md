@@ -117,7 +117,7 @@ Clone the Backend Project from Here [ImpactGraph-MW](https://github.com/lomatul/
 
 ### Step 3: Install Dependencies
 #### Java Version - JDK 21 
-#### SDK
+#### SDK - default
 ```sh
 	implementation 'org.springframework.boot:spring-boot-starter-data-neo4j'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -170,7 +170,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 ![image](https://github.com/user-attachments/assets/601661bf-5731-4632-b643-23c227b5dea5)
 
 ## Collaborators :
- #### [Lomatul Mahzabin](https://github.com/lomatul).
- #### [Habib Hussain](https://github.com/lomatul/ImpactGraph-MW.git).
+ #### [Lomatul Mahzabin] (https://github.com/lomatul)
+ #### [Habib Hussain] (https://github.com/Habib0905)
 
 
