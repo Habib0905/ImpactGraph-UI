@@ -105,23 +105,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-```sh
-npm test
-```
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-```sh
-npm run build
-```
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 
 ## For Backend/ MW
 
@@ -156,7 +139,7 @@ Clone the Backend Project from Here [ImpactGraph-MW](https://github.com/lomatul/
 	id 'org.springframework.boot' version '3.3.1'
 	id 'io.spring.dependency-management' version '1.1.5'
 ```
-#### Applicarion.yml
+#### application.properties
 ```sh
 spring.application.name=ImpactGraph
 server.port = 8081
@@ -187,7 +170,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 ![image](https://github.com/user-attachments/assets/601661bf-5731-4632-b643-23c227b5dea5)
 
 ## Collaborators :
- #### Lomatul Mahzabin [Lomatul Mahzabin](https://github.com/lomatul/ImpactGraph-MW.git).
- #### Habib Hussain [Habib Hussain](https://github.com/lomatul/ImpactGraph-MW.git).
+ #### [Lomatul Mahzabin](https://github.com/lomatul).
+ #### [Habib Hussain](https://github.com/lomatul/ImpactGraph-MW.git).
 
 
