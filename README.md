@@ -162,18 +162,25 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 ```
 
 ### :globe_with_meridians: Step 4: Run ImpactGraph-MW in your local machine
-You can build the project and run the tests
-#### There are several ways to run a Spring Boot application on your local machine. 
-One way is to execute the main method in the com.project.ImpactGraph class from your IDE.
-#### Running a JAR with an external application.properties file
-At first create the JAR file
-In IntelliJ, you can do this by going to the Gradle tab and running bootJar. This will create a JAR file in the build/libs directory.
-### Now run the JAR with an external application.properties file
-You can do this by running the following command
-```sh
-java -jar ImpactGraph.jar --spring.config.location=classpath:/,file:/path/to/external/application.properties
+You can build the project and run the tests.
 
-```
+#### There are several ways to run a Spring Boot application on your local machine:
+One way is to execute the main method in the `com.project.ImpactGraph` class from your IDE.
+
+---
+
+#### Running a JAR with an external `application.properties` file:
+
+1. **Create the JAR file:**
+   - In **IntelliJ**, go to the **Gradle** tab and run `bootJar`. 
+   - This will create a JAR file in the `build/libs` directory.
+
+2. **Run the JAR with an external `application.properties` file:**
+   Use the following command to run the JAR:
+
+   ```sh
+   java -jar ImpactGraph.jar --spring.config.location=classpath:/,file:/path/to/external/application.properties
+
 Replace the path to your application.properties file
 
 ![image](https://github.com/user-attachments/assets/601661bf-5731-4632-b643-23c227b5dea5)
