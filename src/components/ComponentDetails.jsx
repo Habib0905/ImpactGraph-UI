@@ -183,7 +183,7 @@ const ComponentDetails = ({ node }) => {
             <p className="flex flex-row">
               <strong className="flex flex-row mr-2">
                 <img className="h-6 w-6 mr-2" src="com.png"></img>
-                Ip:
+                IP:
               </strong>{" "}
               {node.ip}
             </p>
