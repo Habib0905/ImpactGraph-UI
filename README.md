@@ -176,6 +176,7 @@ One way is to execute the main method in the `com.project.ImpactGraph` class fro
    - This will create a JAR file in the `build/libs` directory.
 
 2. **Run the JAR with an external `application.properties` file:**
+   
    Use the following command to run the JAR:
 
    ```sh
