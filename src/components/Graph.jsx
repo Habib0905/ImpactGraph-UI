@@ -193,6 +193,13 @@ const Graph = () => {
                 to: targetNode.label,
               });
               setSelectedNode(null);
+              const nodes = visNetwork.body.data.nodes.get();
+              const updates = [];
+
+              nodes.forEach((node) => {
+                updates.push({ id: node.id, color: "#97C2FC" });
+              });
+              visNetwork.body.data.nodes.update(updates);
             } else {
               setSelectedNode(null);
               setSelectedEdge(null);
