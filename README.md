@@ -177,7 +177,7 @@ One way is to execute the main method in the `com.project.ImpactGraph` class fro
 
 2. **Run the JAR with an external `application.properties` file:**
    
-   Use the following command to run the JAR:
+  Run the following command in the terminal to run the JAR:
 
    ```sh
    java -jar ImpactGraph.jar --spring.config.location=classpath:/,file:/path/to/external/application.properties
