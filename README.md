@@ -181,6 +181,7 @@ One way is to execute the main method in the `com.project.ImpactGraph` class fro
 
    ```sh
    java -jar ImpactGraph.jar --spring.config.location=classpath:/,file:/path/to/external/application.properties
+   ```
 
 **Replace** the `/path/to/external/application.properties` with the actual path to your `application.properties file`.
 
