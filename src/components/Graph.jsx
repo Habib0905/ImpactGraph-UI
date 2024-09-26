@@ -9,6 +9,7 @@ const Graph = () => {
   const networkRef = useRef(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedEdge, setSelectedEdge] = useState(null);
+  const [loader, setLoader] = useState(true);
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Graph = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        setLoader(false);
         console.log("Data Fetched");
         const data = response.data;
         console.log("Fetched data:", data);
@@ -229,6 +231,12 @@ const Graph = () => {
   return (
     <div className="hero relative h-screen  bg-white">
       {/* <img className='w-full h-auto object-cover  top-0 left-0' src='graphbg.jpg' /> */}
+
+      {loader && (
+        <div>
+          <span className="loading loading-spinner w-20 h-20 border-3"></span>
+        </div>
+      )}
 
       <div
         id="network"
