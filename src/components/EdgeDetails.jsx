@@ -4,15 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CryptoJS from "crypto-js";
-import {BASE_URL} from "../services/helper.js"
-
 
 const EdgeDetails = ({ selectedEdge }) => {
   const token = localStorage.getItem("token");
   const encryptedRole = localStorage.getItem("role");
-  const secretKey =process.env.SECRET_KEY;
+  const secretKey = process.env.REACT_APP_SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   console.log(decryptedRole);
   const role = JSON.parse(decryptedRole);
@@ -28,7 +27,7 @@ const EdgeDetails = ({ selectedEdge }) => {
   const deleteEdge = async (id) => {
     try {
       console.log("Edge Id", id);
-      await axios.delete(`${BASE_URL}/api/graph/edge/${id}`, {
+      await axios.delete(`${baseUrl}/api/graph/edge/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

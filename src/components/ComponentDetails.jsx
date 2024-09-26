@@ -4,8 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Edit from "./Edit";
 import CryptoJS from "crypto-js";
-import {BASE_URL} from "../services/helper.js"
-
 
 const ComponentDetails = ({ node }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
@@ -15,9 +13,10 @@ const ComponentDetails = ({ node }) => {
   const token = localStorage.getItem("token");
 
   const encryptedRole = localStorage.getItem("role");
-  const secretKey =process.env.SECRET_KEY;
+  const secretKey = process.env.REACT_APP_SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   console.log(decryptedRole);
   const role = JSON.parse(decryptedRole);
@@ -51,14 +50,11 @@ const ComponentDetails = ({ node }) => {
 
   const fetchAllComponents = async () => {
     try {
-      const response = await axios.get(
-        `${BASE_URL}/api/components/all`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${baseUrl}/api/components/all`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setAllComponents(response.data);
     } catch (error) {
       console.error("There was an error fetching the components!", error);
@@ -88,7 +84,7 @@ const ComponentDetails = ({ node }) => {
 
     try {
       const response = await axios.delete(
-        `${BASE_URL}/api/components/delete/${id}`,
+        `${baseUrl}/api/components/delete/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -112,7 +108,7 @@ const ComponentDetails = ({ node }) => {
       const fetchImpactedComponents = async () => {
         try {
           const response = await axios.get(
-            `${BASE_URL}/api/graph/impact/${node.id}`,
+            `${baseUrl}/api/graph/impact/${node.id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

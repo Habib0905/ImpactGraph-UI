@@ -4,7 +4,6 @@ import Edit from "./Edit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CryptoJS from "crypto-js";
-import {BASE_URL} from "../services/helper.js"
 
 const Detail = ({ Component }) => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -12,9 +11,10 @@ const Detail = ({ Component }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
   const token = localStorage.getItem("token");
   const encryptedRole = localStorage.getItem("role");
-  const secretKey =process.env.SECRET_KEY;
+  const secretKey = process.env.REACT_APP_SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   console.log(decryptedRole);
   const role = JSON.parse(decryptedRole);
@@ -48,7 +48,7 @@ const Detail = ({ Component }) => {
     console.log(id);
 
     axios
-      .delete(`${BASE_URL}/api/components/delete/` + id, {
+      .delete(`${baseUrl}/api/components/delete/` + id, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -72,7 +72,7 @@ const Detail = ({ Component }) => {
       const fetchImpactedComponents = async () => {
         try {
           const response = await axios.get(
-            `${BASE_URL}/api/graph/impact/${Component.id}`,
+            `${baseUrl}/api/graph/impact/${Component.id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -94,14 +94,11 @@ const Detail = ({ Component }) => {
   useEffect(() => {
     const fetchAllComponents = async () => {
       try {
-        const response = await axios.get(
-          `${BASE_URL}/api/components/all`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/components/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setAllComponents(response.data);
       } catch (error) {
         console.error("Error fetching components:", error);

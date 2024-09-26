@@ -3,8 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {BASE_URL} from "../services/helper.js"
-
 
 const Edit = ({ Component, func }) => {
   const [selectedIncoming, setSelectedIncoming] = useState(
@@ -17,6 +15,7 @@ const Edit = ({ Component, func }) => {
   const [outgoingComponent, setOutgoingComponent] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   const [updateComponent, setUpdateComponent] = useState({
     id: Component.id,
@@ -48,14 +47,11 @@ const Edit = ({ Component, func }) => {
   useEffect(() => {
     const fetchComponents = async () => {
       try {
-        const response = await axios.get(
-          `${BASE_URL}/api/components/all`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Add the authorization header
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/components/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the authorization header
+          },
+        });
         setSuggestions(response.data);
       } catch (error) {
         console.error("Error fetching components:", error);
@@ -78,7 +74,7 @@ const Edit = ({ Component, func }) => {
     console.log(updateComponent);
 
     axios
-      .put(`${BASE_URL}/api/components/update`, updateComponent, {
+      .put(`${baseUrl}/api/components/update`, updateComponent, {
         headers: {
           Authorization: `Bearer ${token}`, // Add the authorization header
         },

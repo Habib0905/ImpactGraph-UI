@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const encryptedRole = localStorage.getItem("role");
-    const secretKey =process.env.SECRET_KEY;
+    const secretKey = process.env.REACT_APP_SECRET_KEY;
     const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
     const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 

@@ -4,14 +4,12 @@ import ComponentDetails from "./ComponentDetails";
 import axios from "axios";
 import EdgeDetails from "./EdgeDetails";
 import BigNumber from "bignumber.js";
-import {BASE_URL} from "../services/helper.js"
-
-
 
 const Graph = () => {
   const networkRef = useRef(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedEdge, setSelectedEdge] = useState(null);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     let isMounted = true;
@@ -22,14 +20,11 @@ const Graph = () => {
         const token = localStorage.getItem("token");
         console.log("the token is :", token);
 
-        const response = await axios.get(
-          `${BASE_URL}/api/graph/data`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/graph/data`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         console.log("Data Fetched");
         const data = response.data;
         console.log("Fetched data:", data);
@@ -125,7 +120,7 @@ const Graph = () => {
 
               try {
                 const result = await axios.get(
-                  `${BASE_URL}/api/graph/impact/${intId}`,
+                  `${baseUrl}/api/graph/impact/${intId}`,
                   {
                     headers: {
                       Authorization: `Bearer ${token}`,
@@ -162,7 +157,7 @@ const Graph = () => {
 
               try {
                 const result = await axios.get(
-                  `${BASE_URL}/api/graph/node/${intId}`,
+                  `${baseUrl}/api/graph/node/${intId}`,
                   {
                     headers: {
                       Authorization: `Bearer ${token}`,

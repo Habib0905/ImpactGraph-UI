@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {BASE_URL} from "../services/helper.js"
-
 
 const User = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,10 +13,11 @@ const User = () => {
   const [userPresent, setUserPresent] = useState(false);
 
   const token = localStorage.getItem("token");
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/getUsers `, {
+      .get(`${baseUrl}/getUsers `, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -35,7 +34,7 @@ const User = () => {
     e.preventDefault();
 
     axios
-      .post(`${BASE_URL}/addUser`, userData, {
+      .post(`${baseUrl}/addUser`, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,7 +59,7 @@ const User = () => {
     console.log(id);
 
     axios
-      .delete(`${BASE_URL}/delete/`+ id, {
+      .delete(`${baseUrl}/delete/` + id, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -87,7 +86,7 @@ const User = () => {
     e.preventDefault();
 
     axios
-      .get(`${BASE_URL}/checkUsername/${userData.username}`, {
+      .get(`${baseUrl}/checkUsername/${userData.username}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

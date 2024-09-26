@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Detail from "./Detail";
 import CryptoJS from "crypto-js";
-import {BASE_URL} from "../services/helper.js"
-
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -12,9 +10,10 @@ const Search = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const token = localStorage.getItem("token");
   const encryptedRole = localStorage.getItem("role");
-  const secretKey =process.env.SECRET_KEY;
+  const secretKey = process.env.REACT_APP_SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   console.log(decryptedRole);
   const role = JSON.parse(decryptedRole);
@@ -22,14 +21,11 @@ const Search = () => {
   useEffect(() => {
     const fetchComponents = async () => {
       try {
-        const response = await axios.get(
-          `${BASE_URL}/api/components/all`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/components/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setSuggestions(response.data);
         console.log(response.data);

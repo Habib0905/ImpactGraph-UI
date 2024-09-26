@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
-import {BASE_URL} from "../services/helper.js"
 
 const Add = () => {
   const [componentData, setComponentData] = useState({
@@ -25,14 +24,16 @@ const Add = () => {
 
   const token = localStorage.getItem("token");
 
+  const baseUrl = process.env.REACT_APP_BASE_URL;
   const fetchAllComponents = () => {
     axios
-      .get(`${BASE_URL}/api/components/all`, {
+      .get(`${baseUrl}/api/components/all`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
+        console.log("fetching all components", response.data);
         setAllComponents(response.data);
       })
       .catch((error) => {
@@ -136,7 +137,7 @@ const Add = () => {
     setIsLoading(true);
 
     axios
-      .post(`${BASE_URL}/api/components/create`, componentData, {
+      .post(`${baseUrl}/api/components/create`, componentData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
