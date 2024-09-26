@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
+import {BASE_URL} from "../services/helper.js"
 
 const Add = () => {
   const [componentData, setComponentData] = useState({
@@ -26,7 +27,7 @@ const Add = () => {
 
   const fetchAllComponents = () => {
     axios
-      .get("http://localhost:8081/api/components/all", {
+      .get(`${BASE_URL}/api/components/all`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -135,7 +136,7 @@ const Add = () => {
     setIsLoading(true);
 
     axios
-      .post("http://localhost:8081/api/components/create", componentData, {
+      .post(`${BASE_URL}/api/components/create`, componentData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

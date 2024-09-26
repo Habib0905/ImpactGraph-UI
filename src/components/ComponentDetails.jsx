@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Edit from "./Edit";
 import CryptoJS from "crypto-js";
+import {BASE_URL} from "../services/helper.js"
+
 
 const ComponentDetails = ({ node }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
@@ -50,7 +52,7 @@ const ComponentDetails = ({ node }) => {
   const fetchAllComponents = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8081/api/components/all",
+        `${BASE_URL}/api/components/all`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -86,7 +88,7 @@ const ComponentDetails = ({ node }) => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8081/api/components/delete/${id}`,
+        `${BASE_URL}/api/components/delete/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -110,7 +112,7 @@ const ComponentDetails = ({ node }) => {
       const fetchImpactedComponents = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8081/api/graph/impact/${node.id}`,
+            `${BASE_URL}/api/graph/impact/${node.id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
