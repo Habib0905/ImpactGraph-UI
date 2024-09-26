@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 
-
 const Navbar = () => {
   const navigate = useNavigate();
   const [loginDone, setLoginDone] = useState("");
 
   useEffect(() => {
     const encryptedRole = localStorage.getItem("role");
-    const secretKey = "lomatulhabibinterns2";
+    const secretKey =process.env.SECRET_KEY;
     const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
     const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 

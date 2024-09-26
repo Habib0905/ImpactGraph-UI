@@ -4,6 +4,9 @@ import ComponentDetails from "./ComponentDetails";
 import axios from "axios";
 import EdgeDetails from "./EdgeDetails";
 import BigNumber from "bignumber.js";
+import {BASE_URL} from "../services/helper.js"
+
+
 
 const Graph = () => {
   const networkRef = useRef(null);
@@ -20,7 +23,7 @@ const Graph = () => {
         console.log("the token is :", token);
 
         const response = await axios.get(
-          "http://localhost:8081/api/graph/data",
+          `${BASE_URL}/api/graph/data`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -122,7 +125,7 @@ const Graph = () => {
 
               try {
                 const result = await axios.get(
-                  `http://localhost:8081/api/graph/impact/${intId}`,
+                  `${BASE_URL}/api/graph/impact/${intId}`,
                   {
                     headers: {
                       Authorization: `Bearer ${token}`,
@@ -159,7 +162,7 @@ const Graph = () => {
 
               try {
                 const result = await axios.get(
-                  `http://localhost:8081/api/graph/node/${intId}`,
+                  `${BASE_URL}/api/graph/node/${intId}`,
                   {
                     headers: {
                       Authorization: `Bearer ${token}`,

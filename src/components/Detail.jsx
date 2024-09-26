@@ -4,6 +4,7 @@ import Edit from "./Edit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CryptoJS from "crypto-js";
+import {BASE_URL} from "../services/helper.js"
 
 const Detail = ({ Component }) => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -11,7 +12,7 @@ const Detail = ({ Component }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
   const token = localStorage.getItem("token");
   const encryptedRole = localStorage.getItem("role");
-  const secretKey = "lomatulhabibinterns2"; // Use the same secret key
+  const secretKey =process.env.SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 
@@ -47,7 +48,7 @@ const Detail = ({ Component }) => {
     console.log(id);
 
     axios
-      .delete("http://localhost:8081/api/components/delete/" + id, {
+      .delete(`${BASE_URL}/api/components/delete/` + id, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -71,7 +72,7 @@ const Detail = ({ Component }) => {
       const fetchImpactedComponents = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8081/api/graph/impact/${Component.id}`,
+            `${BASE_URL}/api/graph/impact/${Component.id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -94,7 +95,7 @@ const Detail = ({ Component }) => {
     const fetchAllComponents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8081/api/components/all",
+          `${BASE_URL}/api/components/all`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

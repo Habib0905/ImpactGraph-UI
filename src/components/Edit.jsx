@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {BASE_URL} from "../services/helper.js"
+
 
 const Edit = ({ Component, func }) => {
   const [selectedIncoming, setSelectedIncoming] = useState(
@@ -47,7 +49,7 @@ const Edit = ({ Component, func }) => {
     const fetchComponents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8081/api/components/all",
+          `${BASE_URL}/api/components/all`,
           {
             headers: {
               Authorization: `Bearer ${token}`, // Add the authorization header
@@ -76,7 +78,7 @@ const Edit = ({ Component, func }) => {
     console.log(updateComponent);
 
     axios
-      .put("http://localhost:8081/api/components/update", updateComponent, {
+      .put(`${BASE_URL}/api/components/update`, updateComponent, {
         headers: {
           Authorization: `Bearer ${token}`, // Add the authorization header
         },

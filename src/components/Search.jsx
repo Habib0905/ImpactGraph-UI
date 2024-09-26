@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Detail from "./Detail";
 import CryptoJS from "crypto-js";
+import {BASE_URL} from "../services/helper.js"
+
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -10,7 +12,7 @@ const Search = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const token = localStorage.getItem("token");
   const encryptedRole = localStorage.getItem("role");
-  const secretKey = "lomatulhabibinterns2";
+  const secretKey =process.env.SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 
@@ -21,7 +23,7 @@ const Search = () => {
     const fetchComponents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8081/api/components/all",
+          `${BASE_URL}/api/components/all`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

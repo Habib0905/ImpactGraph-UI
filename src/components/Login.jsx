@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import CryptoJS from "crypto-js";
+import {BASE_URL} from "../services/helper.js"
+
 
 const Login = () => {
   localStorage.removeItem("role");
@@ -17,7 +19,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8081/signin", {
+      const response = await axios.post(`${BASE_URL}/signin`, {
         username,
         password,
       });
@@ -28,7 +30,7 @@ const Login = () => {
       console.log(response.data.roles);
       const role = JSON.stringify(response.data.roles);
       console.log(role);
-      const secretKey = "lomatulhabibinterns2";
+      const secretKey =process.env.SECRET_KEY;
       const encryptedRole = CryptoJS.AES.encrypt(role, secretKey).toString();
 
       localStorage.setItem("role", encryptedRole);

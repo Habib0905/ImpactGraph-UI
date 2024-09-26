@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {BASE_URL} from "../services/helper.js"
+
 
 const User = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +18,7 @@ const User = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/getUsers", {
+      .get(`${BASE_URL}/getUsers `, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +35,7 @@ const User = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8081/addUser", userData, {
+      .post(`${BASE_URL}/addUser`, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +60,7 @@ const User = () => {
     console.log(id);
 
     axios
-      .delete("http://localhost:8081/delete/" + id, {
+      .delete(`${BASE_URL}/delete/`+ id, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -85,7 +87,7 @@ const User = () => {
     e.preventDefault();
 
     axios
-      .get(`http://localhost:8081/checkUsername/${userData.username}`, {
+      .get(`${BASE_URL}/checkUsername/${userData.username}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

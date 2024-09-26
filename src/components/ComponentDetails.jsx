@@ -15,7 +15,7 @@ const ComponentDetails = ({ node }) => {
   const token = localStorage.getItem("token");
 
   const encryptedRole = localStorage.getItem("role");
-  const secretKey = "lomatulhabibinterns2";
+  const secretKey =process.env.SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 
