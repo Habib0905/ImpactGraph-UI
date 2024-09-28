@@ -264,11 +264,11 @@ const ComponentDetails = ({ node }) => {
               </form>
               <p className="py-4 text-black ">
                 {" "}
-                The node you want to delete has impact on other nodes{" "}
+                The component has impact on other components !{" "}
               </p>
               <p className="py-4 text-black ">
                 {" "}
-                Please remove the edges of the node and try again !!{" "}
+                Please remove the dependencies of the component and try again{" "}
               </p>
             </div>
           </dialog>

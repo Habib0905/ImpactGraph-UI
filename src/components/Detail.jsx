@@ -287,13 +287,13 @@ const Detail = ({ Component }) => {
                   ✕
                 </button>
               </form>
-              <p className="py-4 text-pink-900 ">
+              <p className="py-4 text-black ">
                 {" "}
-                The Node you want to delete has Impacted Nodes{" "}
+                The component has impact on other components !{" "}
               </p>
-              <p className="py-4 text-pink-900 ">
+              <p className="py-4 text-black ">
                 {" "}
-                Remove the Impacted Nodes and Try Again !!{" "}
+                Please remove the dependencies of the component and try again{" "}
               </p>
             </div>
           </dialog>
