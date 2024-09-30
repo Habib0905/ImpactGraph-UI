@@ -75,7 +75,7 @@ const Navbar = () => {
                 <a href="/graph">Graph</a>
               </li>
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-                <a href="/update">Update</a>
+                <a href="/update">Search</a>
               </li>
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
                 <a href="/adduser">Users</a>
