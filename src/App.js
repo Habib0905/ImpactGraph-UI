@@ -19,27 +19,17 @@ function App() {
   useEffect(() => {
     console.log(localStorage.getItem("role"));
 
-    const encryptedRole = localStorage.getItem("role");
+    const role = localStorage.getItem("role");
 
-    console.log(encryptedRole);
+    console.log(role);
 
-    if (encryptedRole !== null) {
-      const secretKey = "lomatulhabibinterns2";
-      const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
-      const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
-      console.log(decryptedRole);
-      if (decryptedRole.includes("")) {
-        <Navigate to="/login" />;
+    if (role !== null) {
+      if (role.includes("ROLE_ADMIN")) {
+        console.log("admin");
+        setLoginDone(false);
       } else {
-        const role = JSON.parse(decryptedRole);
-        console.log(role);
-        if (role.includes("ROLE_ADMIN")) {
-          console.log("admin");
-          setLoginDone(false);
-        } else {
-          console.log("user");
-          setLoginDone(true);
-        }
+        console.log("user");
+        setLoginDone(true);
       }
     }
   }, []);

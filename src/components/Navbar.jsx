@@ -7,14 +7,7 @@ const Navbar = () => {
   const [loginDone, setLoginDone] = useState("");
 
   useEffect(() => {
-    const encryptedRole = localStorage.getItem("role");
-    const secretKey = process.env.REACT_APP_SECRET_KEY;
-    const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
-    const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
-
-    console.log(decryptedRole);
-    const role = JSON.parse(decryptedRole);
-    console.log(role);
+    const role = localStorage.getItem("role");
 
     if (role.includes("ROLE_ADMIN")) {
       console.log("admin");

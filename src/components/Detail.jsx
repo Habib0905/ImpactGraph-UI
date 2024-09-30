@@ -10,15 +10,8 @@ const Detail = ({ Component }) => {
   const [allComponents, setAllComponents] = useState([]);
   const [impactedComponents, setImpactedComponents] = useState([]);
   const token = localStorage.getItem("token");
-  const encryptedRole = localStorage.getItem("role");
-  const secretKey = process.env.REACT_APP_SECRET_KEY;
-  const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
-  const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+  const role = localStorage.getItem("role");
   const baseUrl = process.env.REACT_APP_BASE_URL;
-
-  console.log(decryptedRole);
-  const role = JSON.parse(decryptedRole);
-  console.log(role);
 
   const handleUpdate = () => {
     if (role.includes("ROLE_ADMIN")) {

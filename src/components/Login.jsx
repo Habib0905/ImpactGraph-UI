@@ -29,10 +29,8 @@ const Login = () => {
       console.log(response.data.roles);
       const role = JSON.stringify(response.data.roles);
       console.log(role);
-      const secretKey = process.env.REACT_APP_SECRET_KEY;
-      const encryptedRole = CryptoJS.AES.encrypt(role, secretKey).toString();
 
-      localStorage.setItem("role", encryptedRole);
+      localStorage.setItem("role", role);
 
       window.location.href = "/";
     } catch (error) {
