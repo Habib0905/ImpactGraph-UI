@@ -53,7 +53,7 @@ const EdgeDetails = ({ selectedEdge }) => {
           </span>
           <span> : {selectedEdge.to}</span>
         </p>
-        {role == "ROLE_ADMIN" && (
+        {role.includes("ROLE_ADMIN") && (
           <button className="btn bg-pink-900 text-white" onClick={deleteView}>
             Delete Edge
           </button>

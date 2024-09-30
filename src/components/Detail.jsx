@@ -223,7 +223,7 @@ const Detail = ({ Component }) => {
               </ul>
             </div>
           </div>
-          {role == "ROLE_ADMIN" && (
+          {role.includes("ROLE_ADMIN") && (
             <div className="flex flex-row justify-center items-center gap-5 ">
               <button
                 type="button"

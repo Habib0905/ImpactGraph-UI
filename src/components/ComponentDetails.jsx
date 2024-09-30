@@ -207,7 +207,7 @@ const ComponentDetails = ({ node }) => {
                 </ul>
               </div>
             </div>
-            {role == "ROLE_ADMIN" && (
+            {role.includes("ROLE_ADMIN") && (
               <div className="flex flex-row justify-center items-center space-x-5 ">
                 <button
                   className="bg-white text-black hover:bg-pink-900 hover:text-white py-2 px-10 mt-5 rounded-lg"
