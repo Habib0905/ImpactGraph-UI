@@ -24,7 +24,7 @@ function App() {
     console.log(encryptedRole);
 
     if (encryptedRole !== null) {
-      const secretKey = "lomatulhabibinterns2";
+      const secretKey = process.env.REACT_APP_SECRET_KEY;
       const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
       const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
       console.log(decryptedRole);
