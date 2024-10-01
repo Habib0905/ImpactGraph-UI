@@ -98,9 +98,9 @@ const Add = () => {
       }
     } else {
       if (
-        incomingComponent !== "" &&
-        incomingComponent !== null &&
-        incomingComponent !== undefined
+        outgoingComponent !== "" &&
+        outgoingComponent !== null &&
+        outgoingComponent !== undefined
       ) {
         if (!componentData.outgoingNodeIds.includes(id)) {
           setComponentData({
