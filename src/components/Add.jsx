@@ -197,7 +197,7 @@ const Add = () => {
                 value={componentData.name}
                 onChange={handleInputChange}
                 className="grow"
-                placeholder="e.g. Database"
+                placeholder="e.g. Component Name"
               />
             </label>
 
@@ -235,7 +235,7 @@ const Add = () => {
                 onFocus={() => setShowTypeOptions(true)}
                 onBlur={handleBlur}
                 className="grow"
-                placeholder="e.g. Database"
+                placeholder="e.g. Component Type"
               />
               {showTypeOptions && filteredTypes.length > 0 && (
                 <ul className="absolute z-10 bg-white border border-gray-300 text-black w-full left-0 top-full transform mt-1 max-h-60 overflow-y-auto">
