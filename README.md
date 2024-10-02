@@ -102,8 +102,12 @@ REACT_APP_BASE_URL = <Base Url>
 ```sh
 npm run start
 ```
-You can run the project by Ecosystem.conig.js file. In this file you can add your own sricpt , Project Name ,
+You can run the project by Process Manager.There is a file in the Project directory named "ecosystem.config.js". In this file you can add your own sricpt , Project Name ,
 can define the maximum number of CPU and Memory usage.
+```sh
+npm install pm2@latest -g
+npm run build
+```
 
 ```sh
 pm2 start ecosystem.config.js
