@@ -102,9 +102,16 @@ REACT_APP_BASE_URL = <Base Url>
 ```sh
 npm run start
 ```
+You can run the project by Ecosystem.conig.js file. In this file you can add your own sricpt , Project Name ,
+can define the maximum number of CPU and Memory usage.
+
+```sh
+pm2 start ecosystem.config.js
+```
+
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:<Port_Number>](http://localhost:Port_Number) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
