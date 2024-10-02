@@ -143,9 +143,9 @@ const Edit = ({ Component, func }) => {
       <form onSubmit={handleSubmit} className="bg-white">
         <label
           htmlFor="name"
-          className="input input-bordered input-black flex items-center w-full gap-2 "
+          className="input input-bordered input-black bg-white text-black flex items-center w-full gap-2 "
         >
-          Name
+          Name :
           <input
             type="text"
             id="name"
@@ -159,9 +159,9 @@ const Edit = ({ Component, func }) => {
 
         <label
           htmlFor="type"
-          className="input input-bordered input-black flex items-center w-full gap-2 mt-3 mb-3"
+          className="input input-bordered input-black bg-white text-black flex items-center w-full gap-2 mt-3 mb-3"
         >
-          Type
+          Type :
           <input
             type="text"
             id="type"
@@ -175,9 +175,9 @@ const Edit = ({ Component, func }) => {
 
         <label
           htmlFor="ip"
-          className="input input-bordered input-black flex items-center w-full gap-2"
+          className="input input-bordered input-black bg-white text-black flex items-center w-full gap-2"
         >
-          IP
+          IP :
           <input
             type="text"
             id="ip"
@@ -223,7 +223,7 @@ const Edit = ({ Component, func }) => {
 
         <div className="w-full mt-5 flex items-center">
           <select
-            className="select select-bordered w-full max-w"
+            className="select select-bordered w-full max-w bg-white text-black"
             value={incomingComponent}
             onChange={(e) => setIncomingComponent(parseInt(e.target.value, 10))}
           >
@@ -279,7 +279,7 @@ const Edit = ({ Component, func }) => {
 
         <div className="w-full mt-5 flex items-center">
           <select
-            className="select select-bordered w-full max-w"
+            className="select select-bordered w-full max-w bg-white text-black"
             value={outgoingComponent}
             onChange={(e) => setOutgoingComponent(parseInt(e.target.value, 10))}
           >

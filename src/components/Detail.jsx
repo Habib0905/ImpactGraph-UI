@@ -113,7 +113,7 @@ const Detail = ({ Component }) => {
       {isEditMode ? (
         <Edit Component={Component} func={handleCancel} />
       ) : (
-        <div className=" border-1 p-3 rounded-md shadow-lg shadow-pink-950 border-pink-950 ">
+        <div className=" border-1 p-3 rounded-md shadow-lg shadow-pink-950 border-pink-950 bg-white ">
           <h2 className="text-xl text-center text-pink-950 font-bold mb-4">
             {Component.name}
           </h2>
