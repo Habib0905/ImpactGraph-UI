@@ -113,7 +113,7 @@ const Detail = ({ Component }) => {
       {isEditMode ? (
         <Edit Component={Component} func={handleCancel} />
       ) : (
-        <div className=" border-1 p-3 rounded-md shadow-lg shadow-pink-950 border-pink-950 bg-white ">
+        <div className=" border-1 p-3 rounded-md shadow-lg shadow-pink-950 border-pink-950 ">
           <h2 className="text-xl text-center text-pink-950 font-bold mb-4">
             {Component.name}
           </h2>
@@ -139,7 +139,7 @@ const Detail = ({ Component }) => {
           <p className=" text-pink-950 flex flex-row">
             <strong className=" text-pink-950 flex flex-row mr-2">
               <img className="h-6 w-6 mr-2" src="com.png"></img>
-              Ip:
+              IP:
             </strong>{" "}
             {Component.ip}
           </p>
