@@ -13,9 +13,10 @@ const ComponentDetails = ({ node }) => {
   const token = localStorage.getItem("token");
 
   const encryptedRole = localStorage.getItem("role");
-  const secretKey = "lomatulhabibinterns2";
+  const secretKey = process.env.REACT_APP_SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   console.log(decryptedRole);
   const role = JSON.parse(decryptedRole);
@@ -49,14 +50,11 @@ const ComponentDetails = ({ node }) => {
 
   const fetchAllComponents = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8081/api/components/all",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${baseUrl}/api/components/all`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setAllComponents(response.data);
     } catch (error) {
       console.error("There was an error fetching the components!", error);
@@ -86,7 +84,7 @@ const ComponentDetails = ({ node }) => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8081/api/components/delete/${id}`,
+        `${baseUrl}/api/components/delete/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -110,7 +108,7 @@ const ComponentDetails = ({ node }) => {
       const fetchImpactedComponents = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8081/api/graph/impact/${node.id}`,
+            `${baseUrl}/api/graph/impact/${node.id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -183,7 +181,7 @@ const ComponentDetails = ({ node }) => {
             <p className="flex flex-row">
               <strong className="flex flex-row mr-2">
                 <img className="h-6 w-6 mr-2" src="com.png"></img>
-                Ip:
+                IP:
               </strong>{" "}
               {node.ip}
             </p>
@@ -266,11 +264,11 @@ const ComponentDetails = ({ node }) => {
               </form>
               <p className="py-4 text-black ">
                 {" "}
-                The node you want to delete has impact on other nodes{" "}
+                The component has impact on other components !{" "}
               </p>
               <p className="py-4 text-black ">
                 {" "}
-                Please remove the edges of the node and try again !!{" "}
+                Please remove the dependencies of the component and try again{" "}
               </p>
             </div>
           </dialog>

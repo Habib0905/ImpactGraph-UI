@@ -13,10 +13,11 @@ const User = () => {
   const [userPresent, setUserPresent] = useState(false);
 
   const token = localStorage.getItem("token");
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/getUsers", {
+      .get(`${baseUrl}/getUsers `, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +34,7 @@ const User = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8081/addUser", userData, {
+      .post(`${baseUrl}/addUser`, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +59,7 @@ const User = () => {
     console.log(id);
 
     axios
-      .delete("http://localhost:8081/delete/" + id, {
+      .delete(`${baseUrl}/delete/` + id, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -85,7 +86,7 @@ const User = () => {
     e.preventDefault();
 
     axios
-      .get(`http://localhost:8081/checkUsername/${userData.username}`, {
+      .get(`${baseUrl}/checkUsername/${userData.username}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -115,7 +116,7 @@ const User = () => {
           <div className="relative mt-40 mb-10 bg-white border-pink-900 border-2 bg-opacity-90 rounded shadow-2xl shadow-white w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
             <label
               htmlFor="username"
-              className="input input-bordered input-black flex items-center w-full gap-2"
+              className="input input-bordered input-black flex items-center w-full gap-2 bg-white text-black"
             >
               <img className="h-6 w-6 mr-2" src="user.png" alt="user icon" />
               Username :
@@ -132,7 +133,7 @@ const User = () => {
 
             <label
               htmlFor="password"
-              className="input input-bordered input-black flex items-center gap-2 w-full mt-5"
+              className="input input-bordered input-black flex items-center gap-2 w-full mt-5 bg-white text-black"
             >
               <img className="h-6 w-6 mr-2" src="lock.png" alt="lock icon" />
               Password :

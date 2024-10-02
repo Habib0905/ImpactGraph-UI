@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AddPage from "./pages/AddPage";
 import GraphPage from "./pages/GraphPage";
@@ -23,14 +23,12 @@ function App() {
 
     console.log(encryptedRole);
 
-    if (encryptedRole !== null) {
-      const secretKey = "lomatulhabibinterns2";
-      const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
-      const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
-      console.log(decryptedRole);
-      if (decryptedRole.includes("")) {
-        <Navigate to="/login" />;
-      } else {
+    try {
+      if (encryptedRole !== null) {
+        const secretKey = process.env.REACT_APP_SECRET_KEY;
+        const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
+        const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+        console.log(decryptedRole);
         const role = JSON.parse(decryptedRole);
         console.log(role);
         if (role.includes("ROLE_ADMIN")) {
@@ -41,6 +39,11 @@ function App() {
           setLoginDone(true);
         }
       }
+    } catch (error) {
+      console.log(error);
+      localStorage.removeItem("role");
+      localStorage.removeItem("token");
+      window.location.reload(true);
     }
   }, []);
 

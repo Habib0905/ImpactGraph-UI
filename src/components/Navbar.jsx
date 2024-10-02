@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const [loginDone, setLoginDone] = useState("");
 
   useEffect(() => {
-    const encryptedRole = localStorage.getItem("role");
-    const secretKey = "lomatulhabibinterns2";
-    const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
-    const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+    try {
+      const encryptedRole = localStorage.getItem("role");
+      const secretKey = process.env.REACT_APP_SECRET_KEY;
+      const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
+      const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
 
-    console.log(decryptedRole);
-    const role = JSON.parse(decryptedRole);
-    console.log(role);
+      console.log(decryptedRole);
+      const role = JSON.parse(decryptedRole);
+      console.log(role);
 
-    if (role.includes("ROLE_ADMIN")) {
-      console.log("admin");
-      setLoginDone(false);
-    } else {
-      console.log("user");
-      setLoginDone(true);
+      if (role.includes("ROLE_ADMIN")) {
+        console.log("admin");
+        setLoginDone(false);
+      } else {
+        console.log("user");
+        setLoginDone(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
@@ -75,7 +77,7 @@ const Navbar = () => {
                 <a href="/graph">Graph</a>
               </li>
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
-                <a href="/update">Update</a>
+                <a href="/update">Search</a>
               </li>
               <li className="hover:bg-pink-900 hover:rounded-md  hover:text-white font-abc font-bold ">
                 <a href="/adduser">Users</a>

@@ -10,9 +10,10 @@ const Search = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const token = localStorage.getItem("token");
   const encryptedRole = localStorage.getItem("role");
-  const secretKey = "lomatulhabibinterns2";
+  const secretKey = process.env.REACT_APP_SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   console.log(decryptedRole);
   const role = JSON.parse(decryptedRole);
@@ -20,14 +21,11 @@ const Search = () => {
   useEffect(() => {
     const fetchComponents = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8081/api/components/all",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/components/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setSuggestions(response.data);
         console.log(response.data);
@@ -79,9 +77,7 @@ const Search = () => {
         src="loma.avif"
       />
       <p className="hero-overlay bg-opacity-0 text-4xl text-center text-pink-900 p-10 mb-4 mx-auto font-abc font-bold">
-        {role == "ROLE_ADMIN"
-          ? "Search the component you want to update"
-          : "Search Components"}
+        Search Components
       </p>
       <div className=" font-abc top-40 absolute  mb-10 w-[600px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
         <label className="input input-bordered text-pink-900 border-pink-950 border-2 shadow-md shadow-pink-950 bg-white flex items-center w-full gap-2">

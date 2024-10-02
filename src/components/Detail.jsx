@@ -11,9 +11,10 @@ const Detail = ({ Component }) => {
   const [impactedComponents, setImpactedComponents] = useState([]);
   const token = localStorage.getItem("token");
   const encryptedRole = localStorage.getItem("role");
-  const secretKey = "lomatulhabibinterns2"; // Use the same secret key
+  const secretKey = process.env.REACT_APP_SECRET_KEY;
   const bytes = CryptoJS.AES.decrypt(encryptedRole, secretKey);
   const decryptedRole = bytes.toString(CryptoJS.enc.Utf8);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   console.log(decryptedRole);
   const role = JSON.parse(decryptedRole);
@@ -47,7 +48,7 @@ const Detail = ({ Component }) => {
     console.log(id);
 
     axios
-      .delete("http://localhost:8081/api/components/delete/" + id, {
+      .delete(`${baseUrl}/api/components/delete/` + id, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -71,7 +72,7 @@ const Detail = ({ Component }) => {
       const fetchImpactedComponents = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8081/api/graph/impact/${Component.id}`,
+            `${baseUrl}/api/graph/impact/${Component.id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -93,14 +94,11 @@ const Detail = ({ Component }) => {
   useEffect(() => {
     const fetchAllComponents = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8081/api/components/all",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/components/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setAllComponents(response.data);
       } catch (error) {
         console.error("Error fetching components:", error);
@@ -141,7 +139,7 @@ const Detail = ({ Component }) => {
           <p className=" text-pink-950 flex flex-row">
             <strong className=" text-pink-950 flex flex-row mr-2">
               <img className="h-6 w-6 mr-2" src="com.png"></img>
-              Ip:
+              IP:
             </strong>{" "}
             {Component.ip}
           </p>
@@ -289,13 +287,13 @@ const Detail = ({ Component }) => {
                   ✕
                 </button>
               </form>
-              <p className="py-4 text-pink-900 ">
+              <p className="py-4 text-black ">
                 {" "}
-                The Node you want to delete has Impacted Nodes{" "}
+                The component has impact on other components !{" "}
               </p>
-              <p className="py-4 text-pink-900 ">
+              <p className="py-4 text-black ">
                 {" "}
-                Remove the Impacted Nodes and Try Again !!{" "}
+                Please remove the dependencies of the component and try again{" "}
               </p>
             </div>
           </dialog>

@@ -9,6 +9,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   const modalshow2 = () => {
     document.getElementById("modal2").showModal();
@@ -17,7 +18,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8081/signin", {
+      const response = await axios.post(`${baseUrl}/signin`, {
         username,
         password,
       });
@@ -28,7 +29,7 @@ const Login = () => {
       console.log(response.data.roles);
       const role = JSON.stringify(response.data.roles);
       console.log(role);
-      const secretKey = "lomatulhabibinterns2";
+      const secretKey = process.env.REACT_APP_SECRET_KEY;
       const encryptedRole = CryptoJS.AES.encrypt(role, secretKey).toString();
 
       localStorage.setItem("role", encryptedRole);

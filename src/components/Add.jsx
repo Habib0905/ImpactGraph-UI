@@ -24,14 +24,16 @@ const Add = () => {
 
   const token = localStorage.getItem("token");
 
+  const baseUrl = process.env.REACT_APP_BASE_URL;
   const fetchAllComponents = () => {
     axios
-      .get("http://localhost:8081/api/components/all", {
+      .get(`${baseUrl}/api/components/all`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
+        console.log("fetching all components", response.data);
         setAllComponents(response.data);
       })
       .catch((error) => {
@@ -96,9 +98,9 @@ const Add = () => {
       }
     } else {
       if (
-        incomingComponent !== "" &&
-        incomingComponent !== null &&
-        incomingComponent !== undefined
+        outgoingComponent !== "" &&
+        outgoingComponent !== null &&
+        outgoingComponent !== undefined
       ) {
         if (!componentData.outgoingNodeIds.includes(id)) {
           setComponentData({
@@ -135,7 +137,7 @@ const Add = () => {
     setIsLoading(true);
 
     axios
-      .post("http://localhost:8081/api/components/create", componentData, {
+      .post(`${baseUrl}/api/components/create`, componentData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -183,7 +185,7 @@ const Add = () => {
           <div className="relative -mt-10 z-10 mb-10 bg-white border-pink-900 border-2 bg-opacity-90 rounded shadow-2xl shadow-pink-950 w-[700px] h-auto p-10 mx-auto flex flex-col justify-center items-center">
             <label
               htmlFor="name"
-              className="input input-bordered border-pink-950 input-black flex items-center w-full gap-2"
+              className="input input-bordered border-pink-950 input-black bg-white text-black flex items-center w-full gap-2"
             >
               <img className="h-6 w-6 " src="edit.png"></img>
               Name :
@@ -195,16 +197,16 @@ const Add = () => {
                 value={componentData.name}
                 onChange={handleInputChange}
                 className="grow"
-                placeholder="e.g. Database"
+                placeholder="e.g. Component Name"
               />
             </label>
 
             <label
               htmlFor="ip"
-              className="input input-bordered border-pink-950  input-black flex items-center gap-2 w-full mt-5"
+              className="input input-bordered border-pink-950  input-black bg-white text-black flex items-center gap-2 w-full mt-5"
             >
               <img className="h-6 w-6 " src="edit.png"></img>
-              IP:
+              IP :
               <input
                 required
                 type="text"
@@ -219,10 +221,10 @@ const Add = () => {
 
             <label
               htmlFor="type"
-              className="input input-bordered border-pink-950 input-black flex items-center w-full gap-2 mt-5 relative"
+              className="input input-bordered border-pink-950 input-black bg-white text-black flex items-center w-full gap-2 mt-5 relative"
             >
               <img className="h-6 w-6 " src="edit.png"></img>
-              Type:
+              Type :
               <input
                 required
                 type="text"
@@ -233,7 +235,7 @@ const Add = () => {
                 onFocus={() => setShowTypeOptions(true)}
                 onBlur={handleBlur}
                 className="grow"
-                placeholder="e.g. Database"
+                placeholder="e.g. Component Type"
               />
               {showTypeOptions && filteredTypes.length > 0 && (
                 <ul className="absolute z-10 bg-white border border-gray-300 text-black w-full left-0 top-full transform mt-1 max-h-60 overflow-y-auto">
@@ -282,7 +284,7 @@ const Add = () => {
 
             <div className="w-full mt-5 flex items-center">
               <select
-                className="select select-bordered bg-white w-full max-w"
+                className="select select-bordered bg-white w-full max-w text-black"
                 value={incomingComponent}
                 onChange={(e) => setIncomingComponent(e.target.value)}
               >
@@ -343,7 +345,7 @@ const Add = () => {
 
             <div className="w-full mt-5 flex items-center">
               <select
-                className="select bg-white select-bordered w-full max-w"
+                className="select bg-white select-bordered w-full max-w text-black"
                 value={outgoingComponent}
                 onChange={(e) => setOutgoingComponent(e.target.value)}
               >

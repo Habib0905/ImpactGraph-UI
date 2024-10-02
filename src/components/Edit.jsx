@@ -15,6 +15,7 @@ const Edit = ({ Component, func }) => {
   const [outgoingComponent, setOutgoingComponent] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   const [updateComponent, setUpdateComponent] = useState({
     id: Component.id,
@@ -46,14 +47,11 @@ const Edit = ({ Component, func }) => {
   useEffect(() => {
     const fetchComponents = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8081/api/components/all",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Add the authorization header
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/components/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the authorization header
+          },
+        });
         setSuggestions(response.data);
       } catch (error) {
         console.error("Error fetching components:", error);
@@ -76,7 +74,7 @@ const Edit = ({ Component, func }) => {
     console.log(updateComponent);
 
     axios
-      .put("http://localhost:8081/api/components/update", updateComponent, {
+      .put(`${baseUrl}/api/components/update`, updateComponent, {
         headers: {
           Authorization: `Bearer ${token}`, // Add the authorization header
         },
@@ -145,9 +143,9 @@ const Edit = ({ Component, func }) => {
       <form onSubmit={handleSubmit} className="bg-white">
         <label
           htmlFor="name"
-          className="input input-bordered input-black flex items-center w-full gap-2 "
+          className="input input-bordered input-black bg-white text-black flex items-center w-full gap-2 "
         >
-          Name
+          Name :
           <input
             type="text"
             id="name"
@@ -161,9 +159,9 @@ const Edit = ({ Component, func }) => {
 
         <label
           htmlFor="type"
-          className="input input-bordered input-black flex items-center w-full gap-2 mt-3 mb-3"
+          className="input input-bordered input-black bg-white text-black flex items-center w-full gap-2 mt-3 mb-3"
         >
-          Type
+          Type :
           <input
             type="text"
             id="type"
@@ -177,9 +175,9 @@ const Edit = ({ Component, func }) => {
 
         <label
           htmlFor="ip"
-          className="input input-bordered input-black flex items-center w-full gap-2"
+          className="input input-bordered input-black bg-white text-black flex items-center w-full gap-2"
         >
-          IP
+          IP :
           <input
             type="text"
             id="ip"
@@ -225,7 +223,7 @@ const Edit = ({ Component, func }) => {
 
         <div className="w-full mt-5 flex items-center">
           <select
-            className="select select-bordered w-full max-w"
+            className="select select-bordered w-full max-w bg-white text-black"
             value={incomingComponent}
             onChange={(e) => setIncomingComponent(parseInt(e.target.value, 10))}
           >
@@ -281,7 +279,7 @@ const Edit = ({ Component, func }) => {
 
         <div className="w-full mt-5 flex items-center">
           <select
-            className="select select-bordered w-full max-w"
+            className="select select-bordered w-full max-w bg-white text-black"
             value={outgoingComponent}
             onChange={(e) => setOutgoingComponent(parseInt(e.target.value, 10))}
           >

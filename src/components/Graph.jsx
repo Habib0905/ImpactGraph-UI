@@ -9,6 +9,8 @@ const Graph = () => {
   const networkRef = useRef(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedEdge, setSelectedEdge] = useState(null);
+  const [loader, setLoader] = useState(true);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     let isMounted = true;
@@ -19,14 +21,12 @@ const Graph = () => {
         const token = localStorage.getItem("token");
         console.log("the token is :", token);
 
-        const response = await axios.get(
-          "http://localhost:8081/api/graph/data",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/graph/data`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setLoader(false);
         console.log("Data Fetched");
         const data = response.data;
         console.log("Fetched data:", data);
@@ -122,7 +122,7 @@ const Graph = () => {
 
               try {
                 const result = await axios.get(
-                  `http://localhost:8081/api/graph/impact/${intId}`,
+                  `${baseUrl}/api/graph/impact/${intId}`,
                   {
                     headers: {
                       Authorization: `Bearer ${token}`,
@@ -159,7 +159,7 @@ const Graph = () => {
 
               try {
                 const result = await axios.get(
-                  `http://localhost:8081/api/graph/node/${intId}`,
+                  `${baseUrl}/api/graph/node/${intId}`,
                   {
                     headers: {
                       Authorization: `Bearer ${token}`,
@@ -193,6 +193,13 @@ const Graph = () => {
                 to: targetNode.label,
               });
               setSelectedNode(null);
+              const nodes = visNetwork.body.data.nodes.get();
+              const updates = [];
+
+              nodes.forEach((node) => {
+                updates.push({ id: node.id, color: "#97C2FC" });
+              });
+              visNetwork.body.data.nodes.update(updates);
             } else {
               setSelectedNode(null);
               setSelectedEdge(null);
@@ -224,6 +231,12 @@ const Graph = () => {
   return (
     <div className="hero relative h-screen  bg-white">
       {/* <img className='w-full h-auto object-cover  top-0 left-0' src='graphbg.jpg' /> */}
+
+      {loader && (
+        <div>
+          <span className="loading loading-spinner w-20 h-20 border-3"></span>
+        </div>
+      )}
 
       <div
         id="network"
