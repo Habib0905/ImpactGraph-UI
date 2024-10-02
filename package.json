@@ -25,6 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "start_dev": "pm2 start ecosystem.config.js --env development",
+    "start_prod": "pm2 start ecosystem.config.js --env production",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
